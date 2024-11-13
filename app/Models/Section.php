@@ -9,5 +9,5 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_id','name','teacher_id'];
+    protected $fillable = ['klass_id','name']; //maybe later we need school_id
 }

@@ -14,7 +14,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <h4 class="mb-2 text-center">
-                                           <small class="text-muted">Updated By: {{ $site->updatedBy->name ?? '' }} - {{ $site->updated_at ? $site->updated_at->diffForHumans() : '' }}</small>
+                                           <small class="text-muted">Updated By: {{ $site->updatedBy->name ?? '' }} - {{ $site && $site->updated_at ? $site->updated_at->diffForHumans() : '' }}</small>
                                         </h4>
                                     </div>
                                 </div>
