@@ -26,7 +26,7 @@
                     <div class="text-center text-lg-left mb-3">
                         <a href="javascript:void(0)">
                             <span>
-                                <img src="{{ asset('assets/backend/extras/logo/logo-dark.png') }}" alt="" height="35">
+                                <img src="{{ asset('assets/extras/logo/logo-dark.png') }}" alt="" height="35">
                             </span>
                         </a>
                     </div>

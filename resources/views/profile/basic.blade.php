@@ -20,7 +20,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update profile</h4>
-                            <form method="POST" class="col-12 profileAjaxForm" action="" id = "profileAjaxForm" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('profile.manage') }}" enctype="multipart/form-data">
+                                @csrf
                                 <div class="col-12">
                                     <div class="form-group row mb-3">
                                         <label class="col-md-3 col-form-label" for="name"> Name</label>
@@ -46,7 +47,7 @@
                                     <div class="form-group row mb-3">
                                         <label class="col-md-3 col-form-label" for="address"> Address</label>
                                         <div class="col-md-9">
-                                            <textarea class="form-control" id="address" name = "address" rows="5"></textarea>
+                                            <textarea class="form-control" id="address" name="address" rows="4">{{ Auth::user()->address ?? '' }}</textarea>
                                         </div>
                                     </div>
 
@@ -55,7 +56,7 @@
                                         <div class="col-md-9 custom-file-upload">
                                             <div class="wrapper-image-preview" style="margin-left: -6px;">
                                                 <div class="box" style="width: 250px;">
-                                                    <div class="js--image-preview" style="background-image: url(http://localhost/school__/uploads/users/placeholder.jpg); background-color: #F5F5F5;">
+                                                    <div class="js--image-preview" style="background-image: url({{ Auth::user()->profile_image ? asset('assets/uploads/profile/' . Auth::user()->profile_image) : asset('assets/uploads/profile/placeholder.jpg') }}); background-color: #F5F5F5;">
                                                     </div>
                                                     <div class="upload-options">
                                                         <label for="profile_image" class="btn"> <i class="mdi mdi-camera"></i> Upload an image </label>
@@ -71,9 +72,8 @@
                                     </div>
                                 </div>
                             </form>
-
-                        </div> <!-- end card body-->
-                    </div> <!-- end card -->
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12">

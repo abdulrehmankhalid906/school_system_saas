@@ -1,11 +1,11 @@
 <div class="navbar-custom topnav-navbar topnav-navbar-dark">
     <div class="container-fluid">
-        <a href="http://localhost/school__/" class="topnav-logo" style= "min-width: unset;">
+        <a href="{{ route('home') }}" class="topnav-logo" style= "min-width: unset;">
             <span class="topnav-logo-lg">
-                <img src="http://localhost/school__/uploads/system/logo/logo-light.png" alt="" height="40">
+                <img src="{{ asset('assets/extras/logo/logo-light.png') }}" alt="" height="40">
             </span>
             <span class="topnav-logo-sm">
-                <img src="http://localhost/school__/uploads/system/logo/logo-light-sm.png" alt="" height="40">
+                <img src="{{ asset('assets/extras/logo/logo-light-sm.png') }}" alt="" height="40">
             </span>
         </a>
 
@@ -47,7 +47,6 @@
         </ul>
         <div class="app-search dropdown pt-1 mt-2">
             <h4 style="color: #fff; float: left;" class="d-none d-md-inline-block"> Alpha Guardian System</h4>
-            {{-- <a href="http://localhost/school__/" target="" class="btn btn-outline-light ms-2 d-none d-md-inline-block">Visit website</a> --}}
         </div>
         <a class="button-menu-mobile disable-btn">
             <div class="lines">

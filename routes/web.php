@@ -32,6 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function(){
 
     Route::get('/profile',[CommonController::class, 'basic_profile'])->name('profile.index');
+    Route::post('/profile-manage',[CommonController::class, 'basic_profile_update'])->name('profile.manage');
 
     Route::resources([
         'roles' => RoleController::class,
