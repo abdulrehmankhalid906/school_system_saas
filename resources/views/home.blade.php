@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Dashboard | Soan Garden High School')
 @section('content')
     <div class="content" style="padding-top: 30px;">
         <div class="loadings hidden"></div>

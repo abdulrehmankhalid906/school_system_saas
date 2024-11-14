@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
@@ -32,6 +34,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/profile',[CommonController::class, 'basic_profile'])->name('profile.index');
 
     Route::resources([
+        'roles' => RoleController::class,
+        'permissions' => PermissionController::class,
         'subjects' => SubjectController::class,
         'site' => SiteController::class,
     ]);

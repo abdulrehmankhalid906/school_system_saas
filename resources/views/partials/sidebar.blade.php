@@ -2,8 +2,7 @@
 
     <div class="leftbar-user">
         <a href="javascript: void(0);">
-            <img src="http://localhost/school__/uploads/users/placeholder.jpg" alt="user-image"
-                height="42" class="rounded-circle shadow-sm">
+            <img src="{{ asset('assets/extras/placeholder.jpg') }}" alt="user-image" height="42" class="rounded-circle shadow-sm">
             <span class="leftbar-user-name">Administrator</span>
         </a>
     </div>
@@ -17,15 +16,7 @@
             </a>
         </li>
 
-        <li class="side-nav-item"> <a href="http://localhost/school__/superadmin/online_admission"
-                class="side-nav-link">
-                <i class="dripicons-graduation"></i>
-                <span>Online admission</span>
-                <span class="badge bg-danger float-end">0</span>
-            </a>
-        </li>
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#users" aria-expanded="false"
-                aria-controls="users" class="side-nav-link py-2">
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users" class="side-nav-link py-2">
                 <i class="dripicons-user"></i>
                 <span>Users</span>
                 <span class="menu-arrow"></span>
@@ -33,13 +24,13 @@
             <div class="collapse" id="users">
                 <ul class="side-nav-second-level">
                     <li>
-                        <a href="http://localhost/school__/superadmin/admin">Admin</a>
+                        <a href="http://localhost/school__/superadmin/admin">Users</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/student">Student</a>
+                        <a href="{{ route('roles.index') }}">Roles</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/student/create">Admission</a>
+                        <a href="{{ route('permissions.index') }}">Permissions</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/teacher">Teacher</a>
@@ -59,8 +50,7 @@
                 </ul>
             </div>
 
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#academic" aria-expanded="false"
-                aria-controls="academic" class="side-nav-link py-2">
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#academic" aria-expanded="false" aria-controls="academic" class="side-nav-link py-2">
                 <i class="dripicons-store"></i>
                 <span>Academic</span>
                 <span class="menu-arrow"></span>

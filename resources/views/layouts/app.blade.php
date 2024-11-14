@@ -4,7 +4,7 @@
 <head>
     <!-- all the meta tags -->
     <meta charset="utf-8" />
-    <title>Dashboard | Soan Garden High School</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Creativeitem" name="author" />
@@ -125,7 +125,7 @@
         }
     </script>
     <!-- Toastr and alert notifications for PHP scripts -->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function notify(message) {
             $.NotificationApp.send("Heads up!", message, "top-right", "rgba(0,0,0,0.2)", "info");
         }
@@ -137,7 +137,7 @@
         function error_notify(message) {
             $.NotificationApp.send("Oh snap !", message, "top-right", "rgba(0,0,0,0.2)", "error");
         }
-    </script>
+    </script> --}}
 
 
     <!-- SHOW TOASTR NOTIFICATION FOR AJAX-->
@@ -175,7 +175,6 @@
         }
 
         function rightModal(url, header) {
-            // LOADING THE AJAX MODAL
             jQuery('#right-modal').modal('show', {
                 backdrop: 'true'
             });

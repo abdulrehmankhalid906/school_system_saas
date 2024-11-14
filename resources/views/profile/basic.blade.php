@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Manage Profile')
 @section('content')
 <div class="content" style="padding-top: 30px;">
     <div class="loadings hidden"></div>
@@ -6,7 +7,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body py-2">
-                    <h4 class="page-title"> <i class="mdi mdi-view-dashboard title_icon"></i>Dashboard</h4>
+                    <h4 class="page-title"> <i class="mdi mdi-view-dashboard title_icon"></i>Manage Profile</h4>
                 </div>
             </div>
         </div>
@@ -19,28 +20,26 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update profile</h4>
-                            <form method="POST" class="col-12 profileAjaxForm"
-                                action="http://localhost/school__/superadmin/profile/update_profile" id = "profileAjaxForm"
-                                enctype="multipart/form-data">
+                            <form method="POST" class="col-12 profileAjaxForm" action="" id = "profileAjaxForm" enctype="multipart/form-data">
                                 <div class="col-12">
                                     <div class="form-group row mb-3">
                                         <label class="col-md-3 col-form-label" for="name"> Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="name" name="name" class="form-control" value="Administrator" required>
+                                            <input type="text" id="name" name="name" class="form-control" value="{{ Auth::user()->name ?? '' }}" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-3">
                                         <label class="col-md-3 col-form-label" for="email">Email</label>
                                         <div class="col-md-9">
-                                            <input type="email" id="email" name="email" class="form-control" value="admin@gmail.com" required>
+                                            <input type="email" id="email" name="email" class="form-control" value="{{ Auth::user()->email ?? '' }}" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-3">
                                         <label class="col-md-3 col-form-label" for="phone"> Phone</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="phone" name="phone" class="form-control" value="">
+                                            <input type="text" id="phone" name="phone" class="form-control" value="{{ Auth::user()->phone ?? '' }}">
                                         </div>
                                     </div>
 
@@ -56,8 +55,7 @@
                                         <div class="col-md-9 custom-file-upload">
                                             <div class="wrapper-image-preview" style="margin-left: -6px;">
                                                 <div class="box" style="width: 250px;">
-                                                    <div class="js--image-preview"
-                                                        style="background-image: url(http://localhost/school__/uploads/users/placeholder.jpg); background-color: #F5F5F5;">
+                                                    <div class="js--image-preview" style="background-image: url(http://localhost/school__/uploads/users/placeholder.jpg); background-color: #F5F5F5;">
                                                     </div>
                                                     <div class="upload-options">
                                                         <label for="profile_image" class="btn"> <i class="mdi mdi-camera"></i> Upload an image </label>
