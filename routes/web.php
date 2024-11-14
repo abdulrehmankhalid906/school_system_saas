@@ -19,7 +19,7 @@ use App\Http\Controllers\SubjectController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('/home');
 });
 
 Auth::routes();
@@ -39,5 +39,5 @@ Route::middleware(['auth'])->group(function(){
 
 Route::fallback(function(){
     return Redirect::to('/home');
-}); 
+});
 
