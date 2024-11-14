@@ -18,14 +18,11 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users" class="side-nav-link py-2">
                 <i class="dripicons-user"></i>
-                <span>Users</span>
+                <span>Management</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="users">
                 <ul class="side-nav-second-level">
-                    <li>
-                        <a href="http://localhost/school__/superadmin/admin">Users</a>
-                    </li>
                     <li>
                         <a href="{{ route('roles.index') }}">Roles</a>
                     </li>

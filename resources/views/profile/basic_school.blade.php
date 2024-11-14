@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update School (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
-                            <form method="POST" action="{{ route('school.manage') }}">
+                            <form method="POST" action="{{ route('school.manage') }}" autocomplete="off">
                                 @csrf
                                 <div class="col-12">
                                     <div class="form-group row mb-3">

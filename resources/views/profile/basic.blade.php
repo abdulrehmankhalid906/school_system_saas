@@ -20,7 +20,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update profile</h4>
-                            <form method="POST" action="{{ route('profile.manage') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('profile.manage') }}" enctype="multipart/form-data" autocomplete="off">
                                 @csrf
                                 <div class="col-12">
                                     <div class="form-group row mb-3">
