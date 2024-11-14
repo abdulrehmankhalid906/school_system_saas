@@ -140,23 +140,6 @@
     </script>
 
 
-    <script type="text/javascript">
-        $.NotificationApp.send("Oh snap!", 'Invalid your email or password', "top-right", "rgba(0,0,0,0.2)", "error");
-    </script>
-
-    <script type="text/javascript">
-        $.NotificationApp.send("Success !", 'Welcome back', "top-right", "rgba(0,0,0,0.2)", "success");
-    </script>
-
-    <script>
-        function error_required_field() {
-            $.NotificationApp.send("Oh snap!", "Please fill all the required fields", "top-right", "rgba(0,0,0,0.2)",
-                "error");
-        }
-    </script>
-
-
-
     <!-- SHOW TOASTR NOTIFICATION FOR AJAX-->
 
     <script type="text/javascript">
