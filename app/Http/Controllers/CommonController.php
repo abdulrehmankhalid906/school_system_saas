@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileRequest;
 use App\Models\User;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\SchoolRequest;
 
 class CommonController extends Controller
 {
     public function basic_profile()
     {
-        $user = User::with('school')->where('id', Auth::id())->first();
-        return view('profile.basic',[
-            'user' => $user,
-        ]);
+        return view('profile.basic');
     }
 
     public function basic_profile_update(ProfileRequest $request)
@@ -33,4 +32,29 @@ class CommonController extends Controller
 
         return redirect()->back()->with('success', 'Profile updated successfully');
     }
+
+    public function basic_school()
+    {
+        return view('profile.basic_school',[
+            'school' => School::where('user_id', Auth::id())->first()
+        ]);
+    }
+
+    public function basic_school_update(SchoolRequest $request)
+    {
+        $school = School::where('user_id', Auth::id())->first();
+    
+        $school->update($request->validated());
+
+        if ($request->hasFile('school_logo')) {
+            $schoolLogo = $request->file('school_logo');
+            $schoolLogoName = time() . '.' . $schoolLogo->getClientOriginalExtension();
+            $schoolLogo->move(public_path('uploads/profile'), $schoolLogoName);
+            $school->profile_image = $schoolLogoName;
+            $school->save();
+        }
+
+        return redirect()->back()->with('success', 'School updated successfully');
+    }
+    // basic_school_update
 }

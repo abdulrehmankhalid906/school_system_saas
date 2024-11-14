@@ -9,7 +9,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Creativeitem" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/backend/extras/logo/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/extras/logo/favicon.png') }}">
     <!-- all the css files -->
     <!-- App css -->
     <link href="{{ asset('/assets/backend/css/icons.min.css') }}" rel="stylesheet" />

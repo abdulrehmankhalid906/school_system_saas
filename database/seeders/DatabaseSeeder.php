@@ -25,35 +25,35 @@ class DatabaseSeeder extends Seeder
         //     PermissionSeeder::class
         // ]);
 
-        User::factory(10)->create()->each(function ($user) {
-            $school = School::factory()->create([
-                'user_id' => $user->id
-            ]);
+        // User::factory(10)->create()->each(function ($user) {
+        //     $school = School::factory()->create([
+        //         'user_id' => $user->id
+        //     ]);
             
-            // Create two classes for the school
-            Klass::factory(2)->create([
-                'school_id' => $school->id
-            ])->each(function ($klass) use ($school) {
-                // Create sections for each class
-                Section::factory(3)->create([
-                    'klass_id' => $klass->id
-                ]);
-            });
+        //     // Create two classes for the school
+        //     Klass::factory(2)->create([
+        //         'school_id' => $school->id
+        //     ])->each(function ($klass) use ($school) {
+        //         // Create sections for each class
+        //         Section::factory(3)->create([
+        //             'klass_id' => $klass->id
+        //         ]);
+        //     });
         
-            // Create 5 students for the school, assigned to random classes and sections
-            Student::factory(5)->create([
-                'school_id' => $school->id,
-                'klass_id' => function () use ($school) {
-                    return Klass::where('school_id', $school->id)->inRandomOrder()->first()->id; // Assign to a random class
-                },
-                'section_id' => function () use ($school) {
-                    // Get a random section from the selected class
-                    $klassId = Klass::where('school_id', $school->id)->inRandomOrder()->first()->id;
-                    $sectionIds = Section::where('klass_id', $klassId)->pluck('id')->toArray();
-                    return Arr::random($sectionIds); // Randomly assign a section
-                }
-            ]);
-        });
+        //     // Create 5 students for the school, assigned to random classes and sections
+        //     Student::factory(5)->create([
+        //         'school_id' => $school->id,
+        //         'klass_id' => function () use ($school) {
+        //             return Klass::where('school_id', $school->id)->inRandomOrder()->first()->id; // Assign to a random class
+        //         },
+        //         'section_id' => function () use ($school) {
+        //             // Get a random section from the selected class
+        //             $klassId = Klass::where('school_id', $school->id)->inRandomOrder()->first()->id;
+        //             $sectionIds = Section::where('klass_id', $klassId)->pluck('id')->toArray();
+        //             return Arr::random($sectionIds); // Randomly assign a section
+        //         }
+        //     ]);
+        // });
              
 
         // \App\Models\User::factory()->create([

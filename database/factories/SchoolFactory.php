@@ -23,7 +23,6 @@ class SchoolFactory extends Factory
             'address' => $this->faker->address,
             'district' => $this->faker->country,
             'city' => $this->faker->city,
-            'postal_code' => $this->faker->postcode(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'website' => $this->faker->url(),

@@ -6,9 +6,11 @@ use App\Models\User;
 use App\Models\School;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Date;
 
 class RegisterController extends Controller
 {
@@ -65,7 +67,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return DB::transaction(function () use ($data) {
+        $date = new DateTime();
+        $base_year = $date->format('Y');
+
+        return DB::transaction(function () use ($data, $base_year) {
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
@@ -74,21 +79,20 @@ class RegisterController extends Controller
     
             School::create([
                 'user_id' => $user->id,
-                'name' => \Faker\Factory::create()->company,
+                'name' => $user->name.' School',
                 'founded_date' => now(),
-                'address' => \Faker\Factory::create()->address,
-                'district' => \Faker\Factory::create()->state,
-                'city' => \Faker\Factory::create()->city,
-                'postal_code' => \Faker\Factory::create()->postcode,
-                'phone' => \Faker\Factory::create()->phoneNumber,
+                'address' => 'Islamabad, Pakisan',
+                'district' => 'Fedral',
+                'city' => 'Islamabad',
+                'postal_code' => 'TR-'.$user->id,
+                'phone' => '0300'.$user->id.'903432',
                 'email' => $user->email,
-                'website' => \Faker\Factory::create()->url,
-                'registration_number' => \Faker\Factory::create()->unique()->numerify('REG-####'),
+                'website' => NULL,
+                'registration_number' => 'REG-'.$base_year.'-'.$user->id,
                 'established_year' => \Faker\Factory::create()->year,
             ]);
     
             // $user->syncRoles('Company'); For now commented
-    
             return $user;
         });
     }

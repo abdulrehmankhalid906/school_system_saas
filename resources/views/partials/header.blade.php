@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <a href="{{ route('home') }}" class="topnav-logo" style= "min-width: unset;">
             <span class="topnav-logo-lg">
+            
                 <img src="{{ asset('assets/extras/logo/logo-light.png') }}" alt="" height="40">
             </span>
             <span class="topnav-logo-sm">
@@ -30,9 +31,9 @@
                         <i class="mdi mdi-account-circle me-1"></i>
                         <span>My account</span>
                     </a>
-                    <a href="http://localhost/school__/superadmin/system_settings" class="dropdown-item notify-item">
+                    <a href="{{ route('school.index') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-account-edit me-1"></i>
-                        <span>Settings</span>
+                        <span>My school</span>
                     </a>
 
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
@@ -46,7 +47,7 @@
             </li>
         </ul>
         <div class="app-search dropdown pt-1 mt-2">
-            <h4 style="color: #fff; float: left;" class="d-none d-md-inline-block"> Alpha Guardian System</h4>
+            <h4 style="color: #fff; float: left;" class="d-none d-md-inline-block"> {{ Auth::user() && Auth::user()->school ? Auth::user()->school->name : 'Your School Name' }}</h4>
         </div>
         <a class="button-menu-mobile disable-btn">
             <div class="lines">
