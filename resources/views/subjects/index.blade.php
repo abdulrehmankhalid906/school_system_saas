@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard | Subjects')
+@section('title', 'Dashboard | Manage Subjects')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -47,16 +47,6 @@
                                             <label for="">Backend Text</label>
                                             <input type="text" class="form-control @error('backend_text') is-invalid @enderror" value="{{ $subject->backend_text ?? '' }}" name="backend_text" id="backend_text">
                                             @error('backend_text')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-        
-                                        <div class="col-12 col-sm-12">
-                                            <label for="">Base URL</label>
-                                            <input type="text" class="form-control @error('base_url') is-invalid @enderror" value="{{ $subject->base_url ?? '' }}" name="base_url" id="base_url">
-                                            @error('base_url')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

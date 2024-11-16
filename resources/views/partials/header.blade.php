@@ -17,8 +17,8 @@
                         <img src="{{ asset('assets/extras/placeholder.jpg') }}" alt="user-image" class="rounded-circle">
                     </span>
                     <span>
-                        <span class="account-user-name">{{ Auth::user()->name ?? 'Agent User' }}</span>
-                        <span class="account-position">Superadmin</span>
+                        <span class="account-user-name">{{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</span>
+                        <span class="account-position">{{ Auth::user()->roles->implode('name', ', ') }}</span>
                     </span>
                 </a>
 

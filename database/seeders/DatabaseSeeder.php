@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([
-        //     SubjectSeeder::class,
-        //     RoleSeeder::class,
-        //     PermissionSeeder::class
-        // ]);
+        $this->call([
+            // SubjectSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class
+        ]);
 
         // User::factory(10)->create()->each(function ($user) {
         //     $school = School::factory()->create([

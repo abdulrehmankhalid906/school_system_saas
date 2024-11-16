@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/school-manage',[CommonController::class, 'basic_school_update'])->name('school.manage');
 
     Route::resources([
+        'users' => UserController::class,
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
         'schools' => SchoolController::class,

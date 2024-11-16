@@ -24,6 +24,9 @@
             <div class="collapse" id="users">
                 <ul class="side-nav-second-level">
                     <li>
+                        <a href="{{ route('users.index') }}">Users</a>
+                    </li>
+                    <li>
                         <a href="{{ route('roles.index') }}">Roles</a>
                     </li>
                     <li>
@@ -61,7 +64,7 @@
                         <a href="http://localhost/school__/superadmin/routine">Class routine</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/subject">Subject</a>
+                        <a href="{{ route('subjects.index') }}">Subject</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/syllabus">Syllabus</a>

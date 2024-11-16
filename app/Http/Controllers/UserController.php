@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\School;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
-class SchoolController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('schools.schools',[
-            'schools' => School::get()
+        return view('users.users',[
+            'users' => User::with('roles')->get()
         ]);
     }
 
@@ -65,21 +63,24 @@ class SchoolController extends Controller
      */
     public function destroy(string $id)
     {
-        try {
-            $school = School::with('user')->findOrFail($id);
-            
-            $school->delete();
+        try
+        {
+            $user = User::with('school')->findOrFail($id);
 
-            if ($school->user)
+            if($user->school)
             {
-                $school->user->delete();
+                $user->school->delete();
             }
-            
-            return response()->json(['message' => 'The School and all the associated data have been Removed!']);
-        } catch (\Exception $e) {
+
+            $user->delete();
+
+            return response()->json(['message' => 'The user, their school, and all associated data have been removed successfully!']);
+        }
+        catch(Exception $ex)
+        {
             return response()->json([
                 'message' => 'An error occurred. Please try again.',
-                'failure' => $e->getMessage()
+                'failure' => $ex->getMessage()
             ], 500);
         }
     }

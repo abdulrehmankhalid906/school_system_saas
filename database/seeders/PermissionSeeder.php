@@ -17,8 +17,8 @@ class PermissionSeeder extends Seeder
             'Manage Users',
             'Manage Roles',
             'Manage Permissions',
+            'Manage Schools',
             'Manage Site',
-            'Manage Schools'
         ];
 
         foreach ($permissions as $permission) {

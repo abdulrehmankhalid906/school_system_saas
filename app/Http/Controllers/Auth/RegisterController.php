@@ -92,7 +92,7 @@ class RegisterController extends Controller
                 'established_year' => \Faker\Factory::create()->year,
             ]);
     
-            // $user->syncRoles('Company'); For now commented
+            $user->syncRoles('School');
             return $user;
         });
     }
