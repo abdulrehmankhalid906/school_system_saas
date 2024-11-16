@@ -9,11 +9,16 @@ class School extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','name','address','district','city','phone','email','website','registration_number','established_year'];
+    protected $fillable = ['name','address','district','city','phone','email','website','registration_number','established_year'];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
     }
 
     public function klasses()

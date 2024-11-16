@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\InitS;
+use App\Http\Requests\StoreSubjectRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
-        return view('subjects.index',[
-            'subjects' => $subjects,
+        
+        return view('subjects.subjects',[
+            'subjects' => Subject::get(),
         ]);
     }
 
@@ -23,17 +25,18 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('subject.subjects_add');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSubjectRequest $request)
     {
-        Subject::create([
-            'name' => $request->name,
-        ]);
+        $subject = $request->validated();
+        $subject['school_id'] = InitS::getSchoolid();
+
+        Subject::create($subject);
 
         return redirect()->back()->with('success', 'Subject has been created!');
     }
@@ -67,6 +70,6 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

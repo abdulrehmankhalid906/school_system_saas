@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function school()
     {
-        return $this->hasOne(School::class);
+        return $this->belongsTo(School::class);
     }
 }

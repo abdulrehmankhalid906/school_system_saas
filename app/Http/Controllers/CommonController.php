@@ -36,13 +36,13 @@ class CommonController extends Controller
     public function basic_school()
     {
         return view('profile.basic_school',[
-            'school' => School::where('user_id', Auth::id())->first()
+            'school' => School::where('id', Auth::user()->school_id)->first()
         ]);
     }
 
     public function basic_school_update(SchoolRequest $request)
     {
-        $school = School::where('user_id', Auth::id())->first();
+        $school = School::where('id', Auth::user()->school_id)->first();
     
         $school->update($request->validated());
 

@@ -9,6 +9,6 @@ class InitS{
 
     public static function getSchoolid()
     {
-        return School::where('user_id',Auth::id())->pluck('id')->first();
+        return Auth::user() ? Auth::user()->school_id : 0;
     }
 }

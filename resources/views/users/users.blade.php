@@ -42,7 +42,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->roles->implode('name', ', ') }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>20 S + 2 T</td>
+                                        <td>{{ $user->school->name }}</td>
                                         <td>{{ $user->created_at }}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $user->id }}, '{{ $user->name }}')">

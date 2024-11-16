@@ -26,6 +26,10 @@ Route::get('/', function () {
     return Redirect::to('/home');
 });
 
+Route::fallback(function(){
+    return Redirect::to('/home');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -49,7 +53,4 @@ Route::middleware(['auth'])->group(function(){
     ]);
 });
 
-Route::fallback(function(){
-    return Redirect::to('/home');
-});
 

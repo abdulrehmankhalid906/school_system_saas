@@ -67,32 +67,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $date = new DateTime();
-        $base_year = $date->format('Y');
+        $baseYear = now()->year;
 
-        return DB::transaction(function () use ($data, $base_year) {
+        return DB::transaction(function () use ($data, $baseYear) {
+            $school = School::create([
+                'name' => $data['name'] . ' School',
+                'founded_date' => now(),
+                'address' => $data['address'] ?? 'Default Address',
+                'district' => $data['district'] ?? 'Default District',
+                'city' => $data['city'] ?? 'Default City',
+                'postal_code' => 'TR-' . rand(1000, 9999),
+                'phone' => $data['phone'] ?? '0300' . rand(1000, 9999),
+                'email' => $data['email'],
+                'website' => $data['website'] ?? null,
+                'registration_number' => 'REG-' . $baseYear . '-' . rand(1000, 9999),
+                'established_year' => $baseYear,
+            ]);
+
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
+                'school_id' => $school->id,
             ]);
-    
-            School::create([
-                'user_id' => $user->id,
-                'name' => $user->name.' School',
-                'founded_date' => now(),
-                'address' => 'Islamabad, Pakisan',
-                'district' => 'Fedral',
-                'city' => 'Islamabad',
-                'postal_code' => 'TR-'.$user->id,
-                'phone' => '0300'.$user->id.'903432',
-                'email' => $user->email,
-                'website' => NULL,
-                'registration_number' => 'REG-'.$base_year.'-'.$user->id,
-                'established_year' => \Faker\Factory::create()->year,
-            ]);
-    
+
             $user->syncRoles('School');
+
             return $user;
         });
     }

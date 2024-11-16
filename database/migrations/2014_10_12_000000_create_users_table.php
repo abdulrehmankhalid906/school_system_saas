@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('school_id')->nullable();
+            $table->foreignId('school_id')->nullable()->constrained('schools')->onDelete('cascade');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('profile_image')->nullable();
