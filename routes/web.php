@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
@@ -40,6 +41,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resources([
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
+        'schools' => SchoolController::class,
         'subjects' => SubjectController::class,
         'site' => SiteController::class,
     ]);

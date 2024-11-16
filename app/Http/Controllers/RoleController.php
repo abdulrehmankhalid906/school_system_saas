@@ -63,7 +63,7 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-
+        
         $roles = Role::find($id);
         return view('roles.edit_roles', [
             'roles' => $roles
@@ -93,9 +93,9 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        $roles = Role::findorFail($id);
-        $roles->delete();
+        $role = Role::findOrFail($id);
+        $role->delete();
 
-        return redirect('roles')->with('success','Role Deleted Successfully!');
+        return response()->json(['message' => 'Role deleted successfully']);
     }
 }

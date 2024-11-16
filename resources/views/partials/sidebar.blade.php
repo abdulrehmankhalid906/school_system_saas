@@ -30,7 +30,7 @@
                         <a href="{{ route('permissions.index') }}">Permissions</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/teacher">Teacher</a>
+                        <a href="{{ route('schools.index') }}">School</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/permission">Teacher permission</a>

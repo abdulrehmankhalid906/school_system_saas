@@ -95,7 +95,7 @@
                                         <div class="col-md-9 custom-file-upload">
                                             <div class="wrapper-image-preview" style="margin-left: -6px;">
                                                 <div class="box" style="width: 250px;">
-                                                    <div class="js--image-preview" style="background-image: url({{ $school->logo ? asset('assets/uploads/school_logo/' . $school->logo) : asset('assets/uploads/profile/placeholder.jpg') }}); background-color: #F5F5F5;">
+                                                    <div class="js--image-preview" style="background-image: url({{ $school && $school->logo ? asset('assets/uploads/school_logo/' . $school->logo) : asset('assets/uploads/profile/placeholder.jpg') }}); background-color: #F5F5F5;">
                                                     </div>
                                                     <div class="upload-options">
                                                         <label for="profile_image" class="btn"> <i class="mdi mdi-camera"></i> Upload an image </label>

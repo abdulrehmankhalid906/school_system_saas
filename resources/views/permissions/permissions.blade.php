@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard | Roles')
+@section('title', 'Dashboard | Permissions')
 
 @section('content')
     <div class="content" style="padding-top: 30px;">
@@ -9,10 +9,10 @@
                 <div class="card">
                     <div class="card-body py-2">
                         <h4 class="page-title d-inline-block">
-                            <i class="mdi mdi-account-circle title_icon"></i> All Roles
+                            <i class="mdi mdi-account-circle title_icon"></i> All Permissions
                         </h4>
-                        <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#roleModal" onclick="openModal()">
-                            <i class="mdi mdi-plus"></i> Create Role
+                        <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#permissionModal" onclick="openModal()">
+                            <i class="mdi mdi-plus"></i> Create Permission
                         </button>
                     </div>
                 </div>
@@ -32,15 +32,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($roles as $role)
-                                    <tr id="row-{{ $role->id }}">
-                                        <td>{{ $role->name }}</td>
-                                        <td>{{ $role->created_at }}</td>
+                                @foreach ($permissions as $permission)
+                                    <tr id="row-{{ $permission->id }}">
+                                        <td>{{ $permission->name }}</td>
+                                        <td>{{ $permission->created_at }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $role->id }}, '{{ $role->name }}')">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $permission->id }}, '{{ $permission->name }}')">
                                                 Edit
                                             </button>  
-                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $role->id }}, 'roles')">Delete</a>
+                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $permission->id }},'permissions')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -52,21 +52,21 @@
         </div>
     </div>
 
-    <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="permissionModal" tabindex="-1" aria-labelledby="permissionModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Role</h5>
+              <h5 class="modal-title" id="permissionModalLabel">Create Permission</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="roleForm" method="POST" action="{{ route('roles.store') }}" autocomplete="off">
+            <form id="permissionForm" method="POST" action="{{ route('permissions.store') }}" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Role Name</label>
+                            <label class="col-md-3 col-form-label" for="system_name">Permission Name</label>
                             <div class="col-md-9">
-                                <input type="text" id="roleName" name="name" class="form-control" required>
+                                <input type="text" id="permissionName" name="name" class="form-control" required>
                             </div>
                         </div>
                     </div>

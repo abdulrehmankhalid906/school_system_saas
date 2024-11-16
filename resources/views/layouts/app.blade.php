@@ -105,6 +105,7 @@
     <script src="{{ asset('/assets/backend/js/vendor/dragula.min.js') }}"></script>
     <!-- component js -->
     <script src="{{ asset('/assets/backend/js/ui/component.dragula.js') }}"></script>
+    <script src="{{ asset('/assets/backend/js/sweetalert.js') }}"></script>
     <!-- Timepicker -->
 
     <script type="text/javascript">
@@ -122,6 +123,45 @@
 
         if ($(window).width() <= 767) {
             $('.leftside-menu-detached').removeClass('show');
+        }
+
+        function deleteRec(id,route) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/${route}/${id}`,
+                        type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire(
+                                'Deleted!',
+                                response.message,
+                                'success'
+                            );
+                            const table = $('#basic-datatable').DataTable();
+                            const row = $(`#row-${id}`);
+                            table.row(row).remove().draw();
+                        },
+                        error: function(error) {
+                            Swal.fire(
+                                'Error!',
+                                'There was a problem deleting the record.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
         }
     </script>
 </body>
