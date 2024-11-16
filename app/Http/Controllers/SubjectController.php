@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\InitS;
-use App\Http\Requests\StoreSubjectRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Imports\SubjectsImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StoreSubjectRequest;
+use Exception;
 
 class SubjectController extends Controller
 {
@@ -14,9 +17,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        
         return view('subjects.subjects',[
-            'subjects' => Subject::get(),
+            'subjects' => Subject::where('school_id', InitS::getSchoolid())->get(),
         ]);
     }
 
@@ -71,5 +73,26 @@ class SubjectController extends Controller
     public function destroy(string $id)
     {
         
+    }
+
+    public function bulkImportSubject(Request $request)
+    {
+        try
+        {
+            $request->validate([
+                'bulk_upload_file' => ['required','file'],
+            ]);
+
+            Excel::import(new SubjectsImport, $request->file('bulk_upload_file'));
+
+            return response()->json(['message' => 'File uploaded successfully'],200);
+        }
+        catch(Exception $ex)
+        {
+            return response()->json([
+                'message' => 'An error occurred during file upload',
+                'error' => $ex->getMessage(),
+            ], 500);
+        }
     }
 }

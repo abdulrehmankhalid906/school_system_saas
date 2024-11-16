@@ -35,18 +35,6 @@
                     <li>
                         <a href="{{ route('schools.index') }}">School</a>
                     </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/permission">Teacher permission</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/parent">Parent</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/accountant">Accountant</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/librarian">Librarian</a>
-                    </li>
                 </ul>
             </div>
 

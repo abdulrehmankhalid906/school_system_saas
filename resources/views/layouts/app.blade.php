@@ -25,6 +25,7 @@
     <link href="{{ asset('/assets/backend/css/vendor/select.bootstrap5.css') }}" rel="stylesheet"/>
     <link href="{{ asset('/assets/backend/css/vendor/summernote-bs4.css') }}" rel="stylesheet"/>
     <!-- third party css end -->
+    {{-- https://pictogrammers.com/library/mdi/ --}}
 
 
     <link href="{{ asset('/assets/backend/css/custom.css') }}" rel="stylesheet"/>

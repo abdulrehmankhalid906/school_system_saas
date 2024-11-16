@@ -43,6 +43,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/school',[CommonController::class, 'basic_school'])->name('school.index');
     Route::post('/school-manage',[CommonController::class, 'basic_school_update'])->name('school.manage');
 
+
+
+
+    //Imports
+    route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
+
     Route::resources([
         'users' => UserController::class,
         'roles' => RoleController::class,
