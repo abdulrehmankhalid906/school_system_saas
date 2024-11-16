@@ -33,6 +33,12 @@
 
 
     <script type="text/javascript" src="{{ asset('/assets/backend/js/jquery-3.6.0.min.js') }}"></script>
+
+    <style>
+        table.dataTable tbody td.focus, table.dataTable tbody th.focus {
+            outline: none !important;
+        }
+    </style>
 </head>
 
 <body class="loading" data-layout="detached" data-layout-config='{"leftSidebarCondensed":false,"darkMode":false, "showRightSidebarOnStart": false}'>
