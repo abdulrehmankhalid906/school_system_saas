@@ -58,7 +58,7 @@
                         <a href="http://localhost/school__/superadmin/syllabus">Syllabus</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/manage_class">Class</a>
+                        <a href="{{ route('classes.index') }}">Class</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/class_room">Class room</a>

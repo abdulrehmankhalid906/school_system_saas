@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->group(function(){
         'permissions' => PermissionController::class,
         'schools' => SchoolController::class,
         'subjects' => SubjectController::class,
+        'classes' => ClassController::class,
         'site' => SiteController::class,
     ]);
 });

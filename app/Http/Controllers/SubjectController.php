@@ -9,6 +9,7 @@ use App\Imports\SubjectsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreSubjectRequest;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -72,7 +73,17 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $subject = Subject::where('school_id', InitS::getSchoolid())->findOrFail($id);
         
+            $subject->delete();
+            return response()->json(['message' => 'The Subject has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function bulkImportSubject(Request $request)

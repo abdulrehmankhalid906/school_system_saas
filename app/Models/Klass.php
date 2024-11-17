@@ -9,10 +9,15 @@ class Klass extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['school_id','name','description'];
+    protected $fillable = ['name','school_id'];
 
     public function schools()
     {
         return $this->belongsTo(School::class);
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
     }
 }
