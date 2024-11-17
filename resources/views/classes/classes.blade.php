@@ -53,8 +53,8 @@
                                                         </button>
                                                     </li>
                                                     <li>
-                                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#classModal">
-                                                            Edit Again
+                                                        <button class="dropdown-item" data-id="{{ InitS::encodeId($class->id) }}" data-bs-toggle="modal" data-bs-target="#sectionsModal">
+                                                            Manage Sections
                                                         </button>
                                                     </li>
                                                     <li>
@@ -93,14 +93,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label">Subject Code</label>
-                            <div class="col-md-9">
-                                <input type="text" name="course_code" class="form-control">
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <input class="btn btn-primary" type="submit" value="Save changes">
@@ -111,27 +103,30 @@
         </div>
     </div>
 
-    <div class="modal fade" id="bulkUpload" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="sectionsModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Bulk Upload</h5>
+              <h5 class="modal-title" id="roleModalLabel">Manage Section</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('imports.subjects') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('sections.manage') }}" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Upload File</label>
-                            <div class="col-md-9">
-                                <input type="file" name="bulk_upload_file" class="form-control" required>
+                            <div class="col-md-6">
+                                <input type="text" name="section[]" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success btn-sm add_section">+</button>
                             </div>
                         </div>
+                        <div id="append_able"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Upload File">
+                    <input class="btn btn-primary" type="submit" value="Update">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

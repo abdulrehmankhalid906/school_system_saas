@@ -132,6 +132,30 @@
             $('.leftside-menu-detached').removeClass('show');
         }
 
+        $(document).on('click', '.add_section', function(event) {
+            event.preventDefault();
+
+            const html = `
+                <div class="form-group row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" name="section[]" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger btn-sm remove_section">-</button>
+                    </div>
+                </div>
+            `;
+
+            $('#append_able').append(html);
+        });
+
+        $(document).on('click', '.remove_section', function(event) {
+            event.preventDefault();
+            
+            $(this).closest('.form-group').remove();
+        });
+
+
         function deleteRec(id,route) {
             Swal.fire({
                 title: 'Are you sure?',

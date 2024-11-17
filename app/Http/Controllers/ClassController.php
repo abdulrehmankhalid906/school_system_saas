@@ -69,4 +69,9 @@ class ClassController extends Controller
     {
         //
     }
+
+    public function manageSection(Request $request)
+    {
+        dd($request->all());
+    }
 }

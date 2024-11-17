@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/school',[CommonController::class, 'basic_school'])->name('school.index');
     Route::post('/school-manage',[CommonController::class, 'basic_school_update'])->name('school.manage');
 
+    Route::post('/sections-manage',[ClassController::class, 'manageSection'])->name('sections.manage');
+
 
 
 
