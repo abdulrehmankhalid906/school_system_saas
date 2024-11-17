@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Klass;
 use App\Helpers\InitS;
+use App\Models\Section;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreClassRequest;
 use App\Http\Requests\StoreSubjectRequest;
-use Illuminate\Http\Request;
 
 class ClassController extends Controller
 {
@@ -15,8 +17,11 @@ class ClassController extends Controller
      */
     public function index()
     {
-        return view('classes.classes',[
-            'classes' => Klass::where('school_id', InitS::getSchoolid())->get(),
+        return view('classes.classes', [
+            'classes' => Klass::with(['sections' => function($query) {
+                $query->pluck('name','klass_id');
+            }])
+            ->where('school_id', InitS::getSchoolid())->get(),
         ]);
     }
 
@@ -72,6 +77,16 @@ class ClassController extends Controller
 
     public function manageSection(Request $request)
     {
-        dd($request->all());
+        $sections = $request->section;
+
+        foreach($sections as $section)
+        {
+            Section::create([
+                'klass_id' => $request->class_id,
+                'name' => $section
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'The Section has been created!');
     }
 }

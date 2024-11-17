@@ -22,6 +22,7 @@
             </div>
         </div>
 
+        {{-- {{ $classes }} --}}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -39,13 +40,16 @@
                                 @foreach ($classes as $class)
                                     <tr id="row-{{ $class->id }}">
                                         <td>{{ $class->name }}</td>
-                                        <td>{{ $class->name }}</td>
+                                        <td>
+                                            @foreach ($class->sections as $section)
+                                                {{-- <span>{{ explode(',',$section->name) }}</span> --}}
+                                                <li>{{ $section->name }}</li>
+                                            @endforeach
+                                        </td>
                                         <td>{{ $class->created_at }}</td>
                                         <td>
                                             <div class="dropdown">
-                                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ $class->id }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    {{-- &#x22EE; <!-- Three vertical dots --> --}}
-                                                </button>
+                                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ $class->id }}" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $class->id }}">
                                                     <li>
                                                         <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#classModal">
@@ -112,6 +116,7 @@
             </div>
             <form method="POST" action="{{ route('sections.manage') }}" enctype="multipart/form-data" autocomplete="off">
                 @csrf
+                <input type="text" name="class_id" value="1">
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
