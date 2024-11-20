@@ -8,6 +8,7 @@ use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
@@ -46,8 +47,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/sections-manage',[ClassController::class, 'manageSection'])->name('sections.manage');
 
-
-
+    Route::get('/parents',[UserController::class,'allParents'])->name('index.parents');
 
     //Imports
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function(){
         'schools' => SchoolController::class,
         'subjects' => SubjectController::class,
         'classes' => ClassController::class,
+        'students' => StudentController::class,
         'site' => SiteController::class,
     ]);
 });

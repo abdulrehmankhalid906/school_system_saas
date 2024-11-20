@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Exception;
+use App\Models\User;
+use App\Helpers\InitS;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -83,5 +85,25 @@ class UserController extends Controller
                 'failure' => $ex->getMessage()
             ], 500);
         }
+    }
+
+
+    public function allParents()
+    {
+        $users = User::role('School')->with('roles')->where('school_id', InitS::getSchoolid())->get();
+
+        // $data = \DB::table('users')
+        // ->join('model_has_roles', 'users.id','=','model_has_roles.model_id')
+        // ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+        // ->select('users.*', 'roles.name as role_name')
+        // ->get();
+
+        // $data = User::wRole::where('name', 'Parent')->first();
+        dd($users);
+
+
+        return view('parents.parents',[
+            'parents' => User::with(['roles'])->get()
+        ]);
     }
 }

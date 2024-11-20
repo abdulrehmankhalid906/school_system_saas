@@ -3,15 +3,15 @@
     <div class="leftbar-user">
         <a href="javascript: void(0);">
             <img src="{{ asset('assets/extras/placeholder.jpg') }}" alt="user-image" height="42" class="rounded-circle shadow-sm">
-            <span class="leftbar-user-name">Administrator</span>
+            <span class="leftbar-user-name">{{ Auth::user()->name ?? 'Administrator' }}</span>
         </a>
     </div>
     <!--- Sidemenu -->
     <ul class="side-nav">
-        <li class="side-nav-title side-nav-item py-2">Navigation</li>
+        <li class="side-nav-title side-nav-item py-2">Menu Master</li>
         <li class="side-nav-item">
             <a href="{{ route('home') }}" class="side-nav-link py-2">
-                <i class="dripicons-meter"></i>
+                <i class="mdi mdi-monitor-dashboard"></i>
                 <span> Dashboard </span>
             </a>
         </li>
@@ -31,6 +31,9 @@
                     </li>
                     <li>
                         <a href="{{ route('permissions.index') }}">Permissions</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('students.create') }}"> Register Student </a>
                     </li>
                     <li>
                         <a href="{{ route('schools.index') }}">School</a>
@@ -59,21 +62,11 @@
                     </li>
                     <li>
                         <a href="{{ route('classes.index') }}">Class</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/class_room">Class room</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/department">Department</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/event_calendar">Event calender</a>
-                    </li>
+                    </li>                    
                 </ul>
             </div>
 
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#exam" aria-expanded="false"
-                aria-controls="exam" class="side-nav-link py-2">
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#exam" aria-expanded="false" aria-controls="exam" class="side-nav-link py-2">
                 <i class="dripicons-to-do"></i>
                 <span>Exam</span>
                 <span class="menu-arrow"></span>
@@ -95,8 +88,7 @@
                 </ul>
             </div>
 
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#accounting" aria-expanded="false"
-                aria-controls="accounting" class="side-nav-link py-2">
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#accounting" aria-expanded="false" aria-controls="accounting" class="side-nav-link py-2">
                 <i class="dripicons-suitcase"></i>
                 <span>Accounting</span>
                 <span class="menu-arrow"></span>
@@ -107,8 +99,7 @@
                         <a href="http://localhost/school__/superadmin/invoice">Student fee manager</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/expense_category">Expense
-                            category</a>
+                        <a href="http://localhost/school__/superadmin/expense_category">Expense category</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/expense">Expense manager</a>
@@ -116,8 +107,7 @@
                 </ul>
             </div>
 
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#back-office"
-                aria-expanded="false" aria-controls="back-office" class="side-nav-link py-2">
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#back-office" aria-expanded="false" aria-controls="back-office" class="side-nav-link py-2">
                 <i class="dripicons-archive"></i>
                 <span>Back office</span>
                 <span class="menu-arrow"></span>
@@ -153,36 +143,21 @@
                 </ul>
             </div>
 
-        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#settings" aria-expanded="false"
-                aria-controls="settings" class="side-nav-link py-2">
-                <i class="dripicons-cutlery"></i>
+        <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link py-2">
+                <i class="mdi mdi-cogs"></i>
                 <span>Settings</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="settings">
                 <ul class="side-nav-second-level">
                     <li>
-                        <a href="http://localhost/school__/superadmin/system_settings">System settings</a>
+                        <a href="{{ route('site.create') }}">Site settings</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/website_settings">Website
-                            settings</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/school_settings">School settings</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/payment_settings">Payment
-                            settings</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/language">Language settings</a>
+                        <a href="http://localhost/school__/superadmin/payment_settings">Payment settings</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/smtp_settings">Smtp settings</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/school__/superadmin/about">About</a>
                     </li>
                 </ul>
             </div>
@@ -192,5 +167,4 @@
 
     <div class="clearfix"></div>
     <!-- Sidebar -left -->
-
 </div>

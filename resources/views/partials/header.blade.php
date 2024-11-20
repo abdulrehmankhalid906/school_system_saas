@@ -29,11 +29,11 @@
 
                     <a href="{{ route('profile.index') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-account-circle me-1"></i>
-                        <span>My account</span>
+                        <span>My Account</span>
                     </a>
                     <a href="{{ route('school.index') }}" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-edit me-1"></i>
-                        <span>My school</span>
+                        <i class="mdi mdi-school me-1"></i>
+                        <span>My School</span>
                     </a>
 
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
