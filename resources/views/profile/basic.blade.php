@@ -16,7 +16,7 @@
     <div class="row">
         <div id ="profile_content" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="row justify-content-md-center">
-                <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update profile</h4>
