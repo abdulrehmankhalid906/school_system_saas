@@ -11,7 +11,7 @@
                         <h4 class="page-title d-inline-block">
                             <i class="mdi mdi-account-circle title_icon"></i> All Parents
                         </h4>
-                        <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#subjectModal">
+                        <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#parentModal">
                             <i class="mdi mdi-plus"></i> Create Parent
                         </button>
                     </div>
@@ -19,7 +19,6 @@
             </div>
         </div>
 
-        {{ $parents }}
 
         <div class="row">
             <div class="col-12">
@@ -37,14 +36,18 @@
                             <tbody>
                                 @foreach ($parents as $parent)
                                     <tr id="row-{{ $parent->id }}">
-                                        <td>{{ $parent->course_name }}</td>
-                                        <td>{{ $parent->course_code ?? '-' }}</td>
+                                        <td>{{ $parent->name }}</td>
+                                        <td>
+                                            <li>Ali</li>
+                                            <li>Muhammad Ali</li>
+                                            <li>Mustafa</li>
+                                        </td>
                                         <td>{{ $parent->created_at }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#subjectModal">
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">
                                                 Edit
-                                            </button>  
-                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $subject->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
+                                            </button>
+                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $parent->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -56,29 +59,37 @@
         </div>
     </div>
 
-    <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="parentModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Role</h5>
+              <h5 class="modal-title" id="roleModalLabel">Create Parent</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="roleForm" method="POST" action="{{ route('subjects.store') }}" autocomplete="off">
+            <form id="roleForm" method="POST" action="{{ route('store.parents') }}" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Subject Name</label>
+                            <label class="col-md-3 col-form-label" for="system_name">Parent Name</label>
                             <div class="col-md-9">
-                                <input type="text" name="course_name" class="form-control" required>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Subject Code</label>
+                            <label class="col-md-3 col-form-label" for="system_name">Email</label>
                             <div class="col-md-9">
-                                <input type="text" name="course_code" class="form-control">
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group row mb-3">
+                            <label class="col-md-3 col-form-label" for="system_name">Password</label>
+                            <div class="col-md-9">
+                                <input type="password" name="password" class="form-control" required>
                             </div>
                         </div>
                     </div>

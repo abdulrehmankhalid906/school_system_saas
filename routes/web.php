@@ -48,6 +48,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/sections-manage',[ClassController::class, 'manageSection'])->name('sections.manage');
 
     Route::get('/parents',[UserController::class,'allParents'])->name('index.parents');
+    Route::post('/store-parent',[UserController::class,'createParent'])->name('store.parents');
+
 
     //Imports
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');

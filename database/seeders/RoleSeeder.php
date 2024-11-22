@@ -17,6 +17,7 @@ class RoleSeeder extends Seeder
             'Super Admin',
             'School',
             'Teacher',
+            'Parent',
             'Student'
             // 'User'
         ];
