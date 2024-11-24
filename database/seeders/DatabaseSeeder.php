@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // SubjectSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class
         ]);
@@ -29,7 +28,7 @@ class DatabaseSeeder extends Seeder
         //     $school = School::factory()->create([
         //         'user_id' => $user->id
         //     ]);
-            
+
         //     // Create two classes for the school
         //     Klass::factory(2)->create([
         //         'school_id' => $school->id
@@ -39,7 +38,7 @@ class DatabaseSeeder extends Seeder
         //             'klass_id' => $klass->id
         //         ]);
         //     });
-        
+
         //     // Create 5 students for the school, assigned to random classes and sections
         //     Student::factory(5)->create([
         //         'school_id' => $school->id,
@@ -54,7 +53,7 @@ class DatabaseSeeder extends Seeder
         //         }
         //     ]);
         // });
-             
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
