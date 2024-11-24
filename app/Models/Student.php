@@ -19,4 +19,9 @@ class Student extends Model
         'enrollment_date',
         'session'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

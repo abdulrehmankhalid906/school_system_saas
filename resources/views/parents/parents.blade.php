@@ -38,9 +38,9 @@
                                     <tr id="row-{{ $parent->id }}">
                                         <td>{{ $parent->name }}</td>
                                         <td>
-                                            <li>Ali</li>
-                                            <li>Muhammad Ali</li>
-                                            <li>Mustafa</li>
+                                            @foreach ($parent->students as $student)
+                                                <li>{{ $student->user->name ?? '' }}</li>
+                                            @endforeach
                                         </td>
                                         <td>{{ $parent->created_at }}</td>
                                         <td>
@@ -96,34 +96,6 @@
                 </div>
                 <div class="modal-footer">
                     <input class="btn btn-primary" type="submit" value="Save changes">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="bulkUpload" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Bulk Upload</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="POST" action="{{ route('imports.subjects') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Upload File</label>
-                            <div class="col-md-9">
-                                <input type="file" name="bulk_upload_file" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Upload File">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

@@ -92,7 +92,7 @@ class UserController extends Controller
 
     public function allParents()
     {
-        $parents = User::role('Parent')->with('roles')->where('school_id', InitS::getSchoolid())->get();
+        $parents = User::with('students.user')->role('Parent')->where('school_id', InitS::getSchoolid())->get();
 
         // $data = \DB::table('users')
         // ->join('model_has_roles', 'users.id','=','model_has_roles.model_id')

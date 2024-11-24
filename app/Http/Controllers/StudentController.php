@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\InitS;
-use App\Http\Requests\StoreStudentRequest;
-use App\Models\Klass;
-use App\Models\Student;
-use App\Models\Section;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Klass;
+use App\Helpers\InitS;
+use App\Models\Section;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -39,33 +40,43 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        $data = $request->validated();
+        DB::beginTransaction();
 
-        $user = [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'address' => $data['address'],
-            'school_id' => InitS::getSchoolid(),
-        ];
+        try {
+            $data = $request->validated();
 
-        $Auser = User::create($user);
-        $Auser->syncRoles('Student');
+            $user = [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'school_id' => InitS::getSchoolid(),
+            ];
 
-        $student = [
-            'user_id' => $Auser->id,
-            'parent_id' => $data['parent_id'],
-            'klass_id' => $data['klass_id'],
-            'section_id' => $data['section_id'],
-            'date_of_birth' => $data['date_of_birth'],
-            'gender' => $data['gender'],
-            'enrollment_date' => now(),
-            'session' => InitS::getSession()
-        ];
+            $Auser = User::create($user);
+            $Auser->syncRoles('Student');
 
-        Student::create($student);
+            $student = [
+                'user_id' => $Auser->id,
+                'parent_id' => $data['parent_id'],
+                'klass_id' => $data['klass_id'],
+                'section_id' => $data['section_id'],
+                'date_of_birth' => $data['date_of_birth'],
+                'gender' => $data['gender'],
+                'enrollment_date' => now(),
+                'session' => InitS::getSession(),
+            ];
 
-        return redirect()->back()->with('success','The Student has been created');
+            Student::create($student);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'The Student has been created');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => 'Failed to create student: ' . $e->getMessage()]);
+        }
     }
 
     /**
