@@ -39,95 +39,100 @@
 
                 <div class="tab-content">
                     <div class="tab-pane active">
-                        <form method="POST" class="p-3 d-block ajaxForm" action="" enctype="multipart/form-data">
+                        <form method="POST" class="p-3 d-block" action="{{ route('students.store') }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="name">Name</label>
+                                    <label class="col-md-3 col-form-label">Enter Name</label>
                                     <div class="col-md-9">
                                         <input type="text" id="name" name="name" class="form-control" placeholder="name" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="email">Email</label>
+                                    <label class="col-md-3 col-form-label">Enter Email</label>
                                     <div class="col-md-9">
                                         <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="password">Password</label>
+                                    <label class="col-md-3 col-form-label">Enter Password</label>
                                     <div class="col-md-9">
                                         <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="parent_id">Parent</label>
+                                    <label class="col-md-3 col-form-label">Select Parent</label>
                                     <div class="col-md-9">
-                                        <select id="parent_id" name="parent_id" class="form-control select2" data-toggle = "select2"  >
-                                            <option value="">Select a parent</option>
-                                                                                        <option value="1">Khalid Mehmood</option>
-                                                            </select>
+                                        <select id="parent_id" name="parent_id" class="form-control select2">
+                                            <option value="">Select One</option>
+                                            @foreach ($parents as $parent)
+                                                <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="class_id">Class</label>
+                                    <label class="col-md-3 col-form-label">Select Class</label>
                                     <div class="col-md-9">
-                                        <select name="class_id" id="class_id" class="form-control select2" data-toggle = "select2" required onchange="classWiseSection(this.value)">
-                                            <option value="">Select a class</option>
-                                                                                        <option value="1">Grade 1</option>
-                                                            </select>
+                                        <select name="klass_id" id="klass_id" class="form-control select2" data-toggle="select2" required>
+                                            <option value="">Select One</option>
+                                            @foreach ($classes as $class)
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="section_id">Section</label>
-                                    <div class="col-md-9" id = "section_content">
-                                        <select name="section_id" id="section_id" class="form-control select2" data-toggle = "select2" required >
+                                    <label class="col-md-3 col-form-label">Select Section</label>
+                                    <div class="col-md-9">
+                                        <select name="section_id" id="section_id" class="form-control select2" data-toggle="select2" required>
                                             <option value="">Select section</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="birthdatepicker">Birthday</label>
+                                    <label class="col-md-3 col-form-label">Select Birthday</label>
                                     <div class="col-md-9 position-relative" id="datepicker4">
-                                        <input type="text" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" name = "birthday"   value="11/18/2024" required>
+                                        <input type="text" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" name="birthday" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="gender">Gender</label>
+                                    <label class="col-md-3 col-form-label">Select Gender</label>
                                     <div class="col-md-9">
-                                        <select name="gender" id="gender" class="form-control select2" data-toggle = "select2"  required>
+                                        <select name="gender" id="gender" class="form-control select2" required>
                                             <option value="">Select gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                            @foreach (InitS::getGender() as $gender)
+                                                <option value="{{ $gender }}">{{ $gender }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="example-textarea">Address</label>
+                                    <label class="col-md-3 col-form-label">Enter Address</label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control" id="example-textarea" rows="5" name = "address" placeholder="address"></textarea>
+                                        <input type="text" class="form-control" name="address" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="phone">Phone</label>
+                                    <label class="col-md-3 col-form-label">Enter Phone</label>
                                     <div class="col-md-9">
                                         <input type="text" id="phone" name="phone" class="form-control" placeholder="phone" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label" for="example-fileinput">Student profile image</label>
+                                    <label class="col-md-3 col-form-label">Student profile image</label>
                                     <div class="col-md-9 custom-file-upload">
-                                        <div class="wrapper-image-preview" style="margin-left: -6px;">
+                                        <div class="wrapper-image-preview" style="margin-left:-6px;">
                                             <div class="box" style="width: 250px;">
                                                 <div class="js--image-preview" style="background-image: url(http://localhost/school__/uploads/users/placeholder.jpg); background-color: #F5F5F5;"></div>
                                                 <div class="upload-options">

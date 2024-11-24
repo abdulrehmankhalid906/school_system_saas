@@ -11,6 +11,17 @@ class InitS{
         return Auth::check() ? Auth::user()->school_id : 0;
     }
 
+    public static function getGenders()
+    {
+        return ['Male','Female'];
+    }
+
+    public static function getSession()
+    {
+        $year = now()->year;
+        return $year.'-'.$year+1;
+    }
+
     public static function encodeId($id)
     {
         $salt = 13258769;

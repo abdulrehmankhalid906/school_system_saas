@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\InitS;
 use App\Http\Requests\StoreStudentRequest;
 use App\Models\Student;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -13,9 +16,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('students.index',[
-            'students' => Student::where('')->get(),
-        ]);
+        // return view('students.index',[
+        //     'students' => Student::where('')->get(),
+        // ]);
     }
 
     /**
@@ -32,7 +35,28 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         $data = $request->validated();
-        Student::create($data);
+
+        $user = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['address']),
+            'address' => $data['password'],
+            'school_id' => InitS::getSchoolid(),
+        ];
+
+        $Auser = User::create($user);
+        $Auser->syncRoles('Student');
+
+        $student = [
+            'user_id' => $Auser->id,
+            'klass_id' => $data['klass_id'],
+            'section_id' => $data['section_id'],
+            'date_of_birth' => $data['date_of_birth'],
+            'enrollment_date' => $data['enrollment_date'],
+            'session' => $data['session']
+        ];
+
+        Student::create($student);
 
         return redirect()->back()->with('success','The Student has been created');
     }
