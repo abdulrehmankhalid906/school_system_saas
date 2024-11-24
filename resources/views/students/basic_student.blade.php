@@ -7,7 +7,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body py-2">
-                    <h4 class="page-title"><i class="mdi mdi-account-multiple-plus title_icon"></i> Student admission form</h4>
+                    <h4 class="page-title"><i class="mdi mdi-account-multiple-plus title_icon"></i> Student Admission Form</h4>
                 </div>
             </div>
         </div>
@@ -16,50 +16,50 @@
     <div class="row">
         <div class="col-12">
             <div class="card pt-0">
-                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                <ul class="nav nav-tabs bg-nav-pills nav-justified mb-3" role="tablist">
                     <li class="nav-item">
-                        <a href="http://localhost/school__/superadmin/student/create" class="nav-link rounded-0 active">
+                        <a class="nav-link rounded-0 active" data-bs-toggle="tab" href="#single-admission" role="tab">
                             <i class="mdi mdi-home-variant d-lg-none d-block me-1"></i>
-                            <span class="d-none d-lg-block">Single student admission</span>
+                            <span class="d-none d-lg-block">Single Student Admission</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost/school__/superadmin/student/create/bulk" class="nav-link rounded-0 ">
+                        <a class="nav-link rounded-0" data-bs-toggle="tab" href="#bulk-admission" role="tab">
                             <i class="mdi mdi-account-circle d-lg-none d-block me-1"></i>
-                            <span class="d-none d-lg-block">Bulk student admission</span>
+                            <span class="d-none d-lg-block">Bulk Student Admission</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost/school__/superadmin/student/create/excel" class="nav-link rounded-0 ">
-                            <i class="mdi mdi-settings-outline d-lg-none d-block me-1"></i>
-                            <span class="d-none d-lg-block">Excel upload</span>
+                        <a class="nav-link rounded-0" data-bs-toggle="tab" href="#excel-upload" role="tab">
+                            <i class="mdi mdi-cogs d-lg-none d-block me-1"></i>
+                            <span class="d-none d-lg-block">Excel Upload</span>
                         </a>
                     </li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active">
+                    <div class="tab-pane fade show active" id="single-admission" role="tabpanel">
                         <form method="POST" class="p-3 d-block" action="{{ route('students.store') }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label">Enter Name</label>
+                                    <label class="col-md-3 col-form-label">Name</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="name" name="name" class="form-control" placeholder="name" required>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-md-3 col-form-label">Enter Email</label>
+                                    <label class="col-md-3 col-form-label">Email</label>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Enter Password</label>
                                     <div class="col-md-9">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
                                     </div>
                                 </div>
 
@@ -91,14 +91,14 @@
                                     <label class="col-md-3 col-form-label">Select Section</label>
                                     <div class="col-md-9">
                                         <select name="section_id" id="section_id" class="form-control select2" required>
-                                            <option value="">Select section</option>
+                                            <option value="">Select One</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Select Birthday</label>
-                                    <div class="col-md-9 position-relative" id="datepicker4">
+                                    <div class="col-md-9 position-relative">
                                         <input type="date" class="form-control" name="date_of_birth" required>
                                     </div>
                                 </div>
@@ -118,14 +118,14 @@
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Enter Address</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="address" required>
+                                        <input type="text" class="form-control" name="address" placeholder="Enter Address" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Enter Phone</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="phone" required>
+                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone" required>
                                     </div>
                                 </div>
 
@@ -151,7 +151,19 @@
                         </form>
                     </div>
 
+                    <div class="tab-pane fade" id="bulk-admission" role="tabpanel">
+                        <div class="p-3">
+                            <p>Bulk student admission functionality will be added here.</p>
+                            <a href="http://localhost/school__/superadmin/student/create/bulk" class="btn btn-primary">Go to Bulk Admission</a>
+                        </div>
+                    </div>
 
+                    <div class="tab-pane fade" id="excel-upload" role="tabpanel">
+                        <div class="p-3">
+                            <p>Excel upload functionality will be added here.</p>
+                            <a href="http://localhost/school__/superadmin/student/create/excel" class="btn btn-primary">Go to Excel Upload</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
