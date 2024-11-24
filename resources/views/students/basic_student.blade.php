@@ -78,7 +78,7 @@
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Select Class</label>
                                     <div class="col-md-9">
-                                        <select name="klass_id" id="klass_id" class="form-control select2" data-toggle="select2" required>
+                                        <select name="klass_id" id="klass_id" class="form-control select2" required>
                                             <option value="">Select One</option>
                                             @foreach ($classes as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -90,7 +90,7 @@
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Select Section</label>
                                     <div class="col-md-9">
-                                        <select name="section_id" id="section_id" class="form-control select2" data-toggle="select2" required>
+                                        <select name="section_id" id="section_id" class="form-control select2" required>
                                             <option value="">Select section</option>
                                         </select>
                                     </div>
@@ -99,7 +99,7 @@
                                 <div class="form-group row mb-3">
                                     <label class="col-md-3 col-form-label">Select Birthday</label>
                                     <div class="col-md-9 position-relative" id="datepicker4">
-                                        <input type="text" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" name="birthday" required>
+                                        <input type="date" class="form-control" name="date_of_birth" required>
                                     </div>
                                 </div>
 
@@ -107,8 +107,8 @@
                                     <label class="col-md-3 col-form-label">Select Gender</label>
                                     <div class="col-md-9">
                                         <select name="gender" id="gender" class="form-control select2" required>
-                                            <option value="">Select gender</option>
-                                            @foreach (InitS::getGender() as $gender)
+                                            <option value="">Select One</option>
+                                            @foreach (InitS::getGenders() as $gender)
                                                 <option value="{{ $gender }}">{{ $gender }}</option>
                                             @endforeach
                                         </select>

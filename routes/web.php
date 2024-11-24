@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/parents',[UserController::class,'allParents'])->name('index.parents');
     Route::post('/store-parent',[UserController::class,'createParent'])->name('store.parents');
 
+    Route::get('/get-sections',[StudentController::class,'getSections'])->name('get.Section');
+
 
     //Imports
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');

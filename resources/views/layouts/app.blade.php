@@ -57,7 +57,7 @@
     </script>
     <div class="container-fluid">
         <div class="wrapper">
-            
+
             <!-- Left Sidebar -->
             @include('partials.sidebar')
 
@@ -151,9 +151,42 @@
 
         $(document).on('click', '.remove_section', function(event) {
             event.preventDefault();
-            
+
             $(this).closest('.form-group').remove();
         });
+
+
+        //get depended section of the targeted classes
+        $('#klass_id').change(function(){
+            var class_id = $(this).val();
+            var options = '';
+
+            $.ajax({
+                url: "{{ route('get.Section') }}",
+                type: "GET",
+                dataType: 'JSON',
+                data:
+                    {
+                        class_id:class_id
+                    },
+                cache: false,
+                success: function(resp)
+                {
+                    for(let index = 0; index < resp.length; index++)
+                    {
+                        options += `<option value="${resp[index].id}">${resp[index].name}</option>`;
+                    }
+
+                    $('#section_id').html(options);
+                },
+
+                error: function()
+                {
+                    //
+                },
+            });
+        });
+
 
 
         function deleteRec(id,route) {

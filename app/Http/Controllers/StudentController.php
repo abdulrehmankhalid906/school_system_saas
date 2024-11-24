@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\InitS;
 use App\Http\Requests\StoreStudentRequest;
+use App\Models\Klass;
 use App\Models\Student;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -26,7 +28,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.basic_student');
+        return view('students.basic_student',[
+            'classes' => Klass::where('school_id',InitS::getSchoolid())->get(),
+            'parents' => User::role('Parent')->where('school_id',InitS::getSchoolid())->get(),
+        ]);
     }
 
     /**
@@ -39,8 +44,8 @@ class StudentController extends Controller
         $user = [
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['address']),
-            'address' => $data['password'],
+            'password' => Hash::make($data['password']),
+            'address' => $data['address'],
             'school_id' => InitS::getSchoolid(),
         ];
 
@@ -49,11 +54,13 @@ class StudentController extends Controller
 
         $student = [
             'user_id' => $Auser->id,
+            'parent_id' => $data['parent_id'],
             'klass_id' => $data['klass_id'],
             'section_id' => $data['section_id'],
             'date_of_birth' => $data['date_of_birth'],
-            'enrollment_date' => $data['enrollment_date'],
-            'session' => $data['session']
+            'gender' => $data['gender'],
+            'enrollment_date' => now(),
+            'session' => InitS::getSession()
         ];
 
         Student::create($student);
@@ -91,5 +98,11 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getSections(Request $request)
+    {
+        $resp = Section::where('klass_id', $request->class_id)->get();
+        return response()->json($resp);
     }
 }

@@ -91,7 +91,7 @@ class RegisterController extends Controller
                 'school_id' => $school->id,
             ]);
 
-            $user->syncRoles('Parent');
+            $user->syncRoles('School');
 
             return $user;
         });
