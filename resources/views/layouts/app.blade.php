@@ -2,20 +2,19 @@
 <html>
 
 <head>
-    <!-- all the meta tags -->
     <meta charset="utf-8" />
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Creativeitem" name="author" />
+    <meta content="Fintech School System, School Management System" name="description" />
+    <meta content="Fintech Developers" name="author"/>
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/extras/logo/favicon.png') }}">
-    <!-- all the css files -->
+
     <!-- App css -->
     <link href="{{ asset('/assets/backend/css/icons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('/assets/backend/css/app-modern.min.css') }}" rel="stylesheet" id="light-style" />
     <link href="{{ asset('/assets/backend/css/app-modern-dark.min.css') }}" rel="stylesheet" id="dark-style" />
-    <!-- App css End-->
 
     <!-- third party css -->
     <link href="{{ asset('/assets/backend/css/vendor/fullcalendar.min.css') }}" rel="stylesheet"/>
@@ -24,7 +23,7 @@
     <link href="{{ asset('/assets/backend/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet"/>
     <link href="{{ asset('/assets/backend/css/vendor/select.bootstrap5.css') }}" rel="stylesheet"/>
     <link href="{{ asset('/assets/backend/css/vendor/summernote-bs4.css') }}" rel="stylesheet"/>
-    <!-- third party css end -->
+
     {{-- https://pictogrammers.com/library/mdi/ --}}
 
 
@@ -103,17 +102,10 @@
 
     <script src="{{ asset('/assets/backend/js/vendor/jquery.validate.min.js') }}"></script>
 
-    <script src="{{ asset('/assets/backend/js/ajax_form_submission.js') }}"></script>
-    <script src="{{ asset('/assets/backend/js/custom.js') }}"></script>
-    <script src="{{ asset('/assets/backend/js/content-placeholder.j') }}s"></script>
+    <script src="{{ asset('/assets/backend/js/content-placeholder.js') }}"></script>
     <script src="{{ asset('/assets/backend/js/init.js') }}"></script>
 
-    <!-- dragula js-->
-    <script src="{{ asset('/assets/backend/js/vendor/dragula.min.js') }}"></script>
-    <!-- component js -->
-    <script src="{{ asset('/assets/backend/js/ui/component.dragula.js') }}"></script>
-    <script src="{{ asset('/assets/backend/js/sweetalert.js') }}"></script>
-    <!-- Timepicker -->
+    @stack('footer_scripts')
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -132,6 +124,8 @@
             $('.leftside-menu-detached').removeClass('show');
         }
 
+
+        //Add & Remove Sections
         $(document).on('click', '.add_section', function(event) {
             event.preventDefault();
 
@@ -154,7 +148,6 @@
 
             $(this).closest('.form-group').remove();
         });
-
 
         //get depended section of the targeted classes
         $('#klass_id').change(function(){
@@ -186,8 +179,6 @@
                 },
             });
         });
-
-
 
         function deleteRec(id,route) {
             Swal.fire({

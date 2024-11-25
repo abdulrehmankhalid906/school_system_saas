@@ -59,35 +59,36 @@
                             <br>
 
                             <div id="first-row">
-                                <div class="row">
+                                <div class="row this_row">
                                     <div class="col-xl-11 col-lg-11 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                         <div class="row justify-content-md-center">
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
-                                                <input type="text" name="name[]" class="form-control" value="" placeholder="Name" required="">
+                                                <input type="text" name="name[]" class="form-control" placeholder="Name" required>
                                             </div>
 
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
-                                                <input type="email" name="email[]" class="form-control" value="" placeholder="Email" required="">
+                                                <input type="email" name="email[]" class="form-control" placeholder="Email" required>
                                             </div>
 
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
-                                                <input type="password" name="password[]" class="form-control" value="" placeholder="Password" required="">
+                                                <input type="password" name="password[]" class="form-control" placeholder="Password" required>
                                             </div>
 
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
-                                                <select name="gender[]" class="form-control" required="">
+                                                <select name="gender[]" class="form-control" required>
                                                     <option value="">Select gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Others">Others</option>
+                                                    @foreach (InitS::getGenders() as $gender)
+                                                        <option value="{{ $gender }}">{{ $gender }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
-                                                <select name="parent_id[]" class="form-control">
-                                                    <option value="">Select a parent</option>
-                                                    <option value="1">Kato David</option>
-                                                    <option value="2">Reed Bond</option>
+                                                <select name="parent_id[]" class="form-control" required>
+                                                    <option value="">Select Parent</option>
+                                                    @foreach ($parents as $parent)
+                                                        <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -96,10 +97,16 @@
                                     <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                         <div class="row justify-content-md-center">
                                             <div class="form-group col">
-                                                <button type="button" class="btn btn-icon btn-success" onclick="appendRow()"> <i class="mdi mdi-plus"></i> </button>
+                                                <button class="btn btn-icon btn-success add_bulk_students"> + </button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div id="append_students"></div>
+
+                                <div class="text-center mt-2">
+                                    <button type="submit" class="btn btn-secondary col-md-4 col-sm-12 mb-4">Add student</button>
                                 </div>
                             </div>
                         </form>
@@ -117,3 +124,65 @@
     </div>
 </div>
 @endsection
+
+@push('footer_scripts')
+    <script>
+        $(document).on('click', '.add_bulk_students', function(event) {
+            event.preventDefault();
+
+            const htmls = `
+                <div class="row mt-2 this_row">
+                    <div class="col-xl-11 col-lg-11 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                        <div class="row justify-content-md-center">
+                            <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
+                                <input type="text" name="name[]" class="form-control" value="" placeholder="Name" required="">
+                            </div>
+
+                            <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
+                                <input type="email" name="email[]" class="form-control" value="" placeholder="Email" required="">
+                            </div>
+
+                            <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
+                                <input type="password" name="password[]" class="form-control" value="" placeholder="Password" required="">
+                            </div>
+
+                            <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
+                                <select name="gender[]" class="form-control" required="">
+                                    <option value="">Select gender</option>
+                                    @foreach (InitS::getGenders() as $gender)
+                                        <option value="{{ $gender }}">{{ $gender }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
+                                <select name="parent_id[]" class="form-control">
+                                    <option value="">Select Parent</option>
+                                    @foreach ($parents as $parent)
+                                        <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                        <div class="row justify-content-md-center">
+                            <div class="form-group col">
+                                <button type="button" class="btn btn-icon btn-danger remove_bulk_students">-</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $('#append_students').append(htmls);
+        });
+
+        $(document).on('click', '.remove_bulk_students', function(event) {
+            event.preventDefault();
+
+            $(this).closest('.this_row').remove();
+        });
+    </script>
+@endpush
