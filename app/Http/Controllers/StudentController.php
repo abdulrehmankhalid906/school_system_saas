@@ -35,6 +35,14 @@ class StudentController extends Controller
         ]);
     }
 
+
+    public function studentBulk()
+    {
+        return view('students.bulk_student',[
+            'classes' => Klass::where('school_id',InitS::getSchoolid())->get(),
+            'parents' => User::role('Parent')->where('school_id',InitS::getSchoolid())->get(),
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      */

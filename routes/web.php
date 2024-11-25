@@ -53,6 +53,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/get-sections',[StudentController::class,'getSections'])->name('get.Section');
 
 
+    Route::get('/student-bulk',[StudentController::class,'studentBulk'])->name('students.bulkcreate');
+
+
     //Imports
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
 

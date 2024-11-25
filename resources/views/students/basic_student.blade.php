@@ -18,13 +18,13 @@
             <div class="card pt-0">
                 <ul class="nav nav-tabs bg-nav-pills nav-justified mb-3" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link rounded-0 active" data-bs-toggle="tab" href="#single-admission" role="tab">
+                        <a class="nav-link rounded-0 active" href="{{ route('students.create') }}">
                             <i class="mdi mdi-home-variant d-lg-none d-block me-1"></i>
                             <span class="d-none d-lg-block">Single Student Admission</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link rounded-0" data-bs-toggle="tab" href="#bulk-admission" role="tab">
+                        <a class="nav-link rounded-0" href="{{ route('students.bulkcreate') }}">
                             <i class="mdi mdi-account-circle d-lg-none d-block me-1"></i>
                             <span class="d-none d-lg-block">Bulk Student Admission</span>
                         </a>
@@ -149,13 +149,6 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-
-                    <div class="tab-pane fade" id="bulk-admission" role="tabpanel">
-                        <div class="p-3">
-                            <p>Bulk student admission functionality will be added here.</p>
-                            <a href="http://localhost/school__/superadmin/student/create/bulk" class="btn btn-primary">Go to Bulk Admission</a>
-                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="excel-upload" role="tabpanel">
