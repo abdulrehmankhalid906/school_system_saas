@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->date('hire_date')->nullable();
+            $table->string('code')->nullable();
+            $table->date('join_date')->nullable();
             $table->timestamps();
         });
     }

@@ -9,5 +9,5 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','hire_date'];
+    protected $fillable = ['user_id','code','join_date'];
 }
