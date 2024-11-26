@@ -112,11 +112,19 @@
                         </form>
                     </div>
 
-                    <div class="tab-pane fade" id="excel-upload" role="tabpanel">
-                        <div class="p-3">
-                            <p>Excel upload functionality will be added here.</p>
-                            <a href="http://localhost/school__/superadmin/student/create/excel" class="btn btn-primary">Go to Excel Upload</a>
-                        </div>
+                    <div class="tab-pane fade show" id="excel-upload" role="tabpanel">
+                        <form method="POST" class="p-3 d-block" action="" enctype="multipart/form-data">
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-12">
+                                    <div class="form-group row mb-3">
+                                        <label class="col-md-3 col-form-label">Upload File</label>
+                                        <div class="col-md-9">
+                                            <input type="file" id="name" name="name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

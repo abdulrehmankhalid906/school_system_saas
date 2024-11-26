@@ -11,6 +11,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -67,6 +68,7 @@ Route::middleware(['auth'])->group(function(){
         'subjects' => SubjectController::class,
         'classes' => ClassController::class,
         'students' => StudentController::class,
+        'teachers' => TeacherController::class,
         'site' => SiteController::class,
     ]);
 });

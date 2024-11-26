@@ -33,7 +33,10 @@
                         <a href="{{ route('permissions.index') }}">Permissions</a>
                     </li>
                     <li>
-                        <a href="{{ route('students.create') }}"> Register Student </a>
+                        <a href="{{ route('students.create') }}">Register Student</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('teachers.index') }}">Teachers</a>
                     </li>
                     <li>
                         <a href="{{ route('schools.index') }}">School</a>
@@ -62,7 +65,7 @@
                     </li>
                     <li>
                         <a href="{{ route('classes.index') }}">Class</a>
-                    </li>                    
+                    </li>
                 </ul>
             </div>
 
@@ -96,10 +99,10 @@
             <div class="collapse" id="accounting">
                 <ul class="side-nav-second-level">
                     <li>
-                        <a href="http://localhost/school__/superadmin/invoice">Student fee manager</a>
+                        <a href="http://localhost/school__/superadmin/invoice">Student Fee Manager</a>
                     </li>
                     <li>
-                        <a href="http://localhost/school__/superadmin/expense_category">Expense category</a>
+                        <a href="http://localhost/school__/superadmin/expense_category">Expense Category</a>
                     </li>
                     <li>
                         <a href="http://localhost/school__/superadmin/expense">Expense manager</a>
