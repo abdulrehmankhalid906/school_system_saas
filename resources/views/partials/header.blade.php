@@ -2,7 +2,6 @@
     <div class="container-fluid">
         <a href="{{ route('home') }}" class="topnav-logo" style= "min-width: unset;">
             <span class="topnav-logo-lg">
-            
                 <img src="{{ asset('assets/extras/logo/logo-light.png') }}" alt="" height="40">
             </span>
             <span class="topnav-logo-sm">
@@ -11,6 +10,14 @@
         </a>
 
         <ul class="list-unstyled topbar-menu float-end mb-0">
+            <li class="nav-item language-switch">
+                <a href="{{ route('set-locale', 'en') }}" class="nav-link px-2 {{ app()->getLocale() === 'en' ? 'text-bold' : '' }}">
+                    EN
+                </a>
+                <a href="{{ route('set-locale', 'ar') }}" class="nav-link px-2 {{ app()->getLocale() === 'ar' ? 'text-bold' : '' }}">
+                    AR
+                </a>
+            </li>
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">

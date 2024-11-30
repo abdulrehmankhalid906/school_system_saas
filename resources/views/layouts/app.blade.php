@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="utf-8" />
@@ -34,6 +34,11 @@
     <script type="text/javascript" src="{{ asset('/assets/backend/js/jquery-3.6.0.min.js') }}"></script>
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: {{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }};
+            text-align: {{ app()->getLocale() == 'ar' ? 'right' : 'left' }};
+        }
         table.dataTable tbody td.focus, table.dataTable tbody th.focus {
             outline: none !important;
         }
@@ -44,16 +49,6 @@
 
     <!-- Header-->
     @include('partials.header')
-    <script type="text/javascript">
-        function getLanguageList() {
-            $.ajax({
-                url: "http://localhost/school__/superadmin/language/dropdown",
-                success: function(response) {
-                    $('#language-list').html(response);
-                }
-            });
-        }
-    </script>
     <div class="container-fluid">
         <div class="wrapper">
 

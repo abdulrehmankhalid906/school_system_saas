@@ -33,6 +33,11 @@ Route::fallback(function(){
     return Redirect::to('/home');
 });
 
+Route::get('/set-locale/{locale}', function ($locale) {
+    session(['locale' => $locale]);
+    return redirect()->back();
+})->name('set-locale');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

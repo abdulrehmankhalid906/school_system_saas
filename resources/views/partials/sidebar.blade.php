@@ -12,13 +12,13 @@
         <li class="side-nav-item">
             <a href="{{ route('home') }}" class="side-nav-link py-2">
                 <i class="mdi mdi-monitor-dashboard"></i>
-                <span> Dashboard </span>
+                <span> {{ __('messages.dashboard') }} </span>
             </a>
         </li>
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users" class="side-nav-link py-2">
                 <i class="dripicons-user"></i>
-                <span>Management</span>
+                <span>{{ __('messages.management') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="users">
@@ -46,7 +46,7 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#academic" aria-expanded="false" aria-controls="academic" class="side-nav-link py-2">
                 <i class="dripicons-store"></i>
-                <span>Academic</span>
+                <span>{{ __('messages.academic') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="academic">
@@ -71,7 +71,7 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#exam" aria-expanded="false" aria-controls="exam" class="side-nav-link py-2">
                 <i class="dripicons-to-do"></i>
-                <span>Exam</span>
+                <span>{{ __('messages.exam') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="exam">
@@ -93,7 +93,7 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#accounting" aria-expanded="false" aria-controls="accounting" class="side-nav-link py-2">
                 <i class="dripicons-suitcase"></i>
-                <span>Accounting</span>
+                <span>{{ __('messages.accounting') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="accounting">
@@ -112,7 +112,7 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#back-office" aria-expanded="false" aria-controls="back-office" class="side-nav-link py-2">
                 <i class="dripicons-archive"></i>
-                <span>Back office</span>
+                <span>{{ __('messages.back_office') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="back-office">
@@ -148,7 +148,7 @@
 
         <li class="side-nav-item"> <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link py-2">
                 <i class="mdi mdi-cogs"></i>
-                <span>Settings</span>
+                <span>{{ __('messages.settings') }}</span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="settings">
