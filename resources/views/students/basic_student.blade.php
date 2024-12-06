@@ -18,12 +18,13 @@
             <div class="card pt-0">
                 <ul class="nav nav-tabs bg-nav-pills nav-justified mb-3" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link rounded-0 active" href="{{ route('students.create') }}">
+                        {{-- <a class="nav-link rounded-0 active" href="{{ route('students.create') }}"> --}}
+                        <a class="nav-link rounded-0 active" role="tablist">
                             <i class="mdi mdi-home-variant d-lg-none d-block me-1"></i>
-                            <span class="d-none d-lg-block">Single Student Admission</span>
+                            <span class="d-none d-lg-block">Student Admission</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link rounded-0" href="{{ route('students.bulkcreate') }}">
                             <i class="mdi mdi-account-circle d-lg-none d-block me-1"></i>
                             <span class="d-none d-lg-block">Bulk Student Admission</span>
@@ -34,7 +35,7 @@
                             <i class="mdi mdi-cogs d-lg-none d-block me-1"></i>
                             <span class="d-none d-lg-block">Excel Upload</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <div class="tab-content">
@@ -151,12 +152,12 @@
                         </form>
                     </div>
 
-                    <div class="tab-pane fade" id="excel-upload" role="tabpanel">
+                    {{-- <div class="tab-pane fade" id="excel-upload" role="tabpanel">
                         <div class="p-3">
                             <p>Excel upload functionality will be added here.</p>
                             <a href="http://localhost/school__/superadmin/student/create/excel" class="btn btn-primary">Go to Excel Upload</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
