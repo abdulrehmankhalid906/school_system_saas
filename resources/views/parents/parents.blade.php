@@ -36,7 +36,7 @@
                             <tbody>
                                 @foreach ($parents as $parent)
                                     <tr id="row-{{ $parent->id }}">
-                                        <td>{{ $parent->name }}</td>
+                                        <td>{{ $parent->name }} ({{ $parent->students_count }})</td>
                                         <td>
                                             @foreach ($parent->students as $student)
                                                 <li>{{ $student->user->name ?? '' }}</li>

@@ -100,17 +100,7 @@ class UserController extends Controller
 
     public function allParents()
     {
-        $parents = User::with('students.user')->role('Parent')->where('school_id', InitS::getSchoolid())->get();
-
-        // $data = \DB::table('users')
-        // ->join('model_has_roles', 'users.id','=','model_has_roles.model_id')
-        // ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
-        // ->select('users.*', 'roles.name as role_name')
-        // ->get();
-
-        // $data = User::wRole::where('name', 'Parent')->first();
-        // dd($users);
-
+        $parents = User::with('students.user')->withCount('students')->role('Parent')->where('school_id', InitS::getSchoolid())->get();
 
         return view('parents.parents',[
             'parents' => $parents
