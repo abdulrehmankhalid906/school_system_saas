@@ -39,7 +39,8 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="bulk-admission" role="tabpanel">
-                        <form method="POST" class="p-3 d-block" action="" autocomplete="off">
+                        <form method="POST" class="p-3 d-block" action="{{ route('store.bulk.students') }}" autocomplete="off">
+                            @csrf
                             <div class="row justify-content-md-center">
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                     <select name="klass_id" id="klass_id" class="form-control select2" required>

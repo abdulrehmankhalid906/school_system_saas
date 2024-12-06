@@ -68,7 +68,7 @@
                                     <div class="col-md-9">
                                         <select id="parent_id" name="parent_id" class="form-control select2">
                                             <option value="">Select One</option>
-                                            @foreach ($parents as $parent)
+                                            @foreach ($data['parents'] as $parent)
                                                 <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                             @endforeach
                                         </select>
@@ -80,7 +80,7 @@
                                     <div class="col-md-9">
                                         <select name="klass_id" id="klass_id" class="form-control select2" required>
                                             <option value="">Select One</option>
-                                            @foreach ($classes as $class)
+                                            @foreach ($data['classes'] as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endforeach
                                         </select>

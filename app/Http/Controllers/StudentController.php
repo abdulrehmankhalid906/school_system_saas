@@ -27,11 +27,21 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    function classAndParents()
+    {
+        $classes = Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
+        $parents = User::role('Parent')->where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
+
+        return [
+            'classes' => $classes,
+            'parents' => $parents
+        ];
+    }
     public function create()
     {
         return view('students.basic_student',[
-            'classes' => Klass::where('school_id',InitS::getSchoolid())->get(),
-            'parents' => User::role('Parent')->where('school_id',InitS::getSchoolid())->get(),
+            'data' => $this->classAndParents(),
         ]);
     }
 
@@ -39,8 +49,7 @@ class StudentController extends Controller
     public function studentBulk()
     {
         return view('students.bulk_student',[
-            'classes' => Klass::where('school_id',InitS::getSchoolid())->get(),
-            'parents' => User::role('Parent')->where('school_id',InitS::getSchoolid())->get(),
+            'data' => $this->classAndParents(),
         ]);
     }
     /**
@@ -85,6 +94,17 @@ class StudentController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => 'Failed to create student: ' . $e->getMessage()]);
         }
+    }
+
+    public function storeBulkStudents(Request $request)
+    {
+
+        dd($request->all());
+
+        $user = new User();
+
+
+
     }
 
     /**
