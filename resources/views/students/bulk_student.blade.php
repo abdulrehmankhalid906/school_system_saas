@@ -45,7 +45,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                     <select name="klass_id" id="klass_id" class="form-control select2" required>
                                         <option value="">Select Class</option>
-                                        @foreach ($classes as $class)
+                                        @foreach ($data['classes'] as $class)
                                             <option value="{{ $class->id }}">{{ $class->name }}</option>
                                         @endforeach
                                     </select>
@@ -87,7 +87,7 @@
                                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
                                                 <select name="parent_id[]" class="form-control" required>
                                                     <option value="">Select Parent</option>
-                                                    @foreach ($parents as $parent)
+                                                    @foreach ($data['parents'] as $parent)
                                                         <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -167,7 +167,7 @@
                             <div class="form-group col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-1 mb-lg-0">
                                 <select name="parent_id[]" class="form-control">
                                     <option value="">Select Parent</option>
-                                    @foreach ($parents as $parent)
+                                    @foreach ($data['parents'] as $parent)
                                         <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                     @endforeach
                                 </select>

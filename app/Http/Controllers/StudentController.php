@@ -98,13 +98,7 @@ class StudentController extends Controller
 
     public function storeBulkStudents(Request $request)
     {
-
         dd($request->all());
-
-        $user = new User();
-
-
-
     }
 
     /**
