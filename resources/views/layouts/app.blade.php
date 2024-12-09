@@ -22,6 +22,12 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <!-- Responsive DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <!-- Buttons CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
     <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('/assets/js/config.js') }}"></script>
 </head>
@@ -53,10 +59,6 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
-    {{-- <div class="buy-now">
-        <a href="https://themeselection.com/item/sneat-dashboard-pro-bootstrap/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-    </div> --}}
-
     <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
@@ -68,5 +70,129 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <!-- Responsive DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <!-- Buttons JavaScript -->
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <!-- JSZip for Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- PDFMake for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    @stack('footer_scripts')
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                responsive: true,
+                dom: 'Bfrtip', // Enables Buttons and other features
+                buttons: [
+                    // 'copy',
+                    'csv',
+                    'excel',
+                    'pdf',
+                    'print'
+                ]
+            });
+        });
+        //Add & Remove Sections
+        $(document).on('click', '.add_section', function(event) {
+            event.preventDefault();
+
+            const html = `
+                <div class="form-group row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" name="section[]" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger btn-sm remove_section">-</button>
+                    </div>
+                </div>
+            `;
+
+            $('#append_able').append(html);
+        });
+
+        $(document).on('click', '.remove_section', function(event) {
+            event.preventDefault();
+
+            $(this).closest('.form-group').remove();
+        });
+
+        //get depended section of the targeted classes
+        $('#klass_id').change(function(){
+            var class_id = $(this).val();
+            var options = '';
+
+            $.ajax({
+                url: "{{ route('get.Section') }}",
+                type: "GET",
+                dataType: 'JSON',
+                data:
+                    {
+                        class_id:class_id
+                    },
+                cache: false,
+                success: function(resp)
+                {
+                    for(let index = 0; index < resp.length; index++)
+                    {
+                        options += `<option value="${resp[index].id}">${resp[index].name}</option>`;
+                    }
+
+                    $('#section_id').html(options);
+                },
+
+                error: function()
+                {
+                    //
+                },
+            });
+        });
+
+        function deleteRec(id,route) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/${route}/${id}`,
+                        type: 'DELETE',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire(
+                                'Deleted!',
+                                response.message,
+                                'success'
+                            );
+                            const table = $('#basic-datatable').DataTable();
+                            const row = $(`#row-${id}`);
+                            table.row(row).remove().draw();
+                        },
+                        error: function(error) {
+                            Swal.fire(
+                                'Error!',
+                                'There was a problem deleting the record.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>
