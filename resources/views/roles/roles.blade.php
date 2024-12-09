@@ -3,7 +3,6 @@
 
 @section('content')
     <div class="content" style="padding-top: 30px;">
-        <div class="loadings hidden"></div>
         <div class="row ">
             <div class="col-xl-12">
                 <div class="card">
@@ -18,39 +17,46 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
-                            <thead>
-                                <tr style="background-color: #313a46; color: #ababab;">
-                                    <th>Name</th>
-                                    <th>Created At</th>
-                                    <th>Operation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($roles as $role)
-                                    <tr id="row-{{ $role->id }}">
-                                        <td>{{ $role->name }}</td>
-                                        <td>{{ $role->created_at }}</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $role->id }}, '{{ $role->name }}')">
-                                                Edit
-                                            </button>  
-                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $role->id }}, 'roles')">Delete</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+            <div class="col-12 col-md-12 col-lg-12 col-xxl-12 order-3 order-md-2">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr style="background-color: #313a46; color: #ababab;">
+                                            <th>Name</th>
+                                            <th>Created At</th>
+                                            <th>Operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($roles as $role)
+                                            <tr id="row-{{ $role->id }}">
+                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $role->created_at }}</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $role->id }}, '{{ $role->name }}')">
+                                                        Edit
+                                                    </button>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $role->id }}, 'roles')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

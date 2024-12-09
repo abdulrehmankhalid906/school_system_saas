@@ -1,56 +1,42 @@
 @extends('layouts.app')
 @section('title', 'Dashboard | Manage Teachers')
-
 @section('content')
-    <div class="content" style="padding-top: 30px;">
-        <div class="loadings hidden"></div>
-        <div class="row ">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body py-2">
-                        <h4 class="page-title d-inline-block">
-                            <i class="mdi mdi-account-circle title_icon"></i> All Teachers
-                        </h4>
-                        <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#parentModal">
-                            <i class="mdi mdi-plus"></i> Create Teacher
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+    <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
-                            <thead>
-                                <tr style="background-color: #313a46; color: #ababab;">
-                                    <th>Teacher Name</th>
-                                    <th>No of Dependents</th>
-                                    <th>Created At</th>
-                                    <th>Operation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($teachers as $teacher)
-                                    <tr id="row-{{ $teacher->id }}">
-                                        <td>{{ $teacher->name }}</td>
-                                        <td>
+            <div class="col-12 col-md-12 col-lg-12 col-xxl-12 order-3 order-md-2">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Teacher Name</th>
+                                            <th>No of Dependents</th>
+                                            <th>Created At</th>
+                                            <th>Operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($teachers as $teacher)
+                                            <tr id="row-{{ $teacher->id }}">
+                                                <td>{{ $teacher->name }}</td>
+                                                <td>
 
-                                        </td>
-                                        <td>{{ $teacher->created_at }}</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">
-                                                Edit
-                                            </button>
-                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                </td>
+                                                <td>{{ $teacher->created_at }}</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">
+                                                        Edit
+                                                    </button>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,23 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Manage School')
 @section('content')
-<div class="content" style="padding-top: 30px;">
-    <div class="loadings hidden"></div>
-    <div class="row ">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body py-2">
-                    <h4 class="page-title"> <i class="mdi mdi-school me-1 title_icon"></i>Manage School</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-        <div id="profile_content" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="col-12 col-md-12 col-lg-12 col-xxl-12 order-3 order-md-2">
             <div class="row">
-                <!-- Left Column: School Details -->
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="col-12 col-sm-6 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Update School (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
@@ -104,45 +92,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Right Column: Class Prices -->
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="header-title">Class Prices</h4>
-                            <form method="POST" action="">
-                                @csrf
-                                <div class="form-group row mb-3">
-                                    <label class="col-md-4 col-form-label" for="class1_price">Class 1</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="class1_price" name="class1_price" class="form-control" value="{{ $classPrices->class1 ?? '' }}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-3">
-                                    <label class="col-md-4 col-form-label" for="class2_price">Class 2</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="class2_price" name="class2_price" class="form-control" value="{{ $classPrices->class2 ?? '' }}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mb-3">
-                                    <label class="col-md-4 col-form-label" for="class3_price">Class 3</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="class3_price" name="class3_price" class="form-control" value="{{ $classPrices->class3 ?? '' }}">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary col-6">Update Prices</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-
-</div>
 @endsection
