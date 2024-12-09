@@ -122,7 +122,7 @@
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label">Enter Phone</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter Phone" required>
+                                                        <input type="number" id="phone" name="phone" class="form-control" placeholder="Enter Phone" required>
                                                     </div>
                                                 </div>
 

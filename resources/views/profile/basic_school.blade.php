@@ -85,7 +85,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-secondary col-6">Update Settings</button>
+                                        <button type="submit" class="btn btn-secondary">Update Settings</button>
                                     </div>
                                 </div>
                             </form>

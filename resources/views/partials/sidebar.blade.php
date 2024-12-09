@@ -117,17 +117,17 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('subjects.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Subject">Subject</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Class">Class</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Attandence Management">Attandence Management</div>
                     </a>
                 </li>
@@ -141,22 +141,22 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('subjects.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Marks">Marks</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Exams">Exams</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Grade">Grade</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Promotions">Promotions</div>
                     </a>
                 </li>
@@ -170,17 +170,17 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('subjects.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Expense Category">Expense Category</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link" target="_blank">
+                    <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>
                     </a>
                 </li>
