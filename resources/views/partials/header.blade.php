@@ -1,60 +1,77 @@
-<div class="navbar-custom topnav-navbar topnav-navbar-dark">
-    <div class="container-fluid">
-        <a href="{{ route('home') }}" class="topnav-logo" style= "min-width: unset;">
-            <span class="topnav-logo-lg">
-            
-                <img src="{{ asset('assets/extras/logo/logo-light.png') }}" alt="" height="40">
-            </span>
-            <span class="topnav-logo-sm">
-                <img src="{{ asset('assets/extras/logo/logo-light-sm.png') }}" alt="" height="40">
-            </span>
-        </a>
-
-        <ul class="list-unstyled topbar-menu float-end mb-0">
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="account-user-avatar">
-                        <img src="{{ asset('assets/extras/placeholder.jpg') }}" alt="user-image" class="rounded-circle">
-                    </span>
-                    <span>
-                        <span class="account-user-name">{{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</span>
-                        <span class="account-position">{{ Auth::user()->roles->implode('name', ', ') }}</span>
-                    </span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
-
-                    <a href="{{ route('profile.index') }}" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-circle me-1"></i>
-                        <span>My Account</span>
-                    </a>
-                    <a href="{{ route('school.index') }}" class="dropdown-item notify-item">
-                        <i class="mdi mdi-school me-1"></i>
-                        <span>My School</span>
-                    </a>
-
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        <i class="mdi mdi-logout me-1"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </li>
-        </ul>
-        <div class="app-search dropdown pt-1 mt-2">
-            <h4 style="color: #fff; float: left;" class="d-none d-md-inline-block"> {{ Auth::user() && Auth::user()->school ? Auth::user()->school->name : 'Your School Name' }}</h4>
-        </div>
-        <a class="button-menu-mobile disable-btn">
-            <div class="lines">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+            <i class="bx bx-menu bx-md"></i>
         </a>
     </div>
-</div>
+
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <!-- Search -->
+        <div class="navbar-nav align-items-center">
+            <div class="nav-item d-flex align-items-center">
+                <i class="bx bx-search bx-md"></i>
+                <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search..." />
+            </div>
+        </div>
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar avatar-online">
+                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0">{{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</h6>
+                                    <small class="text-muted">{{ Auth::user()->roles->implode('name', ', ') }}</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('profile.index') }}">
+                            <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('school.index') }}">
+                            <i class="bx bx-cog bx-md me-3"></i><span>My School</span>
+                        </a>
+                    </li>
+                    {{-- <li>
+                        <a class="dropdown-item" href="#">
+                            <span class="d-flex align-items-center align-middle">
+                                <i class="flex-shrink-0 bx bx-credit-card bx-md me-3"></i><span
+                                    class="flex-grow-1 align-middle">Billing Plan</span>
+                                <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
+                            </span>
+                        </a>
+                    </li> --}}
+                    <li>
+                        <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
