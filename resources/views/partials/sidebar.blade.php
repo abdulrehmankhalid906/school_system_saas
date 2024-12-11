@@ -116,12 +116,12 @@
                 <div class="text-truncate" data-i18n="Academic">Academic</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('subjects.index') }}">
                     <a href="{{ route('subjects.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Subject">Subject</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('classes.index') }}">
                     <a href="{{ route('classes.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Class">Class</div>
                     </a>
@@ -155,11 +155,6 @@
                         <div class="text-truncate" data-i18n="Grade">Grade</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Promotions">Promotions</div>
-                    </a>
-                </li>
             </ul>
         </li>
 
@@ -169,6 +164,11 @@
                 <div class="text-truncate" data-i18n="Accounts">Accounts</div>
             </a>
             <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('subjects.index') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
+                    </a>
+                </li>
                 <li class="menu-item">
                     <a href="{{ route('subjects.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>

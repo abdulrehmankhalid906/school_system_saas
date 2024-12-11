@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\FeeType;
 use App\Models\User;
 use App\Models\Klass;
 use App\Models\School;
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            PermissionSeeder::class
+            PermissionSeeder::class,
+            FeeTypeSeeder::class
         ]);
 
         // User::factory(10)->create()->each(function ($user) {
