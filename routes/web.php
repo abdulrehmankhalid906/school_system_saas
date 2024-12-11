@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\PermissionController;
@@ -53,6 +54,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/get-sections',[StudentController::class,'getSections'])->name('get.Section');
 
+    //Attendence
+    Route::get('/get-attendence',[AttendenceController::class,'index'])->name('get.attendence');
+    Route::post('/get-attendence-students',[AttendenceController::class,'getAttendenceStudent'])->name('get.attendence.student');
 
     Route::get('/student-bulk',[StudentController::class,'studentBulk'])->name('students.bulkcreate');
     // Route::post('/student-bulk-store',[StudentController::class,'storeBulkStudents'])->name('store.bulk.students');

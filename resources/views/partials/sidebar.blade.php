@@ -126,8 +126,8 @@
                         <div class="text-truncate" data-i18n="Class">Class</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
+                <li class="menu-item {{ setRoute('get.attendence') }}">
+                    <a href="{{ route('get.attendence') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Attandence Management">Attandence Management</div>
                     </a>
                 </li>

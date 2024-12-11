@@ -14,7 +14,6 @@ class FeeTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        // $schools = School::get();
 
         $feetypes = ['Monthly Fee','Board Fee','Fine Fee'];
 
@@ -22,7 +21,6 @@ class FeeTypeSeeder extends Seeder
         {
             FeeType::create([
                 'title' => $fee,
-                'school_id' => 1
             ]);
         }
     }
