@@ -57,7 +57,7 @@
 
     <ul class="menu-inner py-1">
 
-        <li class="menu-item active open">
+        <li class="menu-item">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
@@ -71,37 +71,37 @@
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('users.index') }}">
                     <a href="{{ route('users.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Users">Users</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('roles.index') }}">
                     <a href="{{ route('roles.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Roles">Roles</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('permissions.index') }}">
                     <a href="{{ route('permissions.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Permissions">Permissions</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('students.create') }}">
                     <a href="{{ route('students.create') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Register Student">Register Student</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('teachers.index') }}">
                     <a href="{{ route('teachers.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Teachers">Teachers</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('index.parents') }}">
                     <a href="{{ route('index.parents') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Parents">Parents</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ setRoute('schools.index') }}">
                     <a href="{{ route('schools.index') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Schools">Schools</div>
                     </a>
