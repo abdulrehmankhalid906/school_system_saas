@@ -10,11 +10,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Classes
+                                    <i class="mdi mdi-account-circle title_icon"></i> Attendence
                                 </h4>
 
                                 <div class="row">
-                                    <form class="p-3 d-block" action="" autocomplete="off">
+                                    <form class="p-3 d-block" autocomplete="off">
                                         <div class="row">
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                                 <select id="klass_id" class="form-control select2" required>
@@ -36,7 +36,7 @@
                                             </div>
 
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
-                                                <button class="btn btn-secondary attendence_submit">Show Attendence</button>
+                                                <button type="button" class="btn btn-secondary attendence_submit">Show Attendence</button>
                                             </div>
                                         </div>
                                     </form>
@@ -51,16 +51,7 @@
                                             <th>Leave</th>
                                         </tr>
                                         <tr id="showAttendence">
-                                            <td colspan="2"></td>
-                                            <td>
-                                                <input name="attendance_abdul" class="form-check-input" type="radio" value="absent" id="defaultRadio2" checked="">
-                                            </td>
-                                            <td>
-                                                <input name="attendance_abdul" class="form-check-input" type="radio" value="present" id="defaultRadio2" checked="">
-                                            </td>
-                                            <td>
-                                                <input name="attendance_abdul" class="form-check-input" type="radio" value="leave" id="defaultRadio2" checked="">
-                                            </td>
+                                            <th colspan="5" class="text-center">No Data Found</th>
                                         </tr>
                                     </table>
                                 </div>
@@ -75,49 +66,45 @@
 
 @push('footer_scripts')
     <script>
-        $(document).ready(function(){
-            $('.attendence_submit').click(function(){
-                var class_id = document.getElementById('klass_id').value;
-                var section_id = document.getElementById('section_id').value;
-                var attendence_date = document.getElementById('attendence_date').value;
+        $('.attendence_submit').click(function() {
+            var class_id = document.getElementById('klass_id').value;
+            var section_id = document.getElementById('section_id').value;
+            var attendence_date = document.getElementById('attendence_date').value;
 
-                if (!class_id || !section_id || !attendence_date) {
-                    alert('Please fill all fields!');
-                    return;
-                }
+            if (!class_id || !section_id || !attendence_date) {
+                alert('Please fill all fields!');
+                return;
+            }
 
-                $.ajax({
-                    url: "{{ route('get.attendence.student') }}",
-                    type: "POST",
-                    dataType: 'JSON',
-                    data:
-                        {
-                            _token: '{{ csrf_token() }}',
-                            class_id: class_id,
-                            section_id: section_id,
-                            attendence_date: attendence_date
-                        },
-                    cache: false,
-                    success: function(resp) {
-                        console.log(resp);
-                        let rows = ''; // Generate table rows
-                        resp.forEach((student) => {
-                            rows += `
-                                <tr>
-                                    <td colspan="2">${student.name}</td>
-                                    <td><input name="attendance_${student.id}" class="form-check-input" type="radio" value="absent"></td>
-                                    <td><input name="attendance_${student.id}" class="form-check-input" type="radio" value="present"></td>
-                                    <td><input name="attendance_${student.id}" class="form-check-input" type="radio" value="leave"></td>
-                                </tr>`;
-                        });
-                        $('#showAttendence').html(rows); // Update table body
-                    },
-
-                    error: function()
-                    {
-                        //
-                    },
-                });
+            $.ajax({
+                url: "{{ route('get.attendence.student') }}",
+                type: "GET",
+                dataType: 'JSON',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    class_id: class_id,
+                    section_id: section_id,
+                    attendence_date: attendence_date
+                },
+                beforeSend: function() {
+                    $('#showAttendence').empty();
+                },
+                success: function(resp) {
+                    let rows = '';
+                    resp.data.forEach((data) => {
+                        rows += `
+                            <tr>
+                                <td colspan="2">${data.user.name}</td>
+                                <td><input name="attendance_${data.user.id}" class="form-check-input" type="radio" value="absent"></td>
+                                <td><input name="attendance_${data.user.id}" class="form-check-input" type="radio" value="present"></td>
+                                <td><input name="attendance_${data.user.id}" class="form-check-input" type="radio" value="leave"></td>
+                            </tr>`;
+                    });
+                    $('#showAttendence').html(rows); // Update table body
+                },
+                error: function() {
+                    alert('An error occurred. Please try again.');
+                },
             });
         });
     </script>

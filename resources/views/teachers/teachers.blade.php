@@ -26,7 +26,7 @@
                                                 </td>
                                                 <td>{{ $teacher->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">
                                                         Edit
                                                     </button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
@@ -43,11 +43,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="parentModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="teacherModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Parent</h5>
+              <h5 class="modal-title" id="roleModalLabel">Create Teacher</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="roleForm" method="POST" action="{{ route('store.parents') }}" autocomplete="off">
@@ -55,7 +55,7 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Parent Name</label>
+                            <label class="col-md-3 col-form-label" for="system_name">Teacher Name</label>
                             <div class="col-md-9">
                                 <input type="text" name="name" class="form-control" required>
                             </div>

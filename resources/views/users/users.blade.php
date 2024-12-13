@@ -41,6 +41,7 @@
                                                         Edit
                                                     </button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $user->id }}, 'schools')">Delete</a>
+                                                    <a href="{{ route('assign.user.role') }}" class="btn btn-primary"></a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -15,9 +15,9 @@
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#classModal">
                                     <i class="mdi mdi-plus"></i> Create Class
                                 </button>
-                                <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
+                                {{-- <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
                                     <i class="mdi mdi-file-upload-outline"></i> Bulk Upload
-                                </button>
+                                </button> --}}
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
@@ -77,7 +77,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Role</h5>
+              <h5 class="modal-title" id="roleModalLabel">Create Class</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="roleForm" method="POST" action="{{ route('classes.store') }}" autocomplete="off">

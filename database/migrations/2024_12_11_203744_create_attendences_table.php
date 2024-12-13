@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('attendences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('klass_id')->constrained();
             $table->foreignId('section_id')->constrained();
             $table->enum('status',['absent','leave']);
