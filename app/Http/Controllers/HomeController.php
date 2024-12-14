@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $roles = ['School', 'Teacher', 'Student'];
+        $data = array_combine(
+            array_map('strtolower', $roles),
+            array_map(fn($role) => User::role($role)->count(), $roles)
+        );
+        //dd($data);
+        return view('home', compact('data'));
     }
 }

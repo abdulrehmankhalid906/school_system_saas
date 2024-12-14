@@ -11,12 +11,12 @@
                                 <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
                                     <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                         <div class="card-title mb-6">
-                                            <h5 class="text-nowrap mb-1">Students</h5>
+                                            <h5 class="text-nowrap mb-1">Schools</h5>
                                             <span class="badge bg-label-warning">YEAR 2022</span>
                                         </div>
                                         <div class="mt-sm-auto">
                                             <span class="text-success text-nowrap fw-medium"><i class="bx bx-up-arrow-alt"></i> 68.2%</span>
-                                            <h4 class="mb-0">$84,686k</h4>
+                                            <h4 class="mb-0">{{ $data['school'] }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -30,12 +30,12 @@
                                 <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
                                     <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                         <div class="card-title mb-6">
-                                            <h5 class="text-nowrap mb-1">Teacher</h5>
+                                            <h5 class="text-nowrap mb-1">Teachers</h5>
                                             <span class="badge bg-label-warning">YEAR 2022</span>
                                         </div>
                                         <div class="mt-sm-auto">
                                             <span class="text-success text-nowrap fw-medium"><i class="bx bx-up-arrow-alt"></i> 68.2%</span>
-                                            <h4 class="mb-0">$84,686k</h4>
+                                            <h4 class="mb-0">{{ $data['teacher'] }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -49,12 +49,12 @@
                                 <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
                                     <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                         <div class="card-title mb-6">
-                                            <h5 class="text-nowrap mb-1">Parents</h5>
+                                            <h5 class="text-nowrap mb-1">Student</h5>
                                             <span class="badge bg-label-warning">YEAR 2022</span>
                                         </div>
                                         <div class="mt-sm-auto">
                                             <span class="text-success text-nowrap fw-medium"><i class="bx bx-up-arrow-alt"></i> 68.2%</span>
-                                            <h4 class="mb-0">$84,686k</h4>
+                                            <h4 class="mb-0">{{ $data['student'] }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-md-3 mb-4">
+                    {{-- <div class="col-12 col-sm-6 col-md-3 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column gap-10">
@@ -79,34 +79,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6">
+            <div class="col-12 col-xxl-12 order-2 order-md-3 order-xxl-2 mb-6">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-lg-8">
                             <div class="card-header d-flex align-items-center justify-content-between">
                                 <div class="card-title mb-0">
-                                    <h5 class="m-0 me-2">Total Revenue</h5>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn p-0" type="button" id="totalRevenue"
-                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="bx bx-dots-vertical-rounded bx-lg text-muted"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="totalRevenue">
-                                        <a class="dropdown-item" href="javascript:void(0);">Select
-                                            All</a>
-                                        <a class="dropdown-item"
-                                            href="javascript:void(0);">Refresh</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                    </div>
+                                    <h5 class="m-0 me-2">Total Admissions</h5>
                                 </div>
                             </div>
                             <div id="totalRevenueChart" class="px-3"></div>
@@ -126,12 +111,9 @@
                                             <span class="visually-hidden">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="javascript:void(0);">2021</a></li>
-                                            <li><a class="dropdown-item"
-                                                    href="javascript:void(0);">2020</a></li>
-                                            <li><a class="dropdown-item"
-                                                    href="javascript:void(0);">2019</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">2021</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">2020</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);">2019</a></li>
                                         </ul>
                                     </div>
                                 </div>

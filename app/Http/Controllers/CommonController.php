@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\SchoolRequest;
+use App\Models\FeeType;
 
 class CommonController extends Controller
 {
@@ -43,7 +44,7 @@ class CommonController extends Controller
     public function basic_school_update(SchoolRequest $request)
     {
         $school = School::where('id', Auth::user()->school_id)->first();
-    
+
         $school->update($request->validated());
 
         if ($request->hasFile('school_logo')) {
@@ -56,5 +57,12 @@ class CommonController extends Controller
 
         return redirect()->back()->with('success', 'School updated successfully');
     }
+
+    // public function feeTypes()
+    // {
+    //     return view('fees.feetype',[
+    //         'feetypes' => FeeType::get()
+    //     ]);
+    // }
     // basic_school_update
 }
