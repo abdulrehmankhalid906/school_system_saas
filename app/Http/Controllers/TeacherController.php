@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Helpers\InitS;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -13,10 +16,12 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = User::role('Teacher')->where('school_id', InitS::getSchoolid())->get();
+        $users = User::with('teacher')->role('Teacher')->where('school_id', InitS::getSchoolid())->get();
+
+        // dd( $users);
 
         return view('teachers.teachers',[
-            'teachers' => $teachers
+            'users' => $users
         ]);
     }
 
@@ -25,7 +30,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -33,7 +38,36 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $data = $request->all();
+
+            $user = [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'school_id' => InitS::getSchoolid(),
+            ];
+
+            $Auser = User::create($user);
+            $Auser->syncRoles('Teacher');
+
+            $teacher = [
+                'user_id' => $Auser->id,
+                'join_date' => now(),
+            ];
+
+            Teacher::create($teacher);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'The Teacher has been created');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => 'Failed to create teacher: ' . $e->getMessage()]);
+        }
+
     }
 
     /**

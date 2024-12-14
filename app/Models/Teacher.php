@@ -9,5 +9,14 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','code','join_date'];
+    protected $fillable = ['user_id','code','join_date','is_attendance'];
+
+    protected $casts = [
+        'is_attendance' => 'boolean',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
