@@ -25,4 +25,9 @@ class School extends Model
     {
         return $this->hasMany(Klass::class);
     }
+
+    public function classfee()
+    {
+        return $this->hasMany(ClassFee::class);
+    }
 }

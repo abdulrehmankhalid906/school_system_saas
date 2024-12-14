@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\InitS;
 use App\Models\User;
 use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\SchoolRequest;
+use App\Models\ClassFee;
 use App\Models\FeeType;
 
 class CommonController extends Controller
@@ -37,7 +39,7 @@ class CommonController extends Controller
     public function basic_school()
     {
         return view('profile.basic_school',[
-            'school' => School::where('id', Auth::user()->school_id)->first()
+            'school' => School::with('classfee.klass')->where('id', Auth::user()->school_id)->first()
         ]);
     }
 
@@ -56,6 +58,26 @@ class CommonController extends Controller
         }
 
         return redirect()->back()->with('success', 'School updated successfully');
+    }
+
+    public function manage_school_fee(Request $request)
+    {
+        $ids = $request->ids;
+        $class_fee = $request->fee;
+
+        foreach ($ids as $id) {
+            $classfee = ClassFee::where('id', $id)->where('school_id', InitS::getSchoolid())->first();
+
+            if ($classfee)
+            {
+                $classfee->class_fee = $class_fee;
+                $classfee->save();
+            } else {
+                return redirect()->back()->with('success', 'ClassFee record not found for ID:', $id);
+            }
+        }
+
+        return redirect()->back()->with('success', 'The Fees has been updated successfully');
     }
 
     // public function feeTypes()
