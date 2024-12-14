@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="mb-0">{{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</h6>
-                                    <small class="text-muted">{{ Auth::user()->roles->implode('name', ', ') }}</small>
+                                    <small class="text-muted">{{ Auth::user()?->roles->implode('name', ', ') }}</small>
                                 </div>
                             </div>
                         </a>
