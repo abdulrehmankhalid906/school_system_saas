@@ -58,7 +58,8 @@ Route::middleware(['auth'])->group(function(){
     //Attendence
     Route::get('/get-attendence',[AttendenceController::class,'index'])->name('get.attendence');
     Route::get('/get-attendence-students',[AttendenceController::class,'getAttendenceStudent'])->name('get.attendence.student');
-
+    Route::post('/submit-attendance', [AttendenceController::class, 'submitAttendance'])->name('submit.attendence');
+    Route::get('/show-attendance', [AttendenceController::class, 'showAttendance'])->name('show.attendence');
 
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');

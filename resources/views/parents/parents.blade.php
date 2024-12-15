@@ -39,7 +39,7 @@
                                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">
                                                         Edit
                                                     </button>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $parent->id }}, 'subjects')"><i class="mdi mdi-trash-can"></i></a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $parent->id }}, 'subjects')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
