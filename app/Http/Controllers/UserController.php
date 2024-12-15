@@ -57,18 +57,30 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit_user',[
+            'user' => $user,
+            'roles' => Role::select('name')->get(),
+            'selected_role' => $user->roles()->pluck('name')->first(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        $user->syncRoles($request->role_id);
+
+        return redirect('/users')->with('success', 'User Updated Successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.

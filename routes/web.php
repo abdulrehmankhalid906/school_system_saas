@@ -59,6 +59,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/get-attendence',[AttendenceController::class,'index'])->name('get.attendence');
     Route::get('/get-attendence-students',[AttendenceController::class,'getAttendenceStudent'])->name('get.attendence.student');
 
+
+    //Permissions
+    Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
+    Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
+
     Route::get('/student-bulk',[StudentController::class,'studentBulk'])->name('students.bulkcreate');
     // Route::post('/student-bulk-store',[StudentController::class,'storeBulkStudents'])->name('store.bulk.students');
 

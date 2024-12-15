@@ -37,9 +37,7 @@
                                                 <td>{{ $user->school->name }}</td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $user->id }}, '{{ $user->name }}')">
-                                                        Edit
-                                                    </button>
+                                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $user->id }}, 'schools')">Delete</a>
                                                     {{-- <a href="{{ route('assign.user.role') }}" class="btn btn-primary"></a> --}}
                                                 </td>
