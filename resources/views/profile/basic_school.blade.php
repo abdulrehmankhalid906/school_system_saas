@@ -125,7 +125,7 @@
                                                         <div class="form-group row mb-3">
                                                             <label class="col-md-4 col-form-label" for="system_name">{{ $classfe->klass->name ?? '' }}</label>
                                                             <div class="col-md-8">
-                                                                <input type="number" id="fee" name="fee[]" class="form-control" value="{{ $classfe->class_fee ?? '' }}" required>
+                                                                <input type="number" id="fee" name="fees[]" class="form-control" value="{{ $classfe->class_fee ?? '' }}" required>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -63,21 +63,25 @@ class CommonController extends Controller
     public function manage_school_fee(Request $request)
     {
         $ids = $request->ids;
-        $class_fee = $request->fee;
+        $fees = $request->fees;
 
-        foreach ($ids as $id) {
+        if (!is_array($ids) || !is_array($fees) || count($ids) !== count($fees))
+        {
+            return redirect()->back()->with('error', 'Invalid input: IDs and fees must be arrays of the same length.');
+        }
+
+        foreach ($ids as $index => $id) {
             $classfee = ClassFee::where('id', $id)->where('school_id', InitS::getSchoolid())->first();
 
-            if ($classfee)
-            {
-                $classfee->class_fee = $class_fee;
+            if ($classfee) {
+                $classfee->class_fee = $fees[$index];
                 $classfee->save();
             } else {
-                return redirect()->back()->with('success', 'ClassFee record not found for ID:', $id);
+                return redirect()->back()->with('error', "ClassFee record not found for ID: $id");
             }
         }
 
-        return redirect()->back()->with('success', 'The Fees has been updated successfully');
+        return redirect('school')->back()->with('success', 'The fees have been updated successfully.');
     }
 
     // public function feeTypes()
