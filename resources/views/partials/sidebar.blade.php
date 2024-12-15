@@ -165,7 +165,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link">
+                    <a href="{{ route('generate.fee') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                     </a>
                 </li>

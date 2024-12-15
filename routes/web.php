@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\FeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SchoolController;
@@ -60,6 +61,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/get-attendence-students',[AttendenceController::class,'getAttendenceStudent'])->name('get.attendence.student');
     Route::post('/submit-attendance', [AttendenceController::class, 'submitAttendance'])->name('submit.attendence');
     Route::get('/show-attendance', [AttendenceController::class, 'showAttendance'])->name('show.attendence');
+
+    //Generate Fee
+    Route::get('/generate-fee',[FeeController::class,'index'])->name('generate.fee');
 
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
