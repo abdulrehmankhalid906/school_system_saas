@@ -16,6 +16,12 @@ class InitS{
         return ['Male','Female'];
     }
 
+    public static function getFeeMonth()
+    {
+        $currentTime = new \DateTime();
+        return $currentTime->format('m-Y');
+    }
+
     public static function getSession()
     {
         $year = now()->year;

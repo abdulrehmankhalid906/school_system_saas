@@ -32,7 +32,7 @@
                                         <div class="row g-6">
                                             <div class="alert alert-primary" role="alert">It will create the fee challen for the NOV 2024!</div>
                                         </div>
-                                        <form method="POST" action="{{ route('school.manage') }}" autocomplete="off" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('generate.fees') }}" autocomplete="off" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="row g-6">

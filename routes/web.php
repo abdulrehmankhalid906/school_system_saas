@@ -64,6 +64,8 @@ Route::middleware(['auth'])->group(function(){
 
     //Generate Fee
     Route::get('/generate-fee',[FeeController::class,'index'])->name('generate.fee');
+    Route::post('/generate-fee',[FeeController::class,'generateFee'])->name('generate.fees');
+
 
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
