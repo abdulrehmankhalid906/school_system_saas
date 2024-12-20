@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('code')->nullable();
+            $table->boolean('is_attendance')->default(false);
             $table->date('join_date')->nullable();
             $table->timestamps();
         });
