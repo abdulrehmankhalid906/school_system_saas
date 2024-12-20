@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 
-//learning purpose.. 
+//learning purpose..
 /*
 If we have static funcion we don't create the object of the function
 like public static function checkValue()
 */
 
-function validate_user_permission($permission)
+function validate_rights($permission)
 {
     $user = Auth::user();
     // dd($user->can($permission));
