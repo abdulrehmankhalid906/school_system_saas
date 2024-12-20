@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\FuncCall;
 
 class InitS{
 
@@ -26,6 +27,18 @@ class InitS{
     {
         $year = now()->year;
         return $year.'-'.$year+1;
+    }
+
+    public static function uploadImage($image, $folder)
+    {
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("uploads/{$folder}"), $imageName);
+        return $imageName;
+    }
+
+    public static function getImage($variable, $folder)
+    {
+       return $variable ? asset("/uploads/{$folder}/" .$variable) : asset('assets/img/avatars/1.png');
     }
 
     public static function encodeId($id)

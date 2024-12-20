@@ -30,16 +30,16 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
                                         <h4 class="header-title">Update School (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
-                                        <form method="POST" action="{{ route('school.manage') }}" autocomplete="off" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('school.manage') }}" enctype="multipart/form-data" autocomplete="off">
                                             @csrf
 
                                             <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
-                                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                                <img src="{{ InitS::getImage($school->logo, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                                 <div class="button-wrapper">
                                                     <label for="upload" class="btn btn-primary me-3 mb-4" tabindex="0">
                                                         <span class="d-none d-sm-block">Upload Logo</span>
                                                         <i class="bx bx-upload d-block d-sm-none"></i>
-                                                        <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                                                        <input type="file" name="logo" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
                                                     </label>
                                                     <div>Allowed JPG, JPEG or PNG. Max size of 2MB</div>
                                                 </div>

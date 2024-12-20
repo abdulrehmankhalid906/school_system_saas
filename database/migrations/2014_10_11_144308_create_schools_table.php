@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('registration_number', 50)->nullable();
             $table->year('established_year')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

@@ -15,25 +15,24 @@ use App\Http\Requests\ProfileRequest;
 
 class CommonController extends Controller
 {
-    public function basic_profile()
+    public function basicDetails()
     {
         return view('profile.basic');
     }
 
-    public function basic_profile_update(ProfileRequest $request)
+    public function updateBasicDetails(ProfileRequest $request)
     {
         $user = User::find(Auth::id());
 
         $user->update($request->validated());
 
-        if ($request->hasFile('profile_image')) {
-            $profileImage = $request->file('profile_image');
-            $profileImageName = time() . '.' . $profileImage->getClientOriginalExtension();
-            $profileImage->move(public_path('uploads/profile'), $profileImageName);
+        if ($request->hasFile('profile_img'))
+        {
+            $profileImage = $request->file('profile_img');
+            $profileImageName = InitS::uploadImage($profileImage, 'profile');
             $user->profile_image = $profileImageName;
             $user->save();
         }
-
         return redirect()->back()->with('success', 'Profile updated successfully');
     }
 
@@ -51,31 +50,30 @@ class CommonController extends Controller
         return back()->with('success', 'Password updated successfully!');
     }
 
-    public function basic_school()
+    public function basicSchoolDetails()
     {
         return view('profile.basic_school',[
             'school' => School::with('classfee.klass')->where('id', Auth::user()->school_id)->first()
         ]);
     }
 
-    public function basic_school_update(SchoolRequest $request)
+    public function updateSchoolDetails(SchoolRequest $request)
     {
         $school = School::where('id', Auth::user()->school_id)->first();
 
         $school->update($request->validated());
 
-        if ($request->hasFile('school_logo')) {
-            $schoolLogo = $request->file('school_logo');
-            $schoolLogoName = time() . '.' . $schoolLogo->getClientOriginalExtension();
-            $schoolLogo->move(public_path('uploads/profile'), $schoolLogoName);
-            $school->profile_image = $schoolLogoName;
+        if ($request->hasFile('logo')) {
+            $schoolLogo = $request->file('logo');
+            $profileImageName = InitS::uploadImage($schoolLogo, 'logo');
+            $school->logo = $profileImageName;
             $school->save();
         }
 
         return redirect()->back()->with('success', 'School updated successfully');
     }
 
-    public function manage_school_fee(Request $request)
+    public function manageSchoolFee(Request $request)
     {
         $ids = $request->ids;
         $fees = $request->fees;

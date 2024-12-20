@@ -13,12 +13,12 @@
                                     @csrf
 
                                     <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
-                                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                        <img src="{{ InitS::getImage(Auth::user()->profile_image, 'profile') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                         <div class="button-wrapper">
                                             <label for="upload" class="btn btn-primary me-3 mb-4" tabindex="0">
                                                 <span class="d-none d-sm-block">Upload Image</span>
                                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                                                <input type="file" id="upload" name="profile_img" class="account-file-input" hidden="" accept="image/png, image/jpeg">
                                             </label>
                                             <div>Allowed JPG, JPEG or PNG. Max size of 2MB</div>
                                         </div>

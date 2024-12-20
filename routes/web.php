@@ -52,13 +52,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function(){
 
-    Route::get('/profile',[CommonController::class, 'basic_profile'])->name('profile.index');
-    Route::post('/profile-manage',[CommonController::class, 'basic_profile_update'])->name('profile.manage');
+    Route::get('/profile',[CommonController::class, 'basicDetails'])->name('profile.index');
+    Route::post('/profile-manage',[CommonController::class, 'updateBasicDetails'])->name('profile.manage');
     Route::put('/update-password',[CommonController::class, 'updatePassword'])->name('update.password');
 
-    Route::get('/school',[CommonController::class, 'basic_school'])->name('school.index');
-    Route::post('/school-manage',[CommonController::class, 'basic_school_update'])->name('school.manage');
-    Route::post('/manage-school-fee',[CommonController::class, 'manage_school_fee'])->name('manage.school.fee');
+    Route::get('/school',[CommonController::class, 'basicSchoolDetails'])->name('school.index');
+    Route::post('/school-manage',[CommonController::class, 'updateSchoolDetails'])->name('school.manage');
+    Route::post('/manage-school-fee',[CommonController::class, 'manageSchoolFee'])->name('manage.school.fee');
 
     Route::post('/sections-manage',[ClassController::class, 'manageSection'])->name('sections.manage');
 
