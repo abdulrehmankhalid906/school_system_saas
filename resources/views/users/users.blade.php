@@ -12,9 +12,9 @@
                                 <h4 class="page-title d-inline-block">
                                     <i class="mdi mdi-account-circle title_icon"></i> All Users
                                 </h4>
-                                <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#roleModal" onclick="openModal()">
+                                {{-- <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#roleModal" onclick="openModal()">
                                     <i class="mdi mdi-plus"></i> Create User
-                                </button>
+                                </button> --}}
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>

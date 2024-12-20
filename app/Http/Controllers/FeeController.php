@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
 use App\Models\Klass;
 use App\Helpers\InitS;
 use App\Models\ClassFee;
@@ -17,7 +16,7 @@ class FeeController extends Controller
     {
         return view('fees.generate_fee',[
             'feetypes' => FeeType::get(),
-            'classes' => Klass::get()
+            'classes' => Klass::where('school_id',InitS::getSchoolid())->get()
         ]);
     }
 
