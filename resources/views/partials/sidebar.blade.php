@@ -59,14 +59,14 @@
 
         <li class="menu-item">
             <a href="{{ route('home') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
+                <i class="menu-icon tf-icons bx bx-desktop"></i>
+                <div class="text-truncate" data-i18n="Dashboards">Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class="menu-icon tf-icons bx bxs-user-detail"></i>
                 <div class="text-truncate" data-i18n="Management">Management</div>
             </a>
 
@@ -112,7 +112,7 @@
         <!-- Front Pages -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-store"></i>
+                <i class="menu-icon tf-icons bx bx-book-open"></i>
                 <div class="text-truncate" data-i18n="Academic">Academic</div>
             </a>
             <ul class="menu-sub">
@@ -136,7 +136,7 @@
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-store"></i>
+                <i class="menu-icon tf-icons bx bx-trophy"></i>
                 <div class="text-truncate" data-i18n="Exam">Exam</div>
             </a>
             <ul class="menu-sub">
@@ -160,7 +160,7 @@
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-store"></i>
+                <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
                 <div class="text-truncate" data-i18n="Accounts">Accounts</div>
             </a>
             <ul class="menu-sub">
@@ -189,7 +189,7 @@
 
         <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div class="text-truncate" data-i18n="Settings">Settings</div>
             </a>
             <ul class="menu-sub">
