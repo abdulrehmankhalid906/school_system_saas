@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\InitS;
 use App\Models\User;
+use App\Helpers\InitS;
 use App\Models\School;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ProfileRequest;
-use App\Http\Requests\SchoolRequest;
-use App\Models\ClassFee;
 use App\Models\FeeType;
+use App\Models\ClassFee;
+use Illuminate\Http\Request;
+use App\Http\Requests\SchoolRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ProfileRequest;
 
 class CommonController extends Controller
 {
@@ -34,6 +35,20 @@ class CommonController extends Controller
         }
 
         return redirect()->back()->with('success', 'Profile updated successfully');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|same:new_password',
+        ]);
+
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with('success', 'Password updated successfully!');
     }
 
     public function basic_school()

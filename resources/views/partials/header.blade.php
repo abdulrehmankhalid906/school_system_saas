@@ -7,12 +7,12 @@
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->
-        <div class="navbar-nav align-items-center">
+        {{-- <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search bx-md"></i>
                 <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search..." />
             </div>
-        </div>
+        </div> --}}
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -45,11 +45,14 @@
                             <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('school.index') }}">
-                            <i class="bx bx-cog bx-md me-3"></i><span>My School</span>
-                        </a>
-                    </li>
+
+                    @if(Auth::user()->hasRole('School'))
+                        <li>
+                            <a class="dropdown-item" href="{{ route('school.index') }}">
+                                <i class="bx bx-cog bx-md me-3"></i><span>My School</span>
+                            </a>
+                        </li>
+                    @endif
                     {{-- <li>
                         <a class="dropdown-item" href="#">
                             <span class="d-flex align-items-center align-middle">

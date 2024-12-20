@@ -86,7 +86,7 @@
                                                     <input type="text" class="form-control" value="{{ $school->established_year ?? '' }}" disabled>
                                                 </div>
 
-                                                <div class="text-center">
+                                                <div class="text-end">
                                                     <button type="submit" class="btn btn-secondary">Update Settings</button>
                                                 </div>
                                             </div>

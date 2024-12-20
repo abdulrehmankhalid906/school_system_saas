@@ -14,11 +14,19 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'Manage Users',
             'Manage Roles',
             'Manage Permissions',
+            'Manage Users',
             'Manage Schools',
+            'Manage Parents',
+            'Manage Teachers',
+            'Manage Profile',
+            'Manage Students',
             'Manage Site',
+            'Manage Attendance',
+            'Manage Fees',
+            'Manage Exams',
+            'Manage Subjects',
         ];
 
         foreach ($permissions as $permission) {
