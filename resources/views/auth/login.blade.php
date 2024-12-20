@@ -3,20 +3,18 @@
 @section('guest-content')
 
 <div class="card-body">
-    <div class="app-brand justify-content-center mb-6">
-        <a href="javascript::void(0)" class="app-brand-link gap-2">
-            <span class="app-brand-text demo text-heading fw-bold">Fintech School System</span>
+    {{-- <div class="app-brand justify-content-center mb-6">
+        <a href="javascript:void(0);" class="app-brand-link gap-2">
+            <span class="app-brand-text demo text-heading fw-bold">{{ env('APP_NAME', 'Grade Master') }}</span>
         </a>
-    </div>
+    </div> --}}
 
     <h4 class="mb-0 text-center">Login Your Account</h4>
-    <p class="mb-1 text-center"><i>Manage your school system queries at finger tips!</i></p>
-
     <form method="POST" action="{{ route('login') }}" class="mb-6">
         @csrf
 
         <div class="mb-4">
-            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+            <label class="form-label">{{ __('Email Address') }}</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email" placeholder="Enter your email"/>
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -26,9 +24,9 @@
         </div>
 
         <div class="mb-4 form-password-toggle">
-            <label class="form-label" for="password">{{ __('Password') }}</label>
+            <label class="form-label">{{ __('Password') }}</label>
             <div class="input-group input-group-merge">
-                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"/>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"/>
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
             </div>
 

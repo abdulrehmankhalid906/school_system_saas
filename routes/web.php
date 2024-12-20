@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\AttendenceController;
-use App\Http\Controllers\ClassController;
-use App\Http\Controllers\CommonController;
-use App\Http\Controllers\FeeController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeeController;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\CommonController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AttendenceController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,15 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Route::get('/migrate-fresh', function(){
+//     Artisan::call('optimize:clear');
+//     Artisan::call('migrate:fresh --seed');
+// });
+
+// Route::get('/migrate', function(){
+//     Artisan::call('migrate');
+// });
 
 Route::get('/', function () {
     return Redirect::to('/home');

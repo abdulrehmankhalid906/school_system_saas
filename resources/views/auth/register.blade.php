@@ -3,15 +3,7 @@
 @section('guest-content')
 
 <div class="card-body">
-    <div class="app-brand justify-content-center mb-6">
-        <a href="javascript::void(0)" class="app-brand-link gap-2">
-            <span class="app-brand-text demo text-heading fw-bold">Fintech School System</span>
-        </a>
-    </div>
-
     <h4 class="mb-0 text-center">Register Your Account</h4>
-    <p class="mb-1 text-center"><i>Manage your school system queries at finger tips!</i></p>
-
     <form method="POST" action="{{ route('register') }}" class="mb-6">
         @csrf
 
@@ -36,12 +28,8 @@
         </div>
 
         <div class="mb-4 form-password-toggle">
-            <label class="form-label" for="password">{{ __('Password') }}</label>
-            <div class="input-group input-group-merge">
-                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"/>
-                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-            </div>
-
+            <label for="name" class="form-label">{{ __('Password') }}</label>
+            <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="password" name="password"/>
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -50,11 +38,8 @@
         </div>
 
         <div class="mb-4 form-password-toggle">
-            <label class="form-label" for="password">{{ __('Confirm Password') }}</label>
-            <div class="input-group input-group-merge">
-                <input type="password" id="password_confirmation" class="form-control" name="password_confirmation"/>
-                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-            </div>
+            <label for="name" class="form-label">{{ __('Confirm Password') }}</label>
+            <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password_confirmation') }}" id="password_confirmation" name="password_confirmation"/>
         </div>
 
         {{-- <div class="my-8">
@@ -66,7 +51,7 @@
             </div>
         </div> --}}
 
-        <button class="btn btn-primary d-grid w-100">Sign up</button>
+        <button class="btn btn-primary d-grid w-100">Sign Up</button>
     </form>
 
     <p class="text-center">

@@ -4,8 +4,8 @@
 
 <div class="card-body">
     <div class="app-brand justify-content-center mb-6">
-        <a href="javascript::void(0)" class="app-brand-link gap-2">
-            <span class="app-brand-text demo text-heading fw-bold">Fintech School System</span>
+        <a href="javascript:void(0);" class="app-brand-link gap-2">
+            <span class="app-brand-text demo text-heading fw-bold">{{ env('APP_NAME', 'Grade Master') }}</span>
         </a>
     </div>
 
