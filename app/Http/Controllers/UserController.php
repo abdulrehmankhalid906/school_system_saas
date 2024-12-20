@@ -15,15 +15,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::with(['roles','school']);
-
-        if ($request->q) {
-            $users = $users->where('name', 'LIKE', '%' . $request->q . '%');
-        }
-
-        $users = $users->get();
+        $users = User::withoutRole('Super Admin')->with(['roles','school'])->get();
 
         return view('users.users',[
             'users' => $users

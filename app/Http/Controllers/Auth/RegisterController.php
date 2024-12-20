@@ -53,8 +53,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:30'],
+            'school_name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,7 +72,7 @@ class RegisterController extends Controller
 
         return DB::transaction(function () use ($data, $baseYear) {
             $school = School::create([
-                'name' => $data['name'] . ' School',
+                'name' => $data['school_name'],
                 'founded_date' => now(),
                 'address' => $data['address'] ?? 'Default Address',
                 'district' => $data['district'] ?? 'Default District',

@@ -7,7 +7,17 @@
     <form method="POST" action="{{ route('register') }}" class="mb-6">
         @csrf
 
-        <div class="mb-4">
+        <div class="mb-2">
+            <label for="school_name" class="form-label">{{ __('School Name') }}</label>
+            <input type="text" class="form-control @error('school_name') is-invalid @enderror" value="{{ old('school_name') }}" id="school_name" name="school_name" placeholder="Enter School name"/>
+            @error('school_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="mb-2">
             <label for="name" class="form-label">{{ __('Name') }}</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="name" name="name" placeholder="Enter your name"/>
             @error('name')
@@ -17,7 +27,7 @@
             @enderror
         </div>
 
-        <div class="mb-4">
+        <div class="mb-2">
             <label for="email" class="form-label">{{ __('Email Address') }}</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email" placeholder="Enter your email"/>
             @error('email')
@@ -27,7 +37,7 @@
             @enderror
         </div>
 
-        <div class="mb-4 form-password-toggle">
+        <div class="mb-2 form-password-toggle">
             <label for="name" class="form-label">{{ __('Password') }}</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="password" name="password"/>
             @error('password')
@@ -37,7 +47,7 @@
             @enderror
         </div>
 
-        <div class="mb-4 form-password-toggle">
+        <div class="mb-2 form-password-toggle">
             <label for="name" class="form-label">{{ __('Confirm Password') }}</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password_confirmation') }}" id="password_confirmation" name="password_confirmation"/>
         </div>
