@@ -134,14 +134,18 @@
                 cache: false,
                 success: function(resp)
                 {
-                    for(let index = 0; index < resp.length; index++)
+                    if (resp.status === 200)
                     {
-                        options += `<option value="${resp[index].id}">${resp[index].name}</option>`;
+                        for (let index = 0; index < resp.data.length; index++)
+                        {
+                            options += `<option value="${resp.data[index].id}">${resp.data[index].name}</option>`;
+                        }
+
+                        $('#section_id').html(options);
+                    } else {
+                        console.log('somethind went wrong');
                     }
-
-                    $('#section_id').html(options);
                 },
-
                 error: function()
                 {
                     //

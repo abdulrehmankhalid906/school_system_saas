@@ -136,6 +136,9 @@ class StudentController extends Controller
     public function getSections(Request $request)
     {
         $resp = Section::where('klass_id', $request->class_id)->get();
-        return response()->json($resp);
+        return response()->json([
+            'status' => 200,
+            'data' => $resp
+        ]);
     }
 }
