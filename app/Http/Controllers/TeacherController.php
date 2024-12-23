@@ -16,12 +16,14 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $users = User::with('teacher')->role('Teacher')->where('school_id', InitS::getSchoolid())->get();
+        $teachers = Teacher::with('user')
+            ->whereHas('user', function ($query) {
+                $query->role('Teacher')->where('school_id', InitS::getSchoolid());
+            })
+            ->get();
 
-        // dd( $users);
-
-        return view('teachers.teachers',[
-            'users' => $users
+        return view('teachers.teachers', [
+            'teachers' => $teachers
         ]);
     }
 
@@ -100,5 +102,14 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function mangeTeacherPermission(Request $request, $id)
+    {
+        $teacher = Teacher::whereHas('user', function ($query) {
+            $query->where('school_id', InitS::getSchoolid());
+        })->where('id', $id)->first();
+
+        // return view('')
     }
 }

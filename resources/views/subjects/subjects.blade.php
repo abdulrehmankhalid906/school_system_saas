@@ -15,9 +15,9 @@
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#subjectModal">
                                     <i class="mdi mdi-plus"></i> Create Subjects
                                 </button>
-                                <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
+                                {{-- <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
                                     <i class="mdi mdi-file-upload-outline"></i> Bulk Upload
-                                </button>
+                                </button> --}}
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
@@ -35,9 +35,7 @@
                                                 <td>{{ $subject->course_code ?? '-' }}</td>
                                                 <td>{{ $subject->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#subjectModal">
-                                                        Edit
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" onclick="editSubject({{ $subject->id }})"> Edit</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $subject->id }}, 'subjects')">Delete</a>
                                                 </td>
                                             </tr>
@@ -52,14 +50,14 @@
         </div>
     </div>
 
-    <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="subjectModal" tabindex="-1" aria-labelledby="subjectModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Subject</h5>
+              <h5 class="modal-title" id="subjectModalLabel">Create Subject</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="roleForm" method="POST" action="{{ route('subjects.store') }}" autocomplete="off">
+            <form id="subjectForm" method="POST" action="{{ route('subjects.store') }}" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <div class="col-12">
@@ -108,7 +106,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Upload File">
+                    <input class="btn btn-primary" type="submit" value="Upload File">&nbsp;
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -116,3 +114,40 @@
         </div>
     </div>
 @endsection
+
+@push('footer_scripts')
+<script>
+    function editSubject(id)
+    {
+        $.ajax({
+            url: "{{ url('subjects') }}/" + id + "/edit",
+            type: "GET",
+            dataType: 'JSON',
+            success: function(res)
+            {
+                if(res.status == 200)
+                {
+                    $('input[name="course_name"]').val(res.data.course_name);
+                    $('input[name="course_code"]').val(res.data.course_code);
+                    $('#subjectModalLabel').text('Edit Subject');
+                    $('#subjectForm').attr('action', "{{ url('subjects') }}/" + res.data.id);
+                    $('#subjectForm').append('<input type="hidden" name="_method" value="PUT">');
+                    $('#subjectModal').modal('show');
+                } else {
+                    alert('Error fetching subject data');
+                }
+            },
+            error: function(err) {
+                alert('Error fetching subject data', err);
+            }
+        });
+    }
+
+    $('#subjectModal').on('hidden.bs.modal', function () {
+        $('#subjectForm')[0].reset();
+        $('#subjectForm').attr('action', "{{ route('subjects.store') }}");
+        $('#subjectForm').find('input[name="_method"]').remove();
+        $('#subjectModalLabel').text('Create Subject');
+    });
+</script>
+@endpush

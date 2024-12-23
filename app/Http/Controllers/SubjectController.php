@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Imports\SubjectsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreSubjectRequest;
+use App\Http\Requests\UpdateSubjectRequest;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,15 +58,20 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = Subject::where('id', $id)->where('school_id', InitS::getSchoolid())->firstOrFail();
+        return response()->json([
+            'status' => 200,
+            'data' => $subject
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(UpdateSubjectRequest $request, string $id)
     {
-        //
+        $subject = Subject::where('id', $id)->where('school_id', InitS::getSchoolid())->firstOrFail();
+
+        $subject->update($request->validated());
+
+        return redirect()->back()->with('success','Subject updated successfully!');
     }
 
     /**
@@ -75,7 +81,7 @@ class SubjectController extends Controller
     {
         try {
             $subject = Subject::where('school_id', InitS::getSchoolid())->findOrFail($id);
-        
+
             $subject->delete();
             return response()->json(['message' => 'The Subject has been removed!']);
         } catch (\Exception $e) {
@@ -96,7 +102,7 @@ class SubjectController extends Controller
 
             Excel::import(new SubjectsImport, $request->file('bulk_upload_file'));
 
-            return response()->json(['message' => 'File uploaded successfully'],200);
+            return redirect()->back()->with('success','File uploaded successfully');
         }
         catch(Exception $ex)
         {
