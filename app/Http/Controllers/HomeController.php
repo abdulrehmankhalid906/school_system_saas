@@ -31,7 +31,7 @@ class HomeController extends Controller
         $roles = ['School', 'Teacher', 'Student'];
         $data = array_combine(
             array_map('strtolower', $roles),
-            array_map(fn($role) => User::role($role)->count(), $roles)
+            array_map(fn($role) => User::where('school_id', InitS::getSchoolid())->role($role)->count(), $roles)
         );
         return view('home',[
             'data' => $data,

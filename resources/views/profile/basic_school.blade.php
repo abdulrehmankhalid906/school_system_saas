@@ -33,7 +33,7 @@
                                         <form method="POST" action="{{ route('school.manage') }}" enctype="multipart/form-data" autocomplete="off">
                                             @csrf
 
-                                            <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
+                                            <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4">
                                                 <img src="{{ InitS::getImage($school->logo, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                                 <div class="button-wrapper">
                                                     <label for="upload" class="btn btn-primary me-3 mb-4" tabindex="0">
@@ -87,7 +87,7 @@
                                                 </div>
 
                                                 <div class="text-end">
-                                                    <button type="submit" class="btn btn-secondary">Update Settings</button>
+                                                    <button type="submit" class="btn btn-primary">Update Settings</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -113,7 +113,7 @@
                                                 @endforeach
 
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-secondary">Update Settings</button>
+                                                    <button type="submit" class="btn btn-primary">Update Settings</button>
                                                 </div>
                                             </div>
                                         </form>

@@ -19,4 +19,9 @@ class Teacher extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeIsAttendance($query)
+    {
+        return $query->where('is_attendance', 1);
+    }
 }

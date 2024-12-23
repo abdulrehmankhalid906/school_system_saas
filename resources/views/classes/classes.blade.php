@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Save changes">
+                    <input class="btn btn-primary" type="submit" value="Save changes">&nbsp;
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Update">
+                    <input class="btn btn-primary" type="submit" value="Update">&nbsp;
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>

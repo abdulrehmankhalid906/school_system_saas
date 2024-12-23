@@ -127,22 +127,14 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Student profile image</label>
-                                                    <div class="col-md-9 custom-file-upload">
-                                                        <div class="wrapper-image-preview" style="margin-left:-6px;">
-                                                            <div class="box" style="width: 250px;">
-                                                                <div class="js--image-preview" style="background-image: url(http://localhost/school__/uploads/users/placeholder.jpg); background-color: #F5F5F5;"></div>
-                                                                <div class="upload-options">
-                                                                    <label for="student_image" class="btn"> <i class="mdi mdi-camera"></i> Upload an image </label>
-                                                                    <input id="student_image" style="visibility:hidden;" type="file" class="image-upload" name="student_image" accept="image/*">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <label class="col-md-3 col-form-label">Upload Image</label>
+                                                    <div class="col-md-9">
+                                                        <input type="file" id="student_image" name="student_image" class="form-control">
                                                     </div>
                                                 </div>
 
                                                 <div class="text-center">
-                                                    <button type="submit" class="btn btn-secondary col-md-4 col-sm-12 mb-4">Add student</button>
+                                                    <button type="submit" class="btn btn-primary col-md-4 col-sm-12 mb-4">Add student</button>
                                                 </div>
                                             </div>
                                         </form>
