@@ -122,6 +122,6 @@ class UserController extends Controller
         $user = User::create($data);
         $user->syncRoles('Parent');
 
-        return redirect()->back()->with('success', 'Subject has been created!');
+        return redirect()->back()->with('success', 'Parent has been created!');
     }
 }

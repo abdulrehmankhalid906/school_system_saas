@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Classes
+                                    <i class="mdi mdi-account-circle title_icon"></i> Mange Classes
                                 </h4>
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#classModal">
                                     <i class="mdi mdi-plus"></i> Create Class
@@ -34,14 +34,14 @@
                                                 <td>{{ $class->name }}</td>
                                                 <td>
                                                     @foreach ($class->sections as $section)
-                                                        {{-- <span>{{ explode(',',$section->name) }}</span> --}}
-                                                        <li>{{ $section->name }}</li>
+                                                        <span>{{ $section->name.','}}</span>
+                                                        {{-- <li>{{ $section->name }}</li> --}}
                                                     @endforeach
                                                 </td>
                                                 <td>{{ $class->created_at }}</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ $class->id }}" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                                        <button class="btn btn-secondary btn-sm dropdown-toggle p-3" type="button" id="dropdownMenuButton{{ $class->id }}" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $class->id }}">
                                                             <li>
                                                                 <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#classModal">
