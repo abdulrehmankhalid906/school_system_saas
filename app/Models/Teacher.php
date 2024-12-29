@@ -30,4 +30,14 @@ class Teacher extends Model
     {
         return $query->where('is_mark', 1);
     }
+
+    public function canAttendance()
+    {
+        $this->is_attendance == 1;
+    }
+
+    public function canMark()
+    {
+        $this->is_mark == 1;
+    }
 }

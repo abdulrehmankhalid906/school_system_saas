@@ -32,41 +32,51 @@
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item {{ setRoute('users.index') }}">
-                    <a href="{{ route('users.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Users">Users</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('roles.index') }}">
-                    <a href="{{ route('roles.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Roles">Roles</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('permissions.index') }}">
-                    <a href="{{ route('permissions.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Permissions">Permissions</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('students.create') }}">
-                    <a href="{{ route('students.create') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Register Student">Register Student</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('teachers.index') }}">
-                    <a href="{{ route('teachers.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Teachers">Teachers</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('index.parents') }}">
-                    <a href="{{ route('index.parents') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Parents">Parents</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('schools.index') }}">
-                    <a href="{{ route('schools.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Schools">Schools</div>
-                    </a>
-                </li>
+                @if(Auth::user()->hasRole('Super Admin'))
+                    <li class="menu-item {{ setRoute('users.index') }}">
+                        <a href="{{ route('users.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Users">Users</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('roles.index') }}">
+                        <a href="{{ route('roles.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Roles">Roles</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('permissions.index') }}">
+                        <a href="{{ route('permissions.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Permissions">Permissions</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('schools.index') }}">
+                        <a href="{{ route('schools.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Schools">Schools</div>
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->hasRole('School'))
+                    <li class="menu-item {{ setRoute('teachers.index') }}">
+                        <a href="{{ route('teachers.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Teachers">Teachers</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('index.parents') }}">
+                        <a href="{{ route('index.parents') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Parents">Parents</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('students.create') }}">
+                        <a href="{{ route('students.create') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Register Student">Register Student</div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </li>
 
@@ -77,21 +87,30 @@
                 <div class="text-truncate" data-i18n="Academic">Academic</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item {{ setRoute('subjects.index') }}">
-                    <a href="{{ route('subjects.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Subject">Subject</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('classes.index') }}">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Class">Class</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ setRoute('get.attendence') }}">
-                    <a href="{{ route('get.attendence') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Attandence Management">Attandence Management</div>
-                    </a>
-                </li>
+
+                @if(Auth::user()->hasRole('School'))
+                    <li class="menu-item {{ setRoute('subjects.index') }}">
+                        <a href="{{ route('subjects.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Subject">Subjects</div>
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->hasRole('School'))
+                    <li class="menu-item {{ setRoute('classes.index') }}">
+                        <a href="{{ route('classes.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Class">Classes</div>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- @if(Auth::user()->hasRole('School') || (Auth::user()->hasRole('Teacher') && Auth::user()->teacher?->is_attendance == 1)) --}}
+                    <li class="menu-item {{ setRoute('get.attendence') }}">
+                        <a href="{{ route('get.attendence') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Attendance Management">Attendance Management</div>
+                        </a>
+                    </li>
+                {{-- @endif --}}
             </ul>
         </li>
 
@@ -148,18 +167,20 @@
             </ul>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div class="text-truncate" data-i18n="Settings">Settings</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('site.create') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Set Site">Set Site</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @if(Auth::user()->hasRole('Super Admin'))
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                    <div class="text-truncate" data-i18n="Settings">Settings</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('site.create') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Set Site">Set Site</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
     </ul>
 </aside>
