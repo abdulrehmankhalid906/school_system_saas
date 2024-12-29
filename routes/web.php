@@ -60,7 +60,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/school-manage',[CommonController::class, 'updateSchoolDetails'])->name('school.manage');
     Route::post('/manage-school-fee',[CommonController::class, 'manageSchoolFee'])->name('manage.school.fee');
 
-    Route::post('/sections-manage',[ClassController::class, 'manageSection'])->name('sections.manage');
+    //Manage Classes + Sections
+    Route::get('/manage-sections/{class_id}/{section_id?}',[ClassController::class, 'manageSection'])->name('manage.sections');
+    Route::post('/sections-manage',[ClassController::class, 'Sectionmanage'])->name('sections.manage');
 
     Route::get('/parents',[UserController::class,'allParents'])->name('index.parents');
     Route::post('/store-parent',[UserController::class,'createParent'])->name('store.parents');

@@ -46,8 +46,7 @@
                                                                 <button class="dropdown-item" onclick="editClass({{ $class->id }})">Edit</button>
                                                             </li>
                                                             <li>
-                                                                <button class="dropdown-item" onclick="mangeSection({{ $class->id }})">Manage Sections</button>
-                                                            </li>
+                                                                <a href="{{ route('manage.sections', ['class_id' => $class->id]) }}" class="dropdown-item">Manage Sections</a>                                                            </li>
                                                             <li>
                                                                 <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="deleteRec({{ $class->id }}, 'classes')">
                                                                     Delete
@@ -96,7 +95,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="sectionsModal" tabindex="-1" aria-labelledby="sectionsModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="sectionsModal" tabindex="-1" aria-labelledby="sectionsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -126,7 +125,7 @@
             </form>
           </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @push('footer_scripts')
@@ -157,35 +156,35 @@
         });
     }
 
-    function mangeSection(id)
-    {
-        $.ajax({
-            url: "{{ route('get.Section') }}",
-            type: "GET",
-            dataType: 'JSON',
-            data: {
-                class_id: id
-            },
-            success: function(resp)
-            {
-                console.log(resp);
-                return false;
-                if(resp.status == 200)
-                {
-                    $('input[name="name"]').val(res.data.name);
-                    $('#classModalLabel').text('Edit Class');
-                    $('#classForm').attr('action', "{{ url('classes') }}/" + res.data.id);
-                    $('#classForm').append('<input type="hidden" name="_method" value="PUT">');
-                    $('#classModal').modal('show');
-                } else {
-                    alert('Error fetching class data');
-                }
-            },
-            error: function(err) {
-                alert('Error fetching class data', err);
-            }
-        });
-    }
+    // function mangeSection(id)
+    // {
+    //     $.ajax({
+    //         url: "{{ route('get.Section') }}",
+    //         type: "GET",
+    //         dataType: 'JSON',
+    //         data: {
+    //             class_id: id
+    //         },
+    //         success: function(resp)
+    //         {
+    //             console.log(resp);
+    //             return false;
+    //             if(resp.status == 200)
+    //             {
+    //                 $('input[name="name"]').val(res.data.name);
+    //                 $('#classModalLabel').text('Edit Class');
+    //                 $('#classForm').attr('action', "{{ url('classes') }}/" + res.data.id);
+    //                 $('#classForm').append('<input type="hidden" name="_method" value="PUT">');
+    //                 $('#classModal').modal('show');
+    //             } else {
+    //                 alert('Error fetching class data');
+    //             }
+    //         },
+    //         error: function(err) {
+    //             alert('Error fetching class data', err);
+    //         }
+    //     });
+    // }
 
     $('#classModal').on('hidden.bs.modal', function () {
         $('#classForm')[0].reset();

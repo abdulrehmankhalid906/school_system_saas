@@ -11,7 +11,7 @@ class Section extends Model
 
     protected $fillable = ['name','klass_id']; //maybe later we need school_id
 
-    public function klasses()
+    public function klass()
     {
         return $this->belongsTo(Klass::class);
     }

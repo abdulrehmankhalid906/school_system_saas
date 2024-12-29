@@ -101,18 +101,40 @@ class ClassController extends Controller
         }
     }
 
-    public function manageSection(Request $request)
+    public function manageSection(string $class_id, $section_id = null)
     {
-        $sections = $request->section;
+        $classes = Klass::with('sections')->where('id',$class_id)->where('school_id', InitS::getSchoolid())->firstOrFail();
+        $getsection = $section_id ? Section::find($section_id) : null;
 
-        foreach($sections as $section)
-        {
-            Section::create([
+        return view('classes.manage-sections', [
+            'classes' => $classes,
+            'getsection' => $getsection,
+        ]);
+    }
+
+    public function Sectionmanage(Request $request)
+    {
+        // Validate the input data
+        $request->validate([
+            'class_id' => 'required|exists:klasses,id',
+            'section' => 'required|string|max:255',
+        ]);
+
+        // Update or create the section
+        $section = Section::updateOrCreate(
+            [
                 'klass_id' => $request->class_id,
-                'name' => $section
-            ]);
-        }
+                'id' => $request->section_id,
+            ],
+            [
+                'name' => $request->section,
+            ]
+        );
 
-        return redirect()->back()->with('success', 'The Section has been created!');
+        $message = $section->wasRecentlyCreated
+            ? 'The Section has been created!'
+            : 'The Section has been updated!';
+
+        return redirect()->back()->with('success', $message);
     }
 }
