@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/generate-fee',[FeeController::class,'generateFee'])->name('generate.fees');
 
     //Teacher Permissions Attendance + Marks
-    Route::post('/teacher-permissions',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
+    Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
     Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
     //Permissions

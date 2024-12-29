@@ -117,18 +117,19 @@ class TeacherController extends Controller
     }
 
 
-    public function storeTeacherPermission(Request $request, $id)
+    public function storeTeacherPermission(Request $request)
     {
         try {
             $data = $request->all();
 
             $teacher = Teacher::whereHas('user', function ($query) {
                 $query->where('school_id', InitS::getSchoolid());
-            })->where('id', $id)->firstOrFail();
+            })->where('id', $data['id'])->firstOrFail();
 
+            // Update the teacher's permissions
             $teacher->update([
-                'is_attendance' => $data['is_attendance'],
-                'is_marks' => $data['is_marks'],
+                'is_attendance' => isset($data['is_attendance']),
+                'is_mark' => isset($data['is_mark']),
             ]);
 
             return redirect()->back()->with('success', 'Permissions have been updated!');

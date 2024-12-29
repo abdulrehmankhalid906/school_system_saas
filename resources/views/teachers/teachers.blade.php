@@ -32,15 +32,13 @@
                                                 <td>{{ $teacher->is_attendance == true ? 'Yes' : 'No' }}</td>
                                                 <td>{{ $teacher->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#permissionteacherModal">
-                                                        Mange Permission
-                                                    </button>
-                                                    {{-- <a href="{{ route('teacher.permissions', $teacher->id) }}" class="btn btn-secondary btn-sm">Mange Permission</a> --}}
-
                                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">
                                                         Edit
                                                     </button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'teachers')">Delete</a>
+                                                    <button class="btn btn-primary btn-sm" onclick="managePermission({{ $teacher->id }})">
+                                                        Manage Permission
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -98,47 +96,75 @@
         </div>
     </div>
 
-    <div class="modal fade" id="permissionteacherModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="teacherperModal" tabindex="-1" aria-labelledby="teacherperModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Mange Teacher Permission</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teacherperModalLabel">Manage Teacher Permission</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="teacherperForm" method="POST" action="{{ route('store.teacher.permissions') }}" autocomplete="off">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="can_mark">Can Mark</label>
+                                <input class="form-check-input" type="checkbox" name="is_mark" id="can_mark" value="1">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="can_attendance">Can Attendance</label>
+                                <input class="form-check-input" type="checkbox" name="is_attendance" id="can_attendance" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-primary" type="submit" value="Save changes">&nbsp;
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
-            <form id="roleForm" method="POST" action="{{ route('teacher.permissions') }}" autocomplete="off">
-                @csrf
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Teacher Name</label>
-                            <div class="col-md-9">
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Email</label>
-                            <div class="col-md-9">
-                                <input type="email" name="email" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Password</label>
-                            <div class="col-md-9">
-                                <input type="password" name="password" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Save changes">&nbsp;
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-          </div>
         </div>
     </div>
 @endsection
+
+@push('footer_scripts')
+<script>
+    function managePermission(id) {
+        var url = '{{ route("teacher.permissions", ":id") }}';
+        url = url.replace(':id', id);
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: 'JSON',
+            success: function(res) {
+                if (res.status == 200) {
+                    $('#can_mark').prop('checked', res.data.is_mark);
+                    $('#can_attendance').prop('checked', res.data.is_attendance);
+
+                    // Update form action for PUT request
+                    $('#teacherperModalLabel').text('Update Teacher Permission');
+                    $('#teacherperForm').attr('action', "{{ route('store.teacher.permissions') }}");
+                    $('#teacherperForm').append('<input type="hidden" name="id" value="' + res.data.id + '">');
+                    $('#teacherperModal').modal('show');
+                } else {
+                    alert('Error fetching teacher data');
+                }
+            },
+            error: function(err) {
+                alert('Error fetching teacher data', err);
+            }
+        });
+    }
+
+    $('#teacherperModal').on('hidden.bs.modal', function () {
+        $('#teacherperForm')[0].reset();
+        $('#teacherperForm').find('input[name="id"]').remove();
+        $('#teacherperForm').attr('action', "{{ route('store.teacher.permissions') }}");
+        $('#teacherperModalLabel').text('Manage Teacher Permission');
+    });
+</script>
+@endpush
