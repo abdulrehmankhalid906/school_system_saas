@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function(){
 
     //Teacher Permissions Attendance + Marks
     Route::post('/teacher-permissions',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
-
+    Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');

@@ -108,8 +108,32 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::whereHas('user', function ($query) {
             $query->where('school_id', InitS::getSchoolid());
-        })->where('id', $id)->first();
+        })->where('id', $id)->firstOrFail();
 
-        // return view('')
+        return response()->json([
+            'status' => 200,
+            'data' => $teacher
+        ]);
+    }
+
+
+    public function storeTeacherPermission(Request $request, $id)
+    {
+        try {
+            $data = $request->all();
+
+            $teacher = Teacher::whereHas('user', function ($query) {
+                $query->where('school_id', InitS::getSchoolid());
+            })->where('id', $id)->firstOrFail();
+
+            $teacher->update([
+                'is_attendance' => $data['is_attendance'],
+                'is_marks' => $data['is_marks'],
+            ]);
+
+            return redirect()->back()->with('success', 'Permissions have been updated!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to update permissions: ' . $e->getMessage()]);
+        }
     }
 }

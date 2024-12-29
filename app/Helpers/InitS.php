@@ -2,8 +2,9 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Auth;
 
 class InitS{
 
@@ -39,6 +40,20 @@ class InitS{
     public static function getImage($variable, $folder)
     {
        return $variable ? asset("/uploads/{$folder}/" .$variable) : asset('assets/img/avatars/1.png');
+    }
+
+    public static function generateCred($name)
+    {
+        do {
+            $d = rand(1, 99999);
+            $email = strtolower(str_replace(' ', '.', $name)) . $d . '@gmail.com';
+            $user = User::where('email', $email)->first();
+        } while ($user);
+
+        return [
+            'email' => $email,
+            'password' => 12345678
+        ];
     }
 
     public static function encodeId($id)
