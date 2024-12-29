@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('code')->nullable();
             $table->boolean('is_attendance')->default(false);
+            $table->boolean('is_mark')->default(false);
             $table->date('join_date')->nullable();
             $table->timestamps();
         });

@@ -9,10 +9,11 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','code','join_date','is_attendance'];
+    protected $fillable = ['user_id','code','join_date','is_attendance','is_mark'];
 
     protected $casts = [
         'is_attendance' => 'boolean',
+        'is_mark' => 'boolean',
     ];
 
     public function user()
@@ -23,5 +24,10 @@ class Teacher extends Model
     public function scopeIsAttendance($query)
     {
         return $query->where('is_attendance', 1);
+    }
+
+    public function scopeIsMark($query)
+    {
+        return $query->where('is_mark', 1);
     }
 }
