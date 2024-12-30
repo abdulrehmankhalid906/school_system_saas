@@ -30,6 +30,11 @@ class InitS{
         return $year.'-'.$year+1;
     }
 
+    public static function getdays()
+    {
+        return ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    }
+
     public static function uploadImage($image, $folder)
     {
         $imageName = time() . '.' . $image->getClientOriginalExtension();

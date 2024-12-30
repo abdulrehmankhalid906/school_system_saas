@@ -16,6 +16,8 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\TimeTableController;
+use App\Models\TimeTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +104,7 @@ Route::middleware(['auth'])->group(function(){
         'classes' => ClassController::class,
         'students' => StudentController::class,
         'teachers' => TeacherController::class,
+        'timetables' => TimeTableController::class,
         'site' => SiteController::class,
     ]);
 });

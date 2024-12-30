@@ -89,6 +89,14 @@
             <ul class="menu-sub">
 
                 @if(Auth::user()->hasRole('School'))
+                    <li class="menu-item {{ setRoute('timetables.index') }}">
+                        <a href="{{ route('timetables.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Timetables">Time Tables</div>
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->hasRole('School'))
                     <li class="menu-item {{ setRoute('subjects.index') }}">
                         <a href="{{ route('subjects.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Subject">Subjects</div>
