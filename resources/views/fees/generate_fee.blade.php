@@ -58,7 +58,7 @@
 
                                                 <div class="col-md-6">
                                                     <label for="language" class="form-label">Select Class</label>
-                                                    <select name="section_id" id="section_id" class="form-control multiple-select" required>
+                                                    <select name="section_id[]" id="section_id" class="form-control multiple-select" multiple required>
                                                         <option value="">Select One</option>
                                                     </select>
                                                 </div>

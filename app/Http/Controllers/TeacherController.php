@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Helpers\InitS;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Models\TeacherAttendance;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
