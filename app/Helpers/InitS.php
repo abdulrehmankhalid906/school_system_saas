@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class InitS{
 
+    /*
+    |--------------------------------------------------------------------------
+    | Why we use self in php? (Important)
+    |--------------------------------------------------------------------------
+    |
+    | In PHP, the self keyword is used to refer to the current class itself.
+    | It is typically used to access static properties and methods within the same class.
+    | In your code, self::timeZoneTime() is calling a static method named timeZoneTime that
+    | is defined within the same class as the currentTime method.
+    |
+    */
+
     public static function getSchoolid()
     {
         return Auth::check() ? Auth::user()->school_id : 0;
@@ -20,7 +32,7 @@ class InitS{
 
     public static function getFeeMonth()
     {
-        $currentTime = new \DateTime();
+        $currentTime = self::timeZoneTime();
         return $currentTime->format('m-Y');
     }
 
@@ -35,10 +47,41 @@ class InitS{
         return ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
     }
 
+    public static function currentTime()
+    {
+        $datetime = self::timeZoneTime();
+        return $datetime->format('H:i:s');
+    }
+
+    public static function currentDate()
+    {
+        $datetime = self::timeZoneTime();
+        return $datetime->format('Y-m-d');
+    }
+
+    public static function timeZoneTime()
+    {
+        return new \DateTime("now", new \DateTimeZone("Asia/Karachi"));
+    }
+
     public static function uploadImage($image, $folder)
     {
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path("uploads/{$folder}"), $imageName);
+        if ($_SERVER['SERVER_NAME'] == 'localhost') {
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path("uploads/{$folder}"), $imageName);
+
+        } else {
+            $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/uploads/{$folder}";
+
+            if (!file_exists($targetPath)) {
+                mkdir($targetPath, 0777, true);
+            }
+
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move($targetPath, $imageName);
+        }
+
         return $imageName;
     }
 
@@ -82,19 +125,4 @@ class InitS{
             return null;
         }
     }
-
-    // public static function hash($id)
-    // {
-    //     $date = date('dMY').'CJ';
-    //     $hash = new Hashids($date, 14);
-    //     return $hash->encode($id);
-    // }
-
-    // public static function decodeHash($str, $toString = true)
-    // {
-    //     $date = date('dMY').'CJ';
-    //     $hash = new Hashids($date, 14);
-    //     $decoded = $hash->decode($str);
-    //     return $toString ? implode(',', $decoded) : $decoded;
-    // }
 }

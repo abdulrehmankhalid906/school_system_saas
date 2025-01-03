@@ -32,7 +32,7 @@
             </a>
 
             <ul class="menu-sub">
-                @if(Auth::user()->hasRole('Super Admin'))
+                @if(Auth::user()->hasRole('School'))
                     <li class="menu-item {{ setRoute('users.index') }}">
                         <a href="{{ route('users.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Users">Users</div>
@@ -54,6 +54,12 @@
                     <li class="menu-item {{ setRoute('schools.index') }}">
                         <a href="{{ route('schools.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Schools">Schools</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('notifications.index') }}">
+                        <a href="{{ route('notifications.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Notifications">Notifications</div>
                         </a>
                     </li>
                 @endif
@@ -118,6 +124,12 @@
                             <div class="text-truncate" data-i18n="Attendance Management">Attendance Management</div>
                         </a>
                     </li>
+
+                    <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
+                        <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Attendance Report">Attendance Report</div>
+                        </a>
+                    </li>
                 {{-- @endif --}}
             </ul>
         </li>
@@ -153,7 +165,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('generate.fee') }}" class="menu-link">
+                    <a href="{{ route('fees.create') }}" class="menu-link">
                         <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                     </a>
                 </li>

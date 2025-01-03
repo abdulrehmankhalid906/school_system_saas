@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             UserSeeder::class,
-            FeeTypeSeeder::class
+            FeeTypeSeeder::class,
+            NotificationTemplateSeeder::class,
         ]);
 
         // User::factory(10)->create()->each(function ($user) {

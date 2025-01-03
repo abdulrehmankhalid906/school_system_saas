@@ -30,9 +30,9 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
                                         <div class="row g-6">
-                                            <div class="alert alert-primary" role="alert">It will create the fee challen for the NOV 2024!</div>
+                                            <div class="alert alert-primary" role="alert">It will create the fee challen for the {{ InitS::getFeeMonth() }}!</div>
                                         </div>
-                                        <form method="POST" action="{{ route('generate.fees') }}" autocomplete="off" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('fees.store') }}" autocomplete="off">
                                             @csrf
 
                                             <div class="row g-6">
@@ -58,7 +58,7 @@
 
                                                 <div class="col-md-6">
                                                     <label for="language" class="form-label">Select Class</label>
-                                                    <select name="section_id" id="section_id" class="form-control select2" required>
+                                                    <select name="section_id" id="section_id" class="form-control multiple-select" required>
                                                         <option value="">Select One</option>
                                                     </select>
                                                 </div>

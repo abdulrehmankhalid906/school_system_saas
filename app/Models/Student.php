@@ -13,6 +13,8 @@ class Student extends Model
         'user_id',
         'parent_id',
         'klass_id',
+        'roll_no',
+        'monthly_fee',
         'section_id',
         'date_of_birth',
         'gender',

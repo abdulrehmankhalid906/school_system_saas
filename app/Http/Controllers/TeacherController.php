@@ -137,4 +137,90 @@ class TeacherController extends Controller
             return redirect()->back()->withErrors(['error' => 'Failed to update permissions: ' . $e->getMessage()]);
         }
     }
+
+    public function getTeacherAttendance()
+    {
+        $attendances = TeacherAttendance::where('teacher_id', Auth::user()->teacher->id)->get();
+
+        return view('teachers.attendance-report', [
+            'attendances' => $attendances
+        ]);
+    }
+
+    public function markTeacherAttendance(Request $request)
+    {
+        $teacherid = Auth::user()->teacher->id;
+        $attendance = TeacherAttendance::where('teacher_id', $teacherid)->where('date', InitS::currentDate())->first();
+
+        //Check In
+        if ($request->type == 'check_in') {
+
+            if (!$attendance) {
+                TeacherAttendance::create([
+                    'teacher_id' => $teacherid,
+                    'date' => InitS::currentDate(),
+                    'check_in' => InitS::currentTime(),
+                ]);
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'You have checked in successfully'
+                ]);
+            } else {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You have already checked in today'
+                ]);
+            }
+        }
+
+        //Check Out
+        else if ($request->type == 'check_out') {
+
+            if (!$attendance || !$attendance->check_in) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You have not checked in yet'
+                ]);
+            }
+
+            if ($attendance->check_out) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You have already checked out today'
+                ]);
+            }
+
+            $attendance->update([
+                'check_out' => InitS::currentTime(),
+                'remarks' => $this->calculateAttendanceTime($attendance->check_in, InitS::currentTime()),
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'You have checked out successfully'
+            ]);
+        }
+        else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid request'
+            ]);
+        }
+    }
+
+    function calculateAttendanceTime($checkIn, $checkOut)
+    {
+        $checkIn = strtotime($checkIn);
+        $checkOut = strtotime($checkOut);
+
+        $diff = $checkOut - $checkIn;
+
+        $hours = floor($diff / (60 * 60));
+        $minutes = floor(($diff - $hours * (60 * 60)) / 60);
+        $seconds = $diff % 60;
+
+        return $hours . ' hours ' . $minutes . ' minutes ' . $seconds . ' seconds';
+    }
 }

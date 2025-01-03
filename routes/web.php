@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AttendenceController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TimeTableController;
 use App\Models\TimeTable;
@@ -82,6 +83,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/generate-fee',[FeeController::class,'generateFee'])->name('generate.fees');
 
     //Teacher Permissions Attendance + Marks
+    Route::get('/get-teacher-attendance',[TeacherController::class,'getTeacherAttendance'])->name('get.teacher.attendence');
+    Route::post('/mark-teacher-attendance',[TeacherController::class,'markTeacherAttendance'])->name('mark.teacher.attendence');
     Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
     Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
@@ -100,11 +103,13 @@ Route::middleware(['auth'])->group(function(){
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
         'schools' => SchoolController::class,
+        'fees' => FeeController::class,
         'subjects' => SubjectController::class,
         'classes' => ClassController::class,
         'students' => StudentController::class,
         'teachers' => TeacherController::class,
         'timetables' => TimeTableController::class,
+        'notifications' => NotificationController::class,
         'site' => SiteController::class,
     ]);
 });

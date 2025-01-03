@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/jquery.dataTables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/css/responsive.dataTables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/css/buttons.dataTables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/toastr.min.css') }}" />
 
     <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('/assets/js/config.js') }}"></script>
@@ -78,10 +80,18 @@
     <script src="{{ asset('assets/js/jszip.min.js') }}"></script>
     <script src="{{ asset('assets/js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
     @stack('footer_scripts')
 
     <script>
         $(document).ready(function() {
+            $('.multiple-select').select2({
+                placeholder: 'Select an option',
+                allowClear: true,
+                width: '100%'
+            });
+
             $('#example').DataTable({
                 responsive: true,
                 dom: 'Bfrtip', // Enables Buttons and other features
@@ -188,6 +198,24 @@
                             );
                         }
                     });
+                }
+            });
+        }
+
+        function markAttendance(type) {
+            $.ajax({
+                url: "{{ route('mark.teacher.attendence') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    type: type
+                },
+                success: function(response) {
+                    if (response.status === false) {
+                        toastr.error(response.message);
+                    } else {
+                        toastr.success(response.message);
+                    }
                 }
             });
         }

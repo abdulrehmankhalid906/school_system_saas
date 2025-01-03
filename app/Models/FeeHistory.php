@@ -9,5 +9,10 @@ class FeeHistory extends Model
 {
     use HasFactory;
 
-    protected $guraded = [];
+    protected $fillable = ['fee_payment_id', 'amount', 'method', 'transaction_date', 'recieved_by'];
+
+    public function feePayment()
+    {
+        return $this->belongsTo(FeePayment::class);
+    }
 }

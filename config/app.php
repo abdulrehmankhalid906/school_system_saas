@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\NotificationServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -183,6 +184,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        NotificationServiceProvider::class,
 
         /*
          * Package Service Providers...

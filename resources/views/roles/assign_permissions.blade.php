@@ -16,9 +16,11 @@
                                 @csrf
                                 <div class="row">
                                     @foreach ($permissions as $permission)
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="permissions[]" type="checkbox" value="{{ $permission->name }}" @if(in_array($permission->name, $selected_permissions)) checked @endif>
-                                            <label class="form-check-label">{{ $permission->name }}</label>
+                                        <div class="col-lg-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="permissions[]" type="checkbox" value="{{ $permission->name }}" @if(in_array($permission->name, $selected_permissions)) checked @endif>
+                                                <label class="form-check-label">{{ $permission->name }}</label>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>

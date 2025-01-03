@@ -31,7 +31,10 @@ class TimeTableController extends Controller
      */
     public function create()
     {
-        $teachers = Teacher::with('user')->get();
+        $teachers = Teacher::whereHas('user', function($query){
+            $query->where('school_id',InitS::getSchoolid());
+        })->get();
+
         $subjects = Subject::where('school_id', InitS::getSchoolid())->select('id', 'course_name')->get();
         $classes = Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
         return view('timetables.add',[
@@ -70,7 +73,10 @@ class TimeTableController extends Controller
     public function edit(string $id)
     {
         $timeTables = TimeTable::where('school_id', InitS::getSchoolid())->findOrFail($id);
-        $teachers = Teacher::with('user')->get();
+        $teachers = Teacher::whereHas('user', function($query){
+            $query->where('school_id',InitS::getSchoolid());
+        })->get();
+
         $subjects = Subject::where('school_id', InitS::getSchoolid())->select('id', 'course_name')->get();
         $sections = Section::where('klass_id', $timeTables->klass_id)->select('id', 'name')->get();
         $classes = Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
