@@ -131,4 +131,9 @@ class InitS{
             return null;
         }
     }
+
+    public static function showLog()
+    {
+        return "THis is log";
+    }
 }
