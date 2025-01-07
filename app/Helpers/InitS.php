@@ -134,6 +134,7 @@ class InitS{
 
     public static function showLog()
     {
-        return "THis is log";
+        $message = 'This is log';
+        return $message;
     }
 }
