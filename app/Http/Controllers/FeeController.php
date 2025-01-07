@@ -26,6 +26,7 @@ class FeeController extends Controller
     public function create()
     {
         return view('fees.generate_fee',[
+            'fees' => FeePayment::with(['feetype','user'])->where('school_id', InitS::getSchoolid())->get(),
             'feetypes' => FeeType::get(),
             'classes' => Klass::where('school_id',InitS::getSchoolid())->get()
         ]);
@@ -36,7 +37,6 @@ class FeeController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $students = Student::with(['user' => function ($query) {
             $query->where('school_id', InitS::getSchoolid());
         }])->where([
@@ -44,18 +44,12 @@ class FeeController extends Controller
             'section_id' => $request->section_id,
         ])->get();
 
+        if (!$this->validateTypeMonth($request->fee_type_id, InitS::getFeeMonth())) {
+            return redirect()->back()->with('error', 'The monthly fee for this month cannot be created.');
+        }
 
-        // $fees = ClassFee::where('klass_id', $request->klass_id)->first();
-
-        // if(!$fees)
-        // {
-
-        // }
-
-        foreach($students as $student)
-        {
+        foreach ($students as $student) {
             FeePayment::create([
-                // 'balance_due'
                 'user_id' => $student->user_id,
                 'fee_type_id' => $request->fee_type_id,
                 'fee_month' => InitS::getFeeMonth(),
@@ -63,24 +57,36 @@ class FeeController extends Controller
                 'amount' => $this->getStudentFee($student->user_id),
                 'school_id' => InitS::getSchoolid(),
                 'status' => 'due',
+                'balance_due' => $this->getStudentFee($student->user_id),
             ]);
         }
-
 
         return redirect()->back()->with('success', 'The fee has been generated');
     }
 
-
     function getStudentFee($user_id)
     {
-        $baseFee = Student::select('monthly_fee')->where('user_id', $user_id)->first();
-        $otherFees = FeePayment::where('user_id', $user_id)->where('fee_month', InitS::getFeeMonth())->sum('amount');
-
-        return [
-            $baseFee,
-            $otherFees
-        ];
+        $fee_amount = Student::select('monthly_fee')->where('user_id', $user_id)->first();
+        return $fee_amount->monthly_fee;
     }
+
+    function validateTypeMonth($feeType, $month)
+    {
+        // Check the database for an existing record with fee_type_id = 1 and the same fee_month
+        if ($feeType == 1) {
+            $existingFee = FeePayment::where([
+                ['fee_type_id', '=', $feeType],
+                ['fee_month', '=', $month],
+            ])->exists();
+
+            // If a record exists, return false
+            if ($existingFee) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /**
      * Display the specified resource.

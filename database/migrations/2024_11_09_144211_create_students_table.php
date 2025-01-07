@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('klass_id')->nullable()->constrained('klasses')->onDelete('set null');
             $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('set null');
             $table->string('roll_no')->nullable();
-            $table->string('monthly_fee')->nullable();
+            $table->integer('monthly_fee')->default(0);
             $table->string('gender');
             $table->date('date_of_birth');
             $table->date('enrollment_date')->default(now());

@@ -15,6 +15,11 @@
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-fee" aria-controls="navs-top-fee" aria-selected="true">
+                                    Fees
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="false" tabindex="-1">
                                     Class Fee Settings
                                 </button>
@@ -58,7 +63,8 @@
 
                                                 <div class="col-md-6">
                                                     <label for="language" class="form-label">Select Class</label>
-                                                    <select name="section_id[]" id="section_id" class="form-control multiple-select" multiple required>
+                                                    {{-- <select name="section_id[]" id="section_id" class="form-control multiple-select" multiple required> --}}
+                                                    <select name="section_id" id="section_id" class="form-control" required>
                                                         <option value="">Select One</option>
                                                     </select>
                                                 </div>
@@ -77,6 +83,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="navs-top-fee" role="tabpanel">
+                                @include('fees.manage_fees_tab')
+                            </div>
                             <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
@@ -87,7 +96,6 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
-
                             </div>
                         </div>
                     </div>
