@@ -134,8 +134,7 @@ class InitS{
 
     public static function showLog()
     {
-        $message = 'This is log';
-        $message = 'The is updated message';
+        $message = 'We are happy to fix the issue';
         return $message;
     }
 }
