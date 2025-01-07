@@ -17,6 +17,6 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        remote_dir: "/home/gradavrd/school"
+        remote_dir: "./home/gradavrd/school/"
         exclude: |
           **/.github*
