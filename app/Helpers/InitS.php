@@ -30,6 +30,12 @@ class InitS{
         return ['Male','Female'];
     }
 
+    public static function getRollNo($userid)
+    {
+        $year = now()->year;
+        return 'AR-'.$year.$userid;
+    }
+
     public static function getFeeMonth()
     {
         $currentTime = self::timeZoneTime();

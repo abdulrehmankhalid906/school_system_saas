@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AttendenceController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TimeTableController;
@@ -88,6 +89,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
     Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
+    //Exams + Grades
+    Route::get('manage-exams',[ExamController::class,'addEditExam'])->name('manage.exams');
+    // Route::get('create-update-exams',[ExamController::class,'addEditExam'])->name('manage.exams');
+
+
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
     Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
@@ -103,6 +109,7 @@ Route::middleware(['auth'])->group(function(){
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
         'schools' => SchoolController::class,
+        'exams' => ExamController::class,
         'fees' => FeeController::class,
         'subjects' => SubjectController::class,
         'classes' => ClassController::class,

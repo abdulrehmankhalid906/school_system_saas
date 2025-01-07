@@ -29,6 +29,7 @@ class StoreStudentRequest extends FormRequest
             'parent_id' => 'required',
             'klass_id' => 'required',
             'section_id' => 'required',
+            'monthly_fee' => 'required|numeric',
             'gender' => 'required',
             'date_of_birth' => 'required',
             'address' => 'required|string'

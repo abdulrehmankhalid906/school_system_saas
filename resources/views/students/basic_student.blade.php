@@ -113,6 +113,13 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Monthly Fee</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="monthly_fee" placeholder="2500" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label">Enter Address</label>
                                                     <div class="col-md-9">
                                                         <input type="text" class="form-control" name="address" placeholder="Enter Address" required>

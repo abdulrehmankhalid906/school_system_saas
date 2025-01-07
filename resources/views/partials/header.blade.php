@@ -64,10 +64,10 @@
                         <div class="dropdown-header d-flex align-items-center py-3">
                             <h6 class="mb-0 me-auto">Notification</h6>
                             <div class="d-flex align-items-center h6 mb-0">
-                                <span class="badge bg-label-primary me-2">8 New</span>
-                                <a href="javascript:void(0)" class="dropdown-notifications-all p-2" data-bs-toggle="tooltip" title="Mark all as read">
+                                {{-- <span class="badge bg-label-primary me-2">8 New</span> --}}
+                                {{-- <a href="javascript:void(0)" class="dropdown-notifications-all p-2" data-bs-toggle="tooltip" title="Mark all as read">
                                     <i class="bx bx-envelope-open text-heading"></i>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </li>

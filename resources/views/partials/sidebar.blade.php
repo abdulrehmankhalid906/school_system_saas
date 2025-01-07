@@ -25,167 +25,190 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-user-detail"></i>
-                <div class="text-truncate" data-i18n="Management">Management</div>
-            </a>
+        {{-- Management Tab --}}
 
-            <ul class="menu-sub">
-                @if(Auth::user()->hasRole('School'))
-                    <li class="menu-item {{ setRoute('users.index') }}">
-                        <a href="{{ route('users.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Users">Users</div>
+        @if(Auth::user()->hasRole(['Super Admin','School']))
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+                    <div class="text-truncate" data-i18n="Management">Management</div>
+                </a>
+
+                <ul class="menu-sub">
+                    @if(Auth::user()->hasRole('Super Admin'))
+                        <li class="menu-item {{ setRoute('users.index') }}">
+                            <a href="{{ route('users.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('roles.index') }}">
+                            <a href="{{ route('roles.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Roles">Roles</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('permissions.index') }}">
+                            <a href="{{ route('permissions.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Permissions">Permissions</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('schools.index') }}">
+                            <a href="{{ route('schools.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Schools">Schools</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('notifications.index') }}">
+                            <a href="{{ route('notifications.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Notifications">Notifications</div>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if(Auth::user()->hasRole('School'))
+
+                        <li class="menu-item {{ setRoute('students.index') }}">
+                            <a href="{{ route('students.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Students">Students</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('teachers.index') }}">
+                            <a href="{{ route('teachers.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Teachers">Teachers</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('index.parents') }}">
+                            <a href="{{ route('index.parents') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Parents">Parents</div>
+                            </a>
+                        </li>
+
+
+                    @endif
+                </ul>
+            </li>
+        @endif
+
+        {{-- Acadmic Tab --}}
+
+        @if(Auth::user()->hasRole(['School','Teacher']))
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-book-open"></i>
+                    <div class="text-truncate" data-i18n="Academic">Academic</div>
+                </a>
+                <ul class="menu-sub">
+
+                    @if(Auth::user()->hasRole('School'))
+                        <li class="menu-item {{ setRoute('subjects.index') }}">
+                            <a href="{{ route('subjects.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Subject">Subjects</div>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if(Auth::user()->hasRole('School'))
+                        <li class="menu-item {{ setRoute('classes.index') }}">
+                            <a href="{{ route('classes.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Class">Classes</div>
+                            </a>
+                        </li>
+                    @endif
+
+                    {{-- @if(Auth::user()->hasRole('School') || (Auth::user()->hasRole('Teacher') && Auth::user()->teacher?->is_attendance == 1)) --}}
+                        <li class="menu-item {{ setRoute('get.attendence') }}">
+                            <a href="{{ route('get.attendence') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Mark Attendance">Mark Attendance</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
+                            <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Attendance Report">Attendance Report</div>
+                            </a>
+                        </li>
+                    {{-- @endif --}}
+
+                    @if(Auth::user()->hasRole('School'))
+                        <li class="menu-item {{ setRoute('timetables.index') }}">
+                            <a href="{{ route('timetables.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Timetables">Time Tables</div>
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
+
+        {{-- Exam Tab --}}
+
+        @if(Auth::user()->hasRole('School'))
+            <li class="menu-item ">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-trophy"></i>
+                    <div class="text-truncate" data-i18n="Examination">Examination</div>
+                </a>
+                <ul class="menu-sub">
+
+                    <li class="menu-item {{ setRoute('exams.index') }}">
+                        <a href="{{ route('exams.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Exams">Exams</div>
                         </a>
                     </li>
 
-                    <li class="menu-item {{ setRoute('roles.index') }}">
-                        <a href="{{ route('roles.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Roles">Roles</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ setRoute('permissions.index') }}">
-                        <a href="{{ route('permissions.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Permissions">Permissions</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ setRoute('schools.index') }}">
-                        <a href="{{ route('schools.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Schools">Schools</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ setRoute('notifications.index') }}">
-                        <a href="{{ route('notifications.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Notifications">Notifications</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::user()->hasRole('School'))
-                    <li class="menu-item {{ setRoute('teachers.index') }}">
-                        <a href="{{ route('teachers.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Teachers">Teachers</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ setRoute('index.parents') }}">
-                        <a href="{{ route('index.parents') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Parents">Parents</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item {{ setRoute('students.create') }}">
-                        <a href="{{ route('students.create') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Register Student">Register Student</div>
-                        </a>
-                    </li>
-                @endif
-            </ul>
-        </li>
-
-        <!-- Front Pages -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-book-open"></i>
-                <div class="text-truncate" data-i18n="Academic">Academic</div>
-            </a>
-            <ul class="menu-sub">
-
-                @if(Auth::user()->hasRole('School'))
-                    <li class="menu-item {{ setRoute('timetables.index') }}">
-                        <a href="{{ route('timetables.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Timetables">Time Tables</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::user()->hasRole('School'))
-                    <li class="menu-item {{ setRoute('subjects.index') }}">
-                        <a href="{{ route('subjects.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Subject">Subjects</div>
-                        </a>
-                    </li>
-                @endif
-
-                @if(Auth::user()->hasRole('School'))
-                    <li class="menu-item {{ setRoute('classes.index') }}">
+                    <li class="menu-item">
                         <a href="{{ route('classes.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Class">Classes</div>
-                        </a>
-                    </li>
-                @endif
-
-                {{-- @if(Auth::user()->hasRole('School') || (Auth::user()->hasRole('Teacher') && Auth::user()->teacher?->is_attendance == 1)) --}}
-                    <li class="menu-item {{ setRoute('get.attendence') }}">
-                        <a href="{{ route('get.attendence') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Attendance Management">Attendance Management</div>
+                            <div class="text-truncate" data-i18n="Grades">Grades</div>
                         </a>
                     </li>
 
-                    <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
-                        <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Attendance Report">Attendance Report</div>
+                    <li class="menu-item">
+                        <a href="{{ route('subjects.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Marks">Marks</div>
                         </a>
                     </li>
-                {{-- @endif --}}
-            </ul>
-        </li>
+                </ul>
+            </li>
+        @endif
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-trophy"></i>
-                <div class="text-truncate" data-i18n="Exam">Exam</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Marks">Marks</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Exams">Exams</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Grade">Grade</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        {{-- Accounts Tab --}}
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
-                <div class="text-truncate" data-i18n="Accounts">Accounts</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('fees.create') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('subjects.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Expense Category">Expense Category</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('classes.index') }}" class="menu-link">
-                        <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @if(Auth::user()->hasRole('School'))
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
+                    <div class="text-truncate" data-i18n="Accounts">Accounts</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('fees.create') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('subjects.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('classes.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Expense Category">Expense Category</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('classes.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
+        {{-- Settings Tab --}}
 
         @if(Auth::user()->hasRole('Super Admin'))
             <li class="menu-item">

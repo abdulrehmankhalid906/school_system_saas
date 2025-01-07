@@ -19,9 +19,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // return view('students.index',[
-        //     'students' => Student::where('')->get(),
-        // ]);
+        $students = Student::with(['user','klass','section'])->whereHas('user', function($query){
+            $query->where('school_id', InitS::getSchoolid());
+        })->get();
+
+        return view('students.index',[
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -79,10 +83,12 @@ class StudentController extends Controller
                 'parent_id' => $data['parent_id'],
                 'klass_id' => $data['klass_id'],
                 'section_id' => $data['section_id'],
+                'monthly_fee' => $data['monthly_fee'],
                 'date_of_birth' => $data['date_of_birth'],
                 'gender' => $data['gender'],
                 'enrollment_date' => now(),
                 'session' => InitS::getSession(),
+                'roll_no' => InitS::getRollNo($Auser->id),
             ];
 
             Student::create($student);
@@ -114,7 +120,19 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $student = Student::with(['user','klass','section','parent'])->whereHas('user', function($query){
+            $query->where('school_id', InitS::getSchoolid());
+        })->where('id', $id)->firstOrFail();
+        $classes = Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
+        $sections = Section::where('klass_id', $student->klass_id)->whereHas('klass', function($query){
+            $query->where('school_id', InitS::getSchoolid());
+        })->select('id', 'name')->get();
+
+        return view('students.edit',[
+            'student' => $student,
+            'classes' => $classes,
+            'sections' => $sections,
+        ]);
     }
 
     /**
@@ -122,8 +140,50 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $data = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'address' => 'nullable|string',
+                'phone' => 'nullable|string',
+                'klass_id' => 'required|exists:klasses,id',
+                'section_id' => 'required|exists:sections,id',
+                'date_of_birth' => 'required|date',
+                'monthly_fee' => 'required|numeric',
+            ], [
+                'klass_id.exists' => 'Please select a valid class.',
+                'section_id.exists' => 'Please select a valid section.',
+            ]);
+
+            $student = Student::with('user')->whereHas('user', function($query){
+                $query->where('school_id', InitS::getSchoolid());
+            })->where('id', $id)->firstOrFail();
+
+            $student->user->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'] ?? NULL,
+                'phone' => $data['phone'] ?? NULL,
+            ]);
+
+            $student->update([
+                'klass_id' => $data['klass_id'],
+                'section_id' => $data['section_id'],
+                'monthly_fee' => $data['monthly_fee'],
+                'date_of_birth' => $data['date_of_birth'],
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'The Student has been updated.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => 'Failed to update student: ' . $e->getMessage()]);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
