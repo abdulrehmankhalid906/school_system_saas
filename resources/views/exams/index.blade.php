@@ -12,7 +12,7 @@
                                 <h4 class="page-title d-inline-block">
                                     <i class="mdi mdi-account-circle title_icon"></i> All Exams
                                 </h4>
-                                <a href="{{ route('exams.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">
+                                <a href="{{ route('manage.exam') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">
                                     <i class="mdi mdi-plus"></i>Create Exam</a>
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
@@ -33,7 +33,7 @@
                                                 <td>{{ $exam->end_date ?? '' }}</td>
                                                 <td>{{ $exam->is_active ?? '' }}</td>
                                                 <td>
-                                                    <a href="{{ route('exam.create', $exam->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('manage.exam', $exam->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $exam->id }}, 'exams')">Delete</a>
                                                 </td>
                                             </tr>

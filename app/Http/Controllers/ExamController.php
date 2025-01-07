@@ -25,10 +25,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        // $exam = Exam::where('school_id', InitS::getSchoolid())->firstOrFail();
-        // return view('exams.add_edit',[
-        //     'exam' => $exam
-        // ]);
+        //
     }
 
     /**
@@ -36,9 +33,19 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        // Exam::create($request->all());
+        $data = $request->all();
 
-        // return redirect()->back()->with('success', 'Exam has been created!');
+        if ($request->id) {
+            $exam = Exam::where('id', $request->id)->where('school_id',InitS::getSchoolid())->firstOrFail();
+            $exam->update($data);
+            $message = 'Exam has been updated!';
+        } else {
+            $data['school_id'] = InitS::getSchoolid();
+            Exam::create($data);
+            $message = 'Exam has been created!';
+        }
+
+        return redirect()->route('exams.index')->with('success', $message);
     }
 
     /**
@@ -73,8 +80,11 @@ class ExamController extends Controller
         //
     }
 
-    public function addEditExam(Request $request)
+    public function addEditExam($id = null)
     {
-        dd($request->all());
+        $exam = Exam::where('id', $id)->where('school_id',InitS::getSchoolid())->first();
+        return view('exams.add_edit',[
+            'exam' => $exam
+        ]);
     }
 }

@@ -38,10 +38,9 @@
                                             </div>
                                         @endif
 
-                                        <form method="POST" action="{{ route('exams.store') }}" enctype="multipart/form-data" autocomplete="off">
+                                        <form method="POST" action="{{ route('exams.store') }}" autocomplete="off">
                                             @csrf
-                                            @method('PUT')
-                                            <input type="text" value="{{ $exam->id ?? ''}}">
+                                            <input type="hidden" name="id" value="{{ $exam->id ?? ''}}">
                                             <div class="row g-3">
                                                 <div class="col-md-12">
                                                     <label class="form-label" for="title">Exam Title</label>
@@ -61,7 +60,7 @@
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="status">Status</label>
                                                     <div class="form-check form-switch mb-2">
-                                                        <input class="form-check-input" type="checkbox" id="status" value="{{ $exam->is_active == true ? 'Checked' : '' }}">
+                                                        <input class="form-check-input" type="checkbox" id="status" name="status" value="1" {{ isset($exam) && $exam->is_active ? 'checked' : '' }}>
                                                     </div>
                                                 </div>
 

@@ -90,9 +90,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
     //Exams + Grades
-    Route::get('manage-exams',[ExamController::class,'addEditExam'])->name('manage.exams');
-    // Route::get('create-update-exams',[ExamController::class,'addEditExam'])->name('manage.exams');
-
+    Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
 
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
