@@ -19,7 +19,6 @@ class RoleSeeder extends Seeder
             'Teacher',
             'Parent',
             'Student'
-            // 'User'
         ];
 
         foreach ($roles as $role) {

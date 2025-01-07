@@ -3,14 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\FeeType;
-use App\Models\User;
-use App\Models\Klass;
-use App\Models\School;
-use App\Models\Section;
-use App\Models\Student;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
