@@ -119,9 +119,10 @@ class AttendenceController extends Controller
 
     public function sendSMS(Request $request)
     {
+        // Confedential Configuration Variables / Mandatory Variables
         $email = "grademaster@grademaster.site";
         $key = "019b0e96781d68841af18c609ae857402a";
-        $mask = "H3 TEST SMS";
+        $mask = "Digi SMS";
         $to = "923184674332";
         $message = "Test Message";
         // Preparing Data to POST Request / DO NOT TOUCH BELOW
@@ -134,7 +135,6 @@ class AttendenceController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch); // Result from Branded SMS Pakistan including Return ID
-        return $result;
-        //curl_close($ch);
+        curl_close($ch);
     }
 }
