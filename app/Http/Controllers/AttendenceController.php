@@ -74,7 +74,7 @@ class AttendenceController extends Controller
             $recipients =  array(array("phone" => "923415921294"));
             $channels = array("sms");
             $sms = array(
-                "from" => env('MESSAGGIO_API'),
+                "from" => "ctv13uv5qq2s73bvf2sg",
                 "content" => array(
                     array(
                         "type" => "text",
