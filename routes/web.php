@@ -37,9 +37,13 @@ use App\Models\TimeTable;
 //     Artisan::call('migrate:fresh --seed');
 // });
 
-// Route::get('/migrate', function(){
-//     Artisan::call('migrate');
-// });
+Route::get('/migrate', function(){
+    Artisan::call('migrate');
+});
+
+Route::get('/optimize', function(){
+    Artisan::call('optimize');
+});
 
 Route::get('/', function () {
     return Redirect::to('/home');
