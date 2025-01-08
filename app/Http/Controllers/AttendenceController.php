@@ -74,6 +74,7 @@ class AttendenceController extends Controller
             $recipients =  array(array("phone" => "923415921294"));
             $channels = array("sms");
             $sms = array(
+                "sender" => "Test",
                 "from" => "ctv13uv5qq2s73bvf2sg",
                 "content" => array(
                     array(
@@ -106,7 +107,7 @@ class AttendenceController extends Controller
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $rawdata);
 
-            return $json_response = curl_exec($curl);
+            $json_response = curl_exec($curl);
 
 
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
