@@ -135,6 +135,7 @@ class AttendenceController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch); // Result from Branded SMS Pakistan including Return ID
+        return $result; exit;
         curl_close($ch);
     }
 }
