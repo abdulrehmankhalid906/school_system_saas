@@ -14,11 +14,11 @@
                                     School Setting
                                 </button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="false" tabindex="-1">
                                     Class Fee Settings
                                 </button>
-                            </li>
+                            </li> --}}
                             {{-- <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-messages" aria-controls="navs-top-messages" aria-selected="false" tabindex="-1">
                                     Totals
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
                                         <h4 class="header-title">Class Fee</h4>
                                         <form method="POST" action="{{ route('manage.school.fee') }}" autocomplete="off">
@@ -118,7 +118,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
 
