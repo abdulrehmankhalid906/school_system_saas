@@ -11,7 +11,7 @@
             <div class="nav-item d-flex align-items-center">
                 {{-- <i class="bx bx-search bx-md"></i> --}}
                 @if(Auth::user()->hasRole('School'))
-                    <form method="POST" action="{{ route('send-sms') }}">
+                    <form method="POST" action="{{ route('send.sms') }}">
                         @csrf
                         <button class="btn btn-primary btn-sm" type="submit" >Send SMS</button>
                     </form>
