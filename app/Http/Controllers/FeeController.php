@@ -6,7 +6,6 @@ use App\Models\Klass;
 use App\Helpers\InitS;
 use App\Models\FeeType;
 use App\Models\Student;
-use App\Models\ClassFee;
 use App\Models\FeePayment;
 use Illuminate\Http\Request;
 
@@ -118,5 +117,15 @@ class FeeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function payFee()
+    {
+
+    }
+
+    function getTotalAmount($id)
+    {
+        $user_id = FeePayment::select('user_id')->where('id',$id)->first();
     }
 }

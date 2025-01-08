@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('fee_type_id')->constrained('fee_types')->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
-            $table->decimal('balance_due', 10, 2);
+            $table->integer('amount', 10);
+            $table->integer('balance_due', 10);
             $table->date('due_date');
             $table->enum('status', ['due', 'paid', 'overdue'])->default('due');
             $table->string('fee_month',100);

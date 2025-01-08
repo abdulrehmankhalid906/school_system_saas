@@ -89,6 +89,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
     Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');
 
+    //Testng Send SMS
+    Route::post('/send-sms', [AttendenceController::class,'sendSMS'])->name('send.sms');
+
     //Exams + Grades
     Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
 

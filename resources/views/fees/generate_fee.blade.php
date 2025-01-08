@@ -105,3 +105,28 @@
     </div>
 </div>
 @endsection
+
+@push('footer_scripts')
+    <script>
+        function feePayment(id)
+        {
+            $.ajax({
+                url: "{{ route('') }}",
+                type: "POST",
+                // dataType: "JSON",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function(response)
+                {
+                    console.log(response);
+                },
+                error: function(error)
+                {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+@endpush

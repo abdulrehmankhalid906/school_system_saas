@@ -21,7 +21,7 @@
                                 <td>{{ $fee->due_date ?? '' }}</td>
                                 <td>{{ Str::upper($fee->status ?? 'na') }}</td>
                                 <td>
-                                    <a href="{{ route('manage.exam', $fee->id) }}" class="btn btn-primary btn-sm">Pay</a>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
                                     <a href="javascript:void(0);" class="btn btn-secondary btn-sm">Pay History</a>
                                     {{-- <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $fee->id }}, 'exams')">Delete</a> --}}
                                 </td>
