@@ -119,7 +119,6 @@ class AttendenceController extends Controller
 
     public function sendSMS(Request $request)
     {
-        // Confedential Configuration Variables / Mandatory Variables
         $email = "grademaster@grademaster.site";
         $key = "019b0e96781d68841af18c609ae857402a";
         $mask = "Digi SMS";

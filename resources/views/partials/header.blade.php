@@ -10,12 +10,12 @@
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
                 {{-- <i class="bx bx-search bx-md"></i> --}}
-                @if(Auth::user()->hasRole('School'))
+                {{-- @if(Auth::user()->hasRole('School'))
                     <form method="POST" action="{{ route('send.sms') }}">
                         @csrf
                         <button class="btn btn-primary btn-sm" type="submit" >Send SMS</button>
                     </form>
-                @endif
+                @endif --}}
 
                 @if(Auth::user()->hasRole('Teacher'))
                     <button type="button" class="btn btn-primary btn-sm check_in" onclick="markAttendance('check_in')">Check In</button>&nbsp;
