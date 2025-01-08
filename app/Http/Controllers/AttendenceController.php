@@ -89,7 +89,7 @@ class AttendenceController extends Controller
                 "sms" => $sms
             );
 
-            dd($data);
+            //dd($data);
 
             $rawdata = json_encode($data);
 
