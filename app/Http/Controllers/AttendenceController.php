@@ -70,93 +70,46 @@ class AttendenceController extends Controller
 
     public function sendSMS(Request $request)
     {
-        // try {
-        //     $recipients =  array(array("phone" => "923415921294"));
-        //     $channels = array("sms");
-        //     $sms = array(
-        //         "title" => "Test",
-        //         "from" => "ctv13uv5qq2s73bvf2sg",
-        //         "content" => array(
-        //             array(
-        //                 "type" => "text",
-        //                 "text" => "This is the sample message"
-        //             )
-        //         )
-        //     );
+        $recipients = [
+            ["phone" => "923415921294"]
+        ];
 
-        //     $data = array(
-        //         "recipients" => $recipients,
-        //         "channels" => $channels,
-        //         "sms" => $sms
-        //     );
+        $channels = ["sms"];
 
-        //     //dd($data);
+        $sms = [
+            "content" => [
+                ["type" => "text", "text" => "Sample fake PHP text for the example"]
+            ],
+            "from" => "ctv13uv5qq2s73bvf2sg"
+        ];
 
-        //     $rawdata = json_encode($data);
+        $data = [
+            "recipients" => $recipients,
+            "channels" => $channels,
+            "sms" => $sms
+        ];
 
-        //     $curl = curl_init("https://msg.messaggio.com/api/v1/send");
-        //     curl_setopt($curl, CURLOPT_HEADER, false);
-        //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        //     curl_setopt($curl, CURLOPT_HTTPHEADER,
-        //         array(
-        //             "Content-Type: application/json",
-        //             "Accept: application/json",
-        //             "Messaggio-Login: ctv11dtipr1s73dk7i7g"
-        //         )
-        //     );
-        //     curl_setopt($curl, CURLOPT_POST, true);
-        //     curl_setopt($curl, CURLOPT_POSTFIELDS, $rawdata);
-
-        //     $json_response = curl_exec($curl);
-
-
-        //     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        //     curl_close($curl);
-
-        //     $response = json_decode($json_response, true);
-        //     return response()->json([
-        //         'success' => true,
-        //         'data' => $response
-        //     ]);
-
-        // } catch (\Exception $e) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => $e->getMessage()
-        //     ]);
-        // }
-
-        $recipients =  array(array("phone" => "923415921294"));
-        $channels = array("sms");
-        $sms = array(
-            "title" => "School",
-            "detail" => "This is the test for the deployment",
-            "from" => "ctv13uv5qq2s73bvf2sg",
-            "content" => array(
-                array("type" => "text", "text" => "Sample fake PHP text for the example")
-        ));
-        $data = array("recipients" => $recipients,
-                "channels" => $channels,
-                "sms" => $sms);
         $rawdata = json_encode($data);
 
-        /*Preparing request*/
+        /* Preparing request */
         $curl = curl_init("https://msg.messaggio.com/api/v1/send");
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-                array("Content-Type: application/json",
-                "Accept: application/json",
-                "Messaggio-Login: ctv11dtipr1s73dk7i7g"));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/json",
+            "Accept: application/json",
+            "Messaggio-Login: ctv11dtipr1s73dk7i7g" // Project login
+        ]);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $rawdata);
 
-        /*Executing request*/
+        /* Executing request */
         $json_response = curl_exec($curl);
 
-        /*Reading the response and closing connection*/
+        /* Reading the response and closing connection */
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
+
         $response = json_decode($json_response, true);
         print_r($response);
     }
