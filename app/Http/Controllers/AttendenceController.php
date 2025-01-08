@@ -129,7 +129,8 @@ class AttendenceController extends Controller
         $recipients =  array(array("phone" => "923415921294"));
         $channels = array("sms");
         $sms = array(
-            "title" => "Test",
+            "title" => "School",
+            "detail" => "This is the test for the deployment",
             "from" => "ctv13uv5qq2s73bvf2sg",
             "content" => array(
                 array("type" => "text", "text" => "Sample fake PHP text for the example")
