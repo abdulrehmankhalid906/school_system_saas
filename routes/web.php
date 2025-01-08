@@ -45,9 +45,9 @@ Route::get('/', function () {
     return Redirect::to('/home');
 });
 
-Route::fallback(function(){
-    return Redirect::to('/home');
-});
+// Route::fallback(function(){
+//     return Redirect::to('/home');
+// });
 
 Auth::routes();
 
