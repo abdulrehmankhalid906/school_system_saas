@@ -74,7 +74,7 @@ class AttendenceController extends Controller
         //     $recipients =  array(array("phone" => "923415921294"));
         //     $channels = array("sms");
         //     $sms = array(
-        //         "sender" => "Test",
+        //         "title" => "Test",
         //         "from" => "ctv13uv5qq2s73bvf2sg",
         //         "content" => array(
         //             array(
@@ -128,8 +128,10 @@ class AttendenceController extends Controller
 
         $recipients =  array(array("phone" => "923415921294"));
         $channels = array("sms");
-        $sms = array("from" => "ctv13uv5qq2s73bvf2sg",
-                "content" => array(
+        $sms = array(
+            "title" => "Test",
+            "from" => "ctv13uv5qq2s73bvf2sg",
+            "content" => array(
                 array("type" => "text", "text" => "Sample fake PHP text for the example")
         ));
         $data = array("recipients" => $recipients,
