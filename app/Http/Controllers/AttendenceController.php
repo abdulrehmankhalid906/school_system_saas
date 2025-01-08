@@ -74,7 +74,7 @@ class AttendenceController extends Controller
             $recipients =  array(array("phone" => "923415921294"));
             $channels = array("sms");
             $sms = array(
-                "from" => "ctv13uv5qq2s73bvf2sg",
+                "from" => env('MESSAGGIO_API'),
                 "content" => array(
                     array(
                         "type" => "text",
@@ -89,6 +89,8 @@ class AttendenceController extends Controller
                 "sms" => $sms
             );
 
+            dd($data);
+
             $rawdata = json_encode($data);
 
             $curl = curl_init("https://msg.messaggio.com/api/v1/send");
@@ -98,7 +100,7 @@ class AttendenceController extends Controller
                 array(
                     "Content-Type: application/json",
                     "Accept: application/json",
-                    "Messaggio-Login: ctv11dtipr1s73dk7i7g"
+                    "Messaggio-Login: " . env('MESSAGGIO_LOGIN')
                 )
             );
             curl_setopt($curl, CURLOPT_POST, true);
