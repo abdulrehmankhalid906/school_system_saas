@@ -100,13 +100,15 @@ class AttendenceController extends Controller
                 array(
                     "Content-Type: application/json",
                     "Accept: application/json",
-                    "Messaggio-Login: " . env('MESSAGGIO_LOGIN')
+                    "Messaggio-Login: ctv11dtipr1s73dk7i7g"
                 )
             );
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $rawdata);
 
-            $json_response = curl_exec($curl);
+            return $json_response = curl_exec($curl);
+
+
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
 
