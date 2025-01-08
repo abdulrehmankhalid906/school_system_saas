@@ -68,20 +68,17 @@ class AttendenceController extends Controller
     }
 
 
-    public function sendSMS()
+    public function sendSMS(Request $request)
     {
-        $phone = 923415921294;
-
         try {
-
-            $recipients = array(array("phone" => $phone));
+            $recipients =  array(array("phone" => "923415921294"));
             $channels = array("sms");
             $sms = array(
-                "from" => env('MESSAGGIO_API'), // or env('MESSAGGIO_API') for Laravel
+                "from" => env('MESSAGGIO_API'),
                 "content" => array(
                     array(
                         "type" => "text",
-                        "text" => "Test message has been sent."
+                        "text" => "This is the sample message"
                     )
                 )
             );
@@ -93,44 +90,35 @@ class AttendenceController extends Controller
             );
 
             $rawdata = json_encode($data);
-            if ($rawdata === false) {
-                throw new \Exception("Failed to encode JSON data");
-            }
 
             $curl = curl_init("https://msg.messaggio.com/api/v1/send");
-            if (!$curl) {
-                throw new \Exception("Failed to initialize cURL");
-            }
-
-            curl_setopt_array($curl, [
-                CURLOPT_HEADER => false,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_HTTPHEADER => array(
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER,
+                array(
                     "Content-Type: application/json",
                     "Accept: application/json",
-                    "Messaggio-Login: " . env('MESSAGGIO_LOGIN') // or env('MESSAGGIO_LOGIN') for Laravel
-                ),
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => $rawdata
-            ]);
+                    "Messaggio-Login: " . env('MESSAGGIO_LOGIN')
+                )
+            );
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $rawdata);
 
             $json_response = curl_exec($curl);
-            if ($json_response === false) {
-                throw new \Exception("cURL Error: " . curl_error($curl));
-            }
-
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
 
             $response = json_decode($json_response, true);
-            if ($response === null && json_last_error() !== JSON_ERROR_NONE) {
-                throw new \Exception("Failed to decode API response");
-            }
+            return response()->json([
+                'success' => true,
+                'data' => $response
+            ]);
 
-            return $response;
         } catch (\Exception $e) {
-            // Log error or handle it appropriately
-            throw $e;
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }
