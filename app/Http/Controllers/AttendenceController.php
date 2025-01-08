@@ -124,7 +124,7 @@ class AttendenceController extends Controller
         $key = "019b0e96781d68841af18c609ae857402a";
         $mask = "Digi SMS";
         $to = "923184674332";
-        $message = "Test Message";
+        $message = "Dear Parents, Your child Ali is absent from school today.";
         // Preparing Data to POST Request / DO NOT TOUCH BELOW
         $mask = urlencode($mask);
         $message = urlencode($message);
