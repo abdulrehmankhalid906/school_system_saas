@@ -24,7 +24,7 @@ class FeeController extends Controller
      */
     public function create()
     {
-        return view('fees.generate_fee',[
+        return view('fees.index',[
             'fees' => FeePayment::with(['feetype','user'])->where('school_id', InitS::getSchoolid())->get(),
             'feetypes' => FeeType::get(),
             'classes' => Klass::where('school_id',InitS::getSchoolid())->get()

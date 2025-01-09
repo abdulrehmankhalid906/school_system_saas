@@ -23,7 +23,7 @@ class FeePayment extends Model
 
     public function feehistories()
     {
-        return $this->hasMany(FeeHistory::class,'id');
+        return $this->hasMany(FeeHistory::class,'fee_payment_id','id');
     }
 }
 
