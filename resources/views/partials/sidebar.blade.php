@@ -189,16 +189,13 @@
                             <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('subjects.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
-                        </a>
-                    </li>
+
                     <li class="menu-item">
                         <a href="{{ route('classes.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Expense Category">Expense Category</div>
                         </a>
                     </li>
+
                     <li class="menu-item">
                         <a href="{{ route('classes.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>

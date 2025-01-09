@@ -86,15 +86,22 @@
 
     <script>
         $(document).ready(function() {
-            $('.multiple-select').select2({
-                placeholder: 'Select an option',
-                allowClear: true,
-                width: '100%'
+
+            //Preventing 'e' key
+            $(document).on('keydown', 'input[type="number"]', function (event) {
+                if (event.key === 'e' || event.key === 'E') {
+                    event.preventDefault();
+                }
             });
 
+            $(document).on('input', 'input[type="number"]', function () {
+                $(this).val($(this).val().replace(/e/gi, ''));
+            });
+
+            //Datatable Implementations
             $('#example').DataTable({
                 responsive: true,
-                dom: 'Bfrtip', // Enables Buttons and other features
+                dom: 'Bfrtip',
                 buttons: [
                     // 'copy',
                     'csv',
@@ -102,6 +109,13 @@
                     'pdf',
                     // 'print'
                 ]
+            });
+
+            //Multiple Select
+            $('.multiple-select').select2({
+                placeholder: 'Select an option',
+                allowClear: true,
+                width: '100%'
             });
         });
         //Add & Remove Sections
@@ -152,6 +166,40 @@
                         }
 
                         $('#section_id').html(options);
+                    } else {
+                        console.log('somethind went wrong');
+                    }
+                },
+                error: function()
+                {
+                    //
+                },
+            });
+        });
+
+        $('#klass_id2').change(function(){
+            var class_id = $(this).val();
+            var options = '';
+
+            $.ajax({
+                url: "{{ route('get.Section') }}",
+                type: "GET",
+                dataType: 'JSON',
+                data:
+                    {
+                        class_id:class_id
+                    },
+                cache: false,
+                success: function(resp)
+                {
+                    if (resp.status === 200)
+                    {
+                        for (let index = 0; index < resp.data.length; index++)
+                        {
+                            options += `<option value="${resp.data[index].id}">${resp.data[index].name}</option>`;
+                        }
+
+                        $('#section_id2').html(options);
                     } else {
                         console.log('somethind went wrong');
                     }

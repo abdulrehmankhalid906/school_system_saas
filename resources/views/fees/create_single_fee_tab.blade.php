@@ -3,22 +3,22 @@
         <div class="row g-6">
             <div class="alert alert-primary" role="alert">Single Fee can be used for the Fine and Board Fee.</div>
         </div>
-        <form method="POST" action="{{ route('fees.store') }}" autocomplete="off">
+        <form method="POST" action="{{ route('single-fee-store') }}" autocomplete="off">
             @csrf
             <div class="row g-6">
-                <div class="col-md-6">
-                    <label for="language" class="form-label">Select Fee Type</label>
-                    <select name="fee_type_id" id="fee_type_id" class="form-control" required>
+                <div class="col-md-4">
+                    <label for="fee_type_id" class="form-label">Select Fee Type</label>
+                    <select name="fee_type_id" id="fee_type_id_single" class="form-control fee-type-select" required>
                         <option value="">Select One</option>
-                        @foreach ($feetypes as $feetype)
+                        @foreach ($feetypestab2 as $feetype)
                             <option value="{{ $feetype->id }}">{{ $feetype->title }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="language" class="form-label">Select Class</label>
-                    <select name="klass_id" id="klass_id" class="form-control" required>
+                <div class="col-md-4">
+                    <label for="klass_id" class="form-label">Select Class</label>
+                    <select name="klass_id" id="klass_id2" class="form-control" required>
                         <option value="">Select One</option>
                         @foreach ($classes as $class)
                             <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -26,15 +26,28 @@
                     </select>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="language" class="form-label">Select Class</label>
-                    <select name="section_id" id="section_id" class="form-control" required>
+                <div class="col-md-4">
+                    <label for="section_id" class="form-label">Select Section</label>
+                    {{-- <select name="section_id[]" id="section_id" class="form-control multiple-select" multiple required> --}}
+                    <select name="section_id" id="section_id2" class="form-control" required>
                         <option value="">Select One</option>
                     </select>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Due Date</label>
+                <div class="col-md-4">
+                    <label for="student_id" class="form-label">Select Student</label>
+                    <select name="student_id" id="student_id" class="form-control" required>
+                        <option value="">Select One</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4" style="display: none;" id="fee_ammount_wrapper_single">
+                    <label for="fee_ammount" class="form-label">Enter Amount</label>
+                    <input type="number" class="form-control" id="fee_ammount_single" name="fee_ammount" min="0" placeholder="100">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="due_date" class="form-label">Due Date</label>
                     <input type="date" class="form-control" name="due_date" name="due_date" required>
                 </div>
             </div>

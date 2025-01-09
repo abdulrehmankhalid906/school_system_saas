@@ -201,4 +201,16 @@ class StudentController extends Controller
             'data' => $resp
         ]);
     }
+
+    public function getStudents(Request $request)
+    {
+        $ress = Student::with('user')->whereHas('user', function($query){
+            $query->where('school_id', InitS::getSchoolid());
+        })->where('section_id', $request->sectionId)->get();
+
+        return response()->json([
+            'status' => 200,
+            'data' => $ress
+        ]);
+    }
 }

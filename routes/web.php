@@ -77,6 +77,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/get-sections',[StudentController::class,'getSections'])->name('get.Section');
 
+    //Get Students
+    Route::get('/get-students', [StudentController::class, 'getStudents'])->name('get.students');
+
     //Attendence
     Route::get('/get-attendence',[AttendenceController::class,'index'])->name('get.attendence');
     Route::get('/get-attendence-students',[AttendenceController::class,'getAttendenceStudent'])->name('get.attendence.student');
@@ -100,6 +103,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
 
     //Fees + Payment + installments
+    Route::post('/single-fee-store', [FeeController::class,'singleFeeStore'])->name('single-fee-store');
     Route::get('/fee-history/{id}',[FeeController::class, 'feeHistory'])->name('fees.history');
     Route::get('/fee-payment',[FeeController::class, 'feesPayment'])->name('fees.payment');
 

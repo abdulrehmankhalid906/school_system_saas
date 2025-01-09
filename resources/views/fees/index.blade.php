@@ -10,12 +10,12 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-bulkfee" aria-controls="navs-top-bulkfee" aria-selected="true">
-                                    Generate Bulk Fee
+                                    Bulk Fee
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-singlefee" aria-controls="navs-top-singlefee" aria-selected="true">
-                                    Generate Single Fee
+                                    Single Fee
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -53,6 +53,59 @@
 
 @push('footer_scripts')
     <script>
+
+        $(document).ready(function () {
+            $(document).on('change', '.fee-type-select', function () {
+                var fee_type_id = $(this).val();
+                var storeIds = ["2", "3", "4"]; // Array of IDs
+                var wrapperId = $(this).attr('id') === 'fee_type_id_bulk' ? '#fee_ammount_wrapper_bulk' : '#fee_ammount_wrapper_single';
+
+                if (storeIds.includes(fee_type_id)) {
+                    $(wrapperId).show();
+                    $(wrapperId + ' input').prop('required', true);
+                } else {
+                    $(wrapperId).hide();
+                    $(wrapperId + ' input').prop('required', false);
+                }
+            });
+
+
+            $('#section_id2').change(function(){
+                var sectionId = $(this).val();
+                var optionsI = '';
+
+                $.ajax({
+                    url: "{{ route('get.students') }}",
+                    type: "GET",
+                    dataType: 'JSON',
+                    data:
+                        {
+                            sectionId:sectionId
+                        },
+                    cache: false,
+                    success: function(ress)
+                    {
+                        if (ress.status === 200)
+                        {
+                            optionsI += `<option value="" selected>Select One</option>`;
+                            for (let index = 0; index < ress.data.length; index++)
+                            {
+                                optionsI += `<option value="${ress.data[index].id}">${ress.data[index].user.name}</option>`;
+                            }
+
+                            $('#student_id').html(optionsI);
+                        } else {
+                            console.log('somethind went wrong');
+                        }
+                    },
+                    error: function()
+                    {
+                        //
+                    },
+                });
+            });
+        });
+
         function feePayment(id)
         {
             $.ajax({

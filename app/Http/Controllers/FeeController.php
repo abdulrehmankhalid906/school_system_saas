@@ -26,7 +26,8 @@ class FeeController extends Controller
     {
         return view('fees.index',[
             'fees' => FeePayment::with(['feetype','user'])->where('school_id', InitS::getSchoolid())->get(),
-            'feetypes' => FeeType::get(),
+            'feetypestab1' => FeeType::whereIn('id', [1,2])->get(),
+            'feetypestab2' => FeeType::whereIn('id', [3,4])->get(),
             'classes' => Klass::where('school_id',InitS::getSchoolid())->get()
         ]);
     }
@@ -53,10 +54,10 @@ class FeeController extends Controller
                 'fee_type_id' => $request->fee_type_id,
                 'fee_month' => InitS::getFeeMonth(),
                 'due_date' => $request->due_date,
-                'amount' => $this->getStudentFee($student->user_id),
+                'amount' => $request->fee_type_id == 2 ? $request->fee_ammount : $this->getStudentFee($student->user_id),
                 'school_id' => InitS::getSchoolid(),
                 'status' => 'due',
-                'balance_due' => $this->getStudentFee($student->user_id),
+                'balance_due' => $request->fee_type_id == 2 ? $request->fee_ammount : $this->getStudentFee($student->user_id),
             ]);
         }
 
@@ -133,6 +134,23 @@ class FeeController extends Controller
             'status' => true,
             'data' => $data,
         ]);
+    }
+
+
+    public function singleFeeStore(Request $request)
+    {
+        FeePayment::create([
+            'user_id' => $request->student_id,
+            'fee_type_id' => $request->fee_type_id,
+            'fee_month' => InitS::getFeeMonth(),
+            'due_date' => $request->due_date,
+            'amount' => $request->fee_ammount,
+            'school_id' => InitS::getSchoolid(),
+            'status' => 'due',
+            'balance_due' => $request->fee_ammount
+        ]);
+
+        return redirect()->back()->with('success', 'The fee has been generated');
     }
 
     public function feesPayment(Request $request)
