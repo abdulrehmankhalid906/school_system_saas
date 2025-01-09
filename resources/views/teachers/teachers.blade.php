@@ -20,8 +20,7 @@
                                     <thead>
                                         <tr>
                                             <th>Teacher Name</th>
-                                            <th>Attendance Authority</th>
-                                            <th>Created At</th>
+                                            <th>Permission Authority</th>
                                             <th>Operation</th>
                                         </tr>
                                     </thead>
@@ -29,8 +28,7 @@
                                         @foreach ($teachers as $teacher)
                                             <tr id="row-{{ $teacher->id }}">
                                                 <td>{{ $teacher->user->name }}</td>
-                                                <td>{{ $teacher->is_attendance == true ? 'Yes' : 'No' }}</td>
-                                                <td>{{ $teacher->created_at }}</td>
+                                                <td><b>Attendance:</b> {{ $teacher->is_attendance == true ? 'Yes' : 'No' }} - <b>Marks:</b> {{ $teacher->is_mark == true ? 'Yes' : 'No' }}</td>
                                                 <td>
                                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">
                                                         Edit

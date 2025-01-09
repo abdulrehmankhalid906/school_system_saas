@@ -20,12 +20,12 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-managefee" aria-controls="navs-top-managefee" aria-selected="false" tabindex="-1">
-                                    Class Fee Settings
+                                    Fee Mange
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-totalfee" aria-controls="navs-top-totalfee" aria-selected="false" tabindex="-1">
-                                    Totals
+                                    Payment
                                 </button>
                             </li>
                         </ul>
@@ -40,7 +40,7 @@
                                 @include('fees.manage_fee_tab')
                             </div>
                             <div class="tab-pane fade" id="navs-top-totalfee" role="tabpanel">
-                                @include('fees.fee_payment')
+                                @include('fees.payment_tab')
                             </div>
                         </div>
                     </div>
@@ -85,12 +85,13 @@
                     cache: false,
                     success: function(ress)
                     {
+                        console.log(ress);
                         if (ress.status === 200)
                         {
                             optionsI += `<option value="" selected>Select One</option>`;
                             for (let index = 0; index < ress.data.length; index++)
                             {
-                                optionsI += `<option value="${ress.data[index].id}">${ress.data[index].user.name}</option>`;
+                                optionsI += `<option value="${ress.data[index].user_id}">${ress.data[index].user.name}</option>`;
                             }
 
                             $('#student_id').html(optionsI);
