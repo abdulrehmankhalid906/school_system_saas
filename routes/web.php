@@ -99,6 +99,10 @@ Route::middleware(['auth'])->group(function(){
     //Exams + Grades
     Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
 
+    //Fees + Payment + installments
+    Route::get('/fee-history/{id}',[FeeController::class, 'feeHistory'])->name('fees.history');
+    Route::get('/fee-payment',[FeeController::class, 'feesPayment'])->name('fees.payment');
+
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
     Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');

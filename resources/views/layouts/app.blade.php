@@ -98,9 +98,9 @@
                 buttons: [
                     // 'copy',
                     'csv',
-                    'excel',
+                    // 'excel',
                     'pdf',
-                    'print'
+                    // 'print'
                 ]
             });
         });

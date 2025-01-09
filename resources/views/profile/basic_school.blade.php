@@ -11,7 +11,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="true">
-                                    School Setting
+                                    School Info
                                 </button>
                             </li>
                             {{-- <li class="nav-item" role="presentation">
@@ -29,7 +29,7 @@
                             <div class="tab-pane fade active show" id="navs-top-home" role="tabpanel">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
-                                        <h4 class="header-title">Update School (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
+                                        <h4 class="header-title">School Information (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
                                         <form method="POST" action="{{ route('school.manage') }}" enctype="multipart/form-data" autocomplete="off">
                                             @csrf
 
@@ -87,7 +87,7 @@
                                                 </div>
 
                                                 <div class="text-end">
-                                                    <button type="submit" class="btn btn-primary">Update Settings</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </div>
                                         </form>

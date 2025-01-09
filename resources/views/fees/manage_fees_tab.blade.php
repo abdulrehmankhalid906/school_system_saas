@@ -21,9 +21,9 @@
                                 <td>{{ $fee->due_date ?? '' }}</td>
                                 <td>{{ Str::upper($fee->status ?? 'na') }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
-                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm">Pay History</a>
-                                    {{-- <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $fee->id }}, 'exams')">Delete</a> --}}
+                                    {{-- try to add the type to reduce the fucntions --}}
+                                    <button class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
+                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm" onclick="feepaymentHistory({{ $fee->id, 'history'}})">Pay History</a>
                                 </td>
                             </tr>
                         @endforeach

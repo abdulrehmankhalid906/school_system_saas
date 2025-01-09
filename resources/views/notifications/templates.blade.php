@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Templates
+                                    <i class="mdi mdi-account-circle title_icon"></i> Templates
                                 </h4>
 
                                 <a href="{{ route('notifications.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">

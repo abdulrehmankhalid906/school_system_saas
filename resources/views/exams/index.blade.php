@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Exams
+                                    <i class="mdi mdi-account-circle title_icon"></i> Exams
                                 </h4>
                                 <a href="{{ route('manage.exam') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">
                                     <i class="mdi mdi-plus"></i>Create Exam</a>

@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Teachers
+                                    <i class="mdi mdi-account-circle title_icon"></i> Teachers
                                 </h4>
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#teacherModal">
                                     <i class="mdi mdi-plus"></i> Create Teacher

@@ -119,13 +119,32 @@ class FeeController extends Controller
         //
     }
 
-    public function payFee()
+    public function feeHistory($id)
     {
+        $fees = FeePayment::with('feehistories')->where('id', $id)->first();   //for time being remove feehistoies because there are no data in table
+        $totalbalance = $this->getTotalAmount($id);
+
+        $data = [
+            'fees' => $fees,
+            'balance' => $totalbalance
+        ];
+
+        return response()->json([
+            'status' => true,
+            'data' => $data,
+        ]);
+    }
+
+    public function feesPayment(Request $request)
+    {
+        $fees = FeePayment::where('id', $request->id)->first();
 
     }
 
     function getTotalAmount($id)
     {
-        $user_id = FeePayment::select('user_id')->where('id',$id)->first();
+        $user_id = FeePayment::where('id', $id)->where('school_id', InitS::getSchoolid())->value('user_id'); //the value is used to get the single column
+        $totalamount = FeePayment::where('user_id', $user_id)->sum('balance_due');
+        return $totalamount;
     }
 }

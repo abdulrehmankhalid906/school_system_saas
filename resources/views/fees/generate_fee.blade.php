@@ -111,12 +111,11 @@
         function feePayment(id)
         {
             $.ajax({
-                url: "{{ route('') }}",
-                type: "POST",
-                // dataType: "JSON",
+                url: "{{ url('fee-history') }}/" + id,
+                type: "GET",
                 data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id
+                    id: id,
+                    //type: type
                 },
                 success: function(response)
                 {

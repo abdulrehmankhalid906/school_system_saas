@@ -21,9 +21,10 @@ class FeePayment extends Model
         return $this->belongsTo(FeeType::class,'fee_type_id','id');
     }
 
-
-
-
+    public function feehistories()
+    {
+        return $this->hasMany(FeeHistory::class,'id');
+    }
 }
 
 

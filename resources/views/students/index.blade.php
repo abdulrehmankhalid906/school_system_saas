@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Students
+                                    <i class="mdi mdi-account-circle title_icon"></i> Students
                                 </h4>
                                 <a href="{{ route('students.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">
                                     <i class="mdi mdi-plus"></i>Register Student</a>

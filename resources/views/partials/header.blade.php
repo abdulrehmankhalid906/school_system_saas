@@ -130,14 +130,14 @@
                     <li>
                         <a class="dropdown-item" href="javascript:void(0);">
                             <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
+                                {{-- <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
                                         <img src="{{ InitS::getImage(Auth::user()->profile_image, 'profile') }}" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-0">{{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</h6>
-                                    <small class="text-muted">{{ Auth::user()?->roles->implode('name', ', ') }}</small>
+                                    <h6 class="mb-0">Welcome ! {{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</h6>
+                                    <small class="text-muted">Logged In: {{ Auth::user()?->roles->implode('name', ', ') }}</small>
                                 </div>
                             </div>
                         </a>

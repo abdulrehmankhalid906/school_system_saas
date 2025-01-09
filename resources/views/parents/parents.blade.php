@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="page-title d-inline-block">
-                                    <i class="mdi mdi-account-circle title_icon"></i> All Parents
+                                    <i class="mdi mdi-account-circle title_icon"></i> Parents
                                 </h4>
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#parentModal">
                                     <i class="mdi mdi-plus"></i> Create Parent
