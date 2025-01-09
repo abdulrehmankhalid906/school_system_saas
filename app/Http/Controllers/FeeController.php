@@ -156,7 +156,7 @@ class FeeController extends Controller
     public function feesPayment(Request $request)
     {
         $fees = FeePayment::where('id', $request->id)->first();
-
+        return $fees;
     }
 
     function getTotalAmount($id)
