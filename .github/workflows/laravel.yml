@@ -20,4 +20,4 @@ jobs:
         remote_dir: "./school"
         exclude: |
           **/.github*
-          /public/*
+          **/public/**
