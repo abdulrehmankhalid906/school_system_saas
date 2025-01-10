@@ -38,7 +38,7 @@ use App\Models\TimeTable;
 // });
 
 Route::get('/migrate', function(){
-    Artisan::call('migrate');
+    Artisan::call('migrate:fresh --seed');
 });
 
 Route::get('/optimize', function(){
