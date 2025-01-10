@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Klass;
 use App\Helpers\InitS;
+use App\Models\FeeHistory;
 use App\Models\FeeType;
 use App\Models\Student;
 use App\Models\FeePayment;
@@ -155,8 +156,49 @@ class FeeController extends Controller
 
     public function feesPayment(Request $request)
     {
-        $fees = FeePayment::where('id', $request->id)->first();
-        return $fees;
+        \DB::beginTransaction();
+
+        try {
+            $feePayment = FeePayment::find($request->fee_payment_id);
+
+            if (!$feePayment || $request->amount > $feePayment->balance_due) {
+                return redirect()->back()->with('error', 'Invalid payment amount or record not found.');
+            }
+
+            $history = FeeHistory::create([
+                'fee_payment_id' => $request->fee_payment_id,
+                'amount' => $request->amount,
+                'method' => $request->method,
+                'transaction_date' => $request->transaction_date,
+            ]);
+
+            // Calculate the new balance due
+            $calculationAmount = $feePayment->balance_due - $history->amount;
+
+            if ($calculationAmount < 0) {
+                throw new \Exception('Payment exceeds the due balance.');
+            }
+
+            $status = $calculationAmount == 0 ? 'paid' : $feePayment->status;
+
+            $feePayment->update([
+                'balance_due' => $calculationAmount,
+                'status' => $status
+            ]);
+
+            \DB::commit();
+
+            return redirect()->back()->with('success', 'Your payment has been processed successfully.');
+        } catch (\Exception $e) {
+            \DB::rollBack();
+
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    function checkPaymentStatus()
+    {
+
     }
 
     function getReminingAmount($id)

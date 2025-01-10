@@ -9,8 +9,8 @@
                         <th>Student</th>
                         <th>Fee Type</th>
                         <th>Due Date</th>
-                        <th>Payment</th>
-                        <th>Pay/Rem</th>
+                        <th>Status</th>
+                        <th>Balance</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
@@ -22,11 +22,13 @@
                             <td>{{ $fee->feetype->title ?? '' }}</td>
                             <td>{{ $fee->due_date ?? '' }}</td>
                             <td>{{ Str::upper($fee->status ?? 'na') }}</td>
-                            <td>{{ $fee->balance_due }}/{{ $fee->amount }}</td>
+                            <td>{{ $fee->balance_due }}</td>
                             <td>
                                 {{-- try to add the type to reduce the fucntions --}}
-                                <button class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
-                                <a href="javascript:void(0);" class="btn btn-secondary btn-sm" onclick="feepaymentHistory({{ $fee->id, 'history'}})">Pay History</a>
+                                @if($fee->status != 'paid')
+                                    <button class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
+                                @endif
+                                <a href="javascript:void(0);" class="btn btn-secondary btn-sm" onclick="feepaymentHistory({{ $fee->id }})">History</a>
                             </td>
                         </tr>
                     @endforeach

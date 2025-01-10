@@ -44,9 +44,9 @@
     </div>
 
     <div class="col-6">
-        <form action="" method="POST">
+        <form action="{{ route('fees.payment') }}" method="POST">
             @csrf
-            <input type="text" class="fee_payment_id" name="fee_payment_id">
+            <input type="hidden" class="fee_payment_id" name="fee_payment_id">
 
             <div class="row">
 
@@ -58,7 +58,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="methood" class="form-label">Select Method</label>
                     <select name="method" id="method" class="form-select" required>
-                        <option value="" disabled selected>Select a method</option>
+                        <option value="" selected>Select a method</option>
                         <option value="cash">Cash</option>
                         <option value="bank_transfer">Bank Transfer</option>
                         <option value="card">Card</option>
