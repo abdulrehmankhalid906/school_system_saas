@@ -16,6 +16,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TimeTableController;
@@ -130,6 +131,7 @@ Route::middleware(['auth'])->group(function(){
         'teachers' => TeacherController::class,
         'timetables' => TimeTableController::class,
         'notifications' => NotificationController::class,
+        'expenses' => ExpenseController::class,
         'site' => SiteController::class,
     ]);
 });

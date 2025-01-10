@@ -183,21 +183,15 @@
                     <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
                     <div class="text-truncate" data-i18n="Accounts">Accounts</div>
                 </a>
-                <ul class="menu-sub">
+                <ul class="menu-sub {{ setRoute('fees.create') }}">
                     <li class="menu-item">
                         <a href="{{ route('fees.create') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="{{ route('classes.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Expense Category">Expense Category</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="{{ route('classes.index') }}" class="menu-link">
+                    <li class="menu-item {{ setRoute('expenses.index') }}">
+                        <a href="{{ route('expenses.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>
                         </a>
                     </li>
