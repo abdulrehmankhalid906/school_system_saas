@@ -16,7 +16,7 @@
                                     <h5 class="text-nowrap mb-1">Total Amount</h5>
                                 </div>
                                 <div class="mt-sm-auto">
-                                    <h4 class="mb-0 total_payable_amount">145,000</h4>
+                                    <h4 class="mb-0 total_payable_amount">N.A</h4>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                     <h5 class="text-nowrap mb-1">Arrears Amount</h5>
                                 </div>
                                 <div class="mt-sm-auto">
-                                    <h4 class="mb-0 overall_rem_amount">200,000</h4> (<span class="term_rem_amount">1200</span>)
+                                    <h4 class="mb-0 overall_rem_amount">N.A</h4> (<span class="term_rem_amount">N.A</span>)
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="col-6">
-        <form action="{{ route('fees.payment') }}" method="POST">
+        <form action="{{ route('fees.payment') }}" method="POST" autocomplete="off">
             @csrf
             <input type="hidden" class="fee_payment_id" name="fee_payment_id">
 
@@ -52,17 +52,15 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="amount" class="form-label">Enter Amount</label>
-                    <input type="text" name="amount" id="input_amount" class="form-control" placeholder="Enter Amount" required>
+                    <input type="number" name="amount" id="input_amount" class="form-control" placeholder="Enter Amount" min="1" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="methood" class="form-label">Select Method</label>
                     <select name="method" id="method" class="form-select" required>
-                        <option value="" selected>Select a method</option>
-                        <option value="cash">Cash</option>
-                        <option value="bank_transfer">Bank Transfer</option>
-                        <option value="card">Card</option>
-                        <option value="online">Online</option>
+                        @foreach (InitS::payType() as $type)
+                            <option value="{{ $type['type'] }}">{{ $type['name'] }}</option>
+                        @endforeach
                     </select>
                 </div>
 

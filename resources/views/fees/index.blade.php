@@ -171,5 +171,7 @@
                 }
             });
         });
+
+        document.getElementById('transaction_date').value = new Date().toISOString().split('T')[0];
     </script>
 @endpush

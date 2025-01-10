@@ -53,6 +53,28 @@ class InitS{
         return ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
     }
 
+    public static function payType()
+    {
+        return [
+            [
+                'type' => 'cash',
+                'name' => 'Cash',
+            ],
+            [
+                'type' => 'bank_transfer',
+                'name' => 'Bank Transfer',
+            ],
+            [
+                'type' => 'card',
+                'name' => 'Card',
+            ],
+            [
+                'type' => 'online',
+                'name' => 'Online',
+            ]
+        ];
+    }
+
     public static function currentTime()
     {
         $datetime = self::timeZoneTime();
