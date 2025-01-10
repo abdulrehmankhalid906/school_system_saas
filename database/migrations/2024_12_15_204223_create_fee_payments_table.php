@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('amount', 10);
             $table->integer('balance_due', 10);
             $table->date('due_date');
-            $table->enum('status', ['due', 'paid', 'overdue'])->default('due');
+            $table->enum('status', ['Due', 'Paid', 'Overdue'])->default('Due');
             $table->string('fee_month',100);
             $table->timestamp('payment_date')->nullable();
             $table->foreignId('school_id')->constrained()->onDelete('cascade');

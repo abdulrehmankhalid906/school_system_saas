@@ -123,11 +123,11 @@ class FeeController extends Controller
     public function feeHistory($id)
     {
         $fees = FeePayment::with('feehistories')->where('id', $id)->first();   //for time being remove feehistoies because there are no data in table
-        $totalbalance = $this->getTotalAmount($id);
+        $reminingbalance = $this->getReminingAmount($id);
 
         $data = [
             'fees' => $fees,
-            'balance' => $totalbalance
+            'rembalance' => $reminingbalance
         ];
 
         return response()->json([
@@ -159,10 +159,10 @@ class FeeController extends Controller
         return $fees;
     }
 
-    function getTotalAmount($id)
+    function getReminingAmount($id)
     {
         $user_id = FeePayment::where('id', $id)->where('school_id', InitS::getSchoolid())->value('user_id'); //the value is used to get the single column
-        $totalamount = FeePayment::where('user_id', $user_id)->sum('balance_due');
-        return $totalamount;
+        $remamount = FeePayment::where('user_id', $user_id)->sum('balance_due');
+        return $remamount;
     }
 }

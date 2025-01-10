@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('fee_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('fee_payment_id')->constrained('fee_payments')->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
-            $table->enum('method', ['cash', 'bank_transfer', 'card', 'online'])->default('cash');
-            $table->timestamp('transaction_date');
+            $table->integer('amount', 10);
+            $table->enum('method', ['Cash', 'Bank Transfer', 'Card', 'Online'])->default('Cash');
+            $table->date('transaction_date');
             $table->foreignId('recieved_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });

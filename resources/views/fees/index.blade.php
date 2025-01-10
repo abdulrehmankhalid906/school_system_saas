@@ -98,11 +98,7 @@
                         } else {
                             console.log('somethind went wrong');
                         }
-                    },
-                    error: function()
-                    {
-                        //
-                    },
+                    }
                 });
             });
         });
@@ -114,11 +110,16 @@
                 type: "GET",
                 data: {
                     id: id,
-                    //type: type
+                },
+                beforeSend: function()
+                {
+                    $('.fee_payment_id').html();
+                    $('.total_payable_amount').html();
+                    $('.overall_rem_amount').html();
+                    $('.term_rem_amount').html();
+                    $('.paymentHistory').val();
                 },
                 success: function(response) {
-                    console.log(response);
-
                     // Show the Payment tab
                     document.getElementById('paymentTab').style.display = 'block';
 
@@ -126,6 +127,28 @@
                     let paymentTab = document.querySelector('[data-bs-target="#navs-top-totalfee"]');
                     let bootstrapTab = new bootstrap.Tab(paymentTab);
                     bootstrapTab.show();
+
+                    $('.fee_payment_id').val(response.data.fees.id);
+                    $('.total_payable_amount').html(response.data.fees.amount);
+                    $('.overall_rem_amount').html(response.data.rembalance);
+                    $('.term_rem_amount').html(response.data.fees.balance_due);
+
+                    // Appending fee history
+                    if (response.data.fees.feehistories && response.data.fees.feehistories.length > 0) {
+                        response.data.fees.feehistories.forEach(history => {
+                            $('.paymentHistory').append(`
+                                <tr>
+                                    <td>${history.id}</td>
+                                    <td>${response.data.fees.user_id}</td>
+                                    <td>${history.amount}</td>
+                                    <td>${history.method}</td>
+                                    <td>${history.transaction_date}</td>
+                                </tr>
+                            `);
+                        });
+                    } else {
+                        $('.paymentHistory').append('<tr><td colspan="5" class="text-center">No payment history found.</td></tr>');
+                    }
                 },
                 error: function(error)
                 {
@@ -137,9 +160,14 @@
         // Listen for tab change events
         document.querySelectorAll('.nav-link').forEach(tab => {
             tab.addEventListener('shown.bs.tab', function(event) {
-                // If leaving the Payment tab, hide it
+                // If leaving the Payment tab, hide it and reset fields
                 if (event.relatedTarget && event.relatedTarget.getAttribute('data-bs-target') === '#navs-top-totalfee') {
                     document.getElementById('paymentTab').style.display = 'none';
+                    $('.fee_payment_id').val(''); // Reset input field
+                    $('.total_payable_amount').html(''); // Reset display field
+                    $('.overall_rem_amount').html(''); // Reset display field
+                    $('.term_rem_amount').html(''); // Reset display field
+                    $('.paymentHistory').html(''); // Clear table body
                 }
             });
         });
