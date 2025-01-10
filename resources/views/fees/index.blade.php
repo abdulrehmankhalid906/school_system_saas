@@ -23,7 +23,7 @@
                                     Fee Mange
                                 </button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item" role="presentation" id="paymentTab" style="display:none;">
                                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-totalfee" aria-controls="navs-top-totalfee" aria-selected="false" tabindex="-1">
                                     Payment
                                 </button>
@@ -116,9 +116,16 @@
                     id: id,
                     //type: type
                 },
-                success: function(response)
-                {
+                success: function(response) {
                     console.log(response);
+
+                    // Show the Payment tab
+                    document.getElementById('paymentTab').style.display = 'block';
+
+                    // Switch to the Payment tab
+                    let paymentTab = document.querySelector('[data-bs-target="#navs-top-totalfee"]');
+                    let bootstrapTab = new bootstrap.Tab(paymentTab);
+                    bootstrapTab.show();
                 },
                 error: function(error)
                 {
@@ -126,5 +133,15 @@
                 }
             });
         }
+
+        // Listen for tab change events
+        document.querySelectorAll('.nav-link').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                // If leaving the Payment tab, hide it
+                if (event.relatedTarget && event.relatedTarget.getAttribute('data-bs-target') === '#navs-top-totalfee') {
+                    document.getElementById('paymentTab').style.display = 'none';
+                }
+            });
+        });
     </script>
 @endpush
