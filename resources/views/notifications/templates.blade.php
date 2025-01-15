@@ -33,12 +33,8 @@
                                                 <td>{{ $notification->title ?? '' }}</td>
                                                 <td>{{ $notification->message ? Str::limit($notification->message,30) : ' '}}</td>
                                                 <td>
-                                                    <a href="{{ route('notifications.edit', $notification->id) }}" class="btn btn-primary btn-sm">
-                                                        Edit
-                                                    </a>
-                                                    <a href="{{ route('notifications.edit', $notification->id) }}" class="btn btn-secondary btn-sm">
-                                                        Send
-                                                    </a>
+                                                    <a href="{{ route('notifications.edit', $notification->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="{{ route('notifications.edit', $notification->id) }}" class="btn btn-secondary btn-sm">Send</a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $notification->id }}, 'notifications')">Delete</a>
                                                 </td>
                                             </tr>

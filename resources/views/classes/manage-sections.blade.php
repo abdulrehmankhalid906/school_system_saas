@@ -30,7 +30,7 @@
                                 </div>
                             </form>
 
-                            <table class="table dt-responsive nowrap w-100 mt-2">
+                            <table id="example" class="table dt-responsive nowrap w-100 mb-2">
                                 <thead>
                                     <tr>
                                         <th>Sections</th>

@@ -44,40 +44,40 @@
                                     </form>
                                 </div>
 
-
-                                <table class="table dt-responsive nowrap w-100">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Absent</th>
-                                            <th>Present</th>
-                                            <th>Leave</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="showAttendence">
-                                        <tr>
-                                            <td colspan="4" class="text-center">No Data Found</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="row mt-4">
-                                    <div class="col-12 text-center">
-                                        <button type="button" class="btn btn-success btn-sm mark-all" data-status="present">
-                                            <i class="mdi mdi-check-circle"></i> Mark All Present
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm mark-all" data-status="absent">
-                                            <i class="mdi mdi-close-circle"></i> Mark All Absent
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-sm mark-all" data-status="leave">
-                                            <i class="mdi mdi-alert-circle"></i> Mark All Leave
-                                        </button>
-                                        <button type="button" class="btn btn-primary btn-sm submit-attendance">
-                                            <i class="mdi mdi-send"></i> Submit Attendance
-                                        </button>
+                                {{-- <div class="table-responsive"> --}}
+                                    <table class="table dt-responsive nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Absent</th>
+                                                <th>Present</th>
+                                                <th>Leave</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="showAttendence">
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Data Found</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row mt-4">
+                                        <div class="col-12 text-center">
+                                            <button type="button" class="btn btn-success btn-sm mark-all" data-status="present">
+                                                <i class="mdi mdi-check-circle"></i>All Present
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm mark-all" data-status="absent">
+                                                <i class="mdi mdi-close-circle"></i>All Absent
+                                            </button>
+                                            {{-- <button type="button" class="btn btn-warning btn-sm mark-all" data-status="leave">
+                                                <i class="mdi mdi-alert-circle"></i>All Leave
+                                            </button> --}}
+                                            <button type="button" class="btn btn-primary btn-sm submit-attendance">
+                                                <i class="mdi mdi-send"></i> Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <div>
                         </div>
                     </div>
                 </div>

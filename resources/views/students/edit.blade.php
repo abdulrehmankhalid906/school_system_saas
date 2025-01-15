@@ -78,6 +78,7 @@
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="klass_id">Class</label>
                                                     <select class="form-control" id="klass_id" name="klass_id" required>
+                                                        <option value="">Select One</option>
                                                         @foreach($classes as $class)
                                                             <option value="{{ $class->id }}" {{ $student->klass_id == $class->id ? 'selected' : '' }}>{{ $class->name }}</option>
                                                         @endforeach
@@ -87,6 +88,7 @@
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="section_id">Section</label>
                                                     <select class="form-control" id="section_id" name="section_id">
+                                                        <option value="">Select One</option>
                                                         @foreach($sections as $section)
                                                             <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected' : '' }}>{{ $section->name }}</option>
                                                         @endforeach

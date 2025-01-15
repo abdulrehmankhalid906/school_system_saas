@@ -88,10 +88,16 @@ class PermissionController extends Controller
      */
     public function destroy(string $id)
     {
-        $permission = Permission::findorFail($id);
-        $permission->delete();
-
-        return response()->json(['message' => 'Permission deleted successfully']);
+        try {
+            $permission = Permission::findOrFail($id);
+            $permission->delete();
+            return response()->json(['message' => 'The Permission has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function addbulkPermissions(Request $request)

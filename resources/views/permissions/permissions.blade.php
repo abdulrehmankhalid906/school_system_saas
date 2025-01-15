@@ -30,9 +30,7 @@
                                                 <td>{{ $permission->name }}</td>
                                                 <td>{{ $permission->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $permission->id }}, '{{ $permission->name }}')">
-                                                        Edit
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $permission->id }}, '{{ $permission->name }}')">Edit</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $permission->id }},'permissions')">Delete</a>
                                                 </td>
                                             </tr>

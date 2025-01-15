@@ -88,10 +88,16 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        $role = Role::findOrFail($id);
-        $role->delete();
-
-        return response()->json(['message' => 'Role deleted successfully']);
+        try {
+            $role = Role::findOrFail($id);
+            $role->delete();
+            return response()->json(['message' => 'The Role has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function assignRolePermissions(Request $request, string $id)

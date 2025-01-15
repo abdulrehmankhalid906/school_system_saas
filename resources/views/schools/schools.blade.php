@@ -36,9 +36,7 @@
                                                 <td>20 S + 2 T</td>
                                                 <td>{{ $school->registration_number }} <br> {{ $school->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $school->id }}, '{{ $school->name }}')">
-                                                        Edit
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $school->id }}, '{{ $school->name }}')">Edit</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $school->id }}, 'schools')">Delete</a>
                                                 </td>
                                             </tr>

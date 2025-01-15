@@ -33,12 +33,9 @@
                                                 {{-- <td>{{ $role->permissions->implode('name', ', ') }}</td> --}}
                                                 <td>{{ $role->created_at }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $role->id }}, '{{ $role->name }}')">
-                                                        Edit
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#roleModal"onclick="openModal({{ $role->id }}, '{{ $role->name }}')">Edit</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $role->id }}, 'roles')">Delete</a>
                                                     <a href="{{ route('role.assign.permission', $role->id) }}" title="Assign Permission" class="btn btn-info btn-sm">Assign Permissions</a>
-
                                                 </td>
                                             </tr>
                                         @endforeach

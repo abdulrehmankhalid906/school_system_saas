@@ -30,13 +30,9 @@
                                                 <td>{{ $teacher->user->name }}</td>
                                                 <td><b>Attendance:</b> {{ $teacher->is_attendance == true ? 'Yes' : 'No' }} - <b>Marks:</b> {{ $teacher->is_mark == true ? 'Yes' : 'No' }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">
-                                                        Edit
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">Edit</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'teachers')">Delete</a>
-                                                    <button class="btn btn-primary btn-sm" onclick="managePermission({{ $teacher->id }})">
-                                                        Manage Permission
-                                                    </button>
+                                                    <button class="btn btn-primary btn-sm" onclick="managePermission({{ $teacher->id }})">Manage Permission</button>
                                                 </td>
                                             </tr>
                                         @endforeach
