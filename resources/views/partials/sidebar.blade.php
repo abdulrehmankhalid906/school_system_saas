@@ -21,7 +21,7 @@
         <li class="menu-item">
             <a href="{{ route('home') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-desktop"></i>
-                <div class="text-truncate" data-i18n="Dashboards">Dashboard</div>
+                <div class="text-truncate" data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
 
@@ -62,7 +62,7 @@
 
                         <li class="menu-item {{ setRoute('notifications.index') }}">
                             <a href="{{ route('notifications.index') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Notifications">Notifications</div>
+                                <div class="text-truncate" data-i18n="Notifications Templates">Notifications Templates</div>
                             </a>
                         </li>
                     @endif
@@ -86,8 +86,6 @@
                                 <div class="text-truncate" data-i18n="Parents">Parents</div>
                             </a>
                         </li>
-
-
                     @endif
                 </ul>
             </li>
@@ -106,7 +104,7 @@
                     @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('subjects.index') }}">
                             <a href="{{ route('subjects.index') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Subject">Subjects</div>
+                                <div class="text-truncate" data-i18n="Subjects">Subjects</div>
                             </a>
                         </li>
                     @endif
@@ -114,7 +112,7 @@
                     @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('classes.index') }}">
                             <a href="{{ route('classes.index') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Class">Classes</div>
+                                <div class="text-truncate" data-i18n="Classes">Classes</div>
                             </a>
                         </li>
                     @endif
@@ -136,7 +134,7 @@
                     @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('timetables.index') }}">
                             <a href="{{ route('timetables.index') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Timetables">Time Tables</div>
+                                <div class="text-truncate" data-i18n="Timetables">Timetables</div>
                             </a>
                         </li>
                     @endif
@@ -183,8 +181,8 @@
                     <i class="menu-icon tf-icons bx bx-money-withdraw"></i>
                     <div class="text-truncate" data-i18n="Accounts">Accounts</div>
                 </a>
-                <ul class="menu-sub {{ setRoute('fees.create') }}">
-                    <li class="menu-item">
+                <ul class="menu-sub">
+                    <li class="menu-item {{ setRoute('fees.create') }}">
                         <a href="{{ route('fees.create') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                         </a>
@@ -208,9 +206,27 @@
                     <div class="text-truncate" data-i18n="Settings">Settings</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
+                    <li class="menu-item {{ setRoute('site.create') }}">
                         <a href="{{ route('site.create') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Set Site">Set Site</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
+        {{-- Notification Tab --}}
+
+        @if(Auth::user()->hasRole('School'))
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-bell"></i>
+                    <div class="text-truncate" data-i18n="Notifications Alerts">Notifications Alerts</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ setRoute('school.notifications') }}">
+                        <a href="{{ route('school.notifications') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Notifications">Notifications</div>
                         </a>
                     </li>
                 </ul>

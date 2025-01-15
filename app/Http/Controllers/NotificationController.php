@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\NotificationTemplate;
 use Illuminate\Http\Request;
 
@@ -70,5 +71,13 @@ class NotificationController extends Controller
     {
         $notificationsTem = NotificationTemplate::find($id);
         $notificationsTem->delete();
+    }
+
+    public function schoolUserNotifications()
+    {
+        $notifications = Notification::with('notificationTemplate')->where('user_id', auth()->user()->id)->get();
+        return view('notifications.user_notifications',[
+            'notifications' => $notifications
+        ]);
     }
 }

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Klass;
 use App\Helpers\InitS;
-use App\Models\FeeHistory;
 use App\Models\FeeType;
 use App\Models\Student;
+use App\Models\FeeHistory;
 use App\Models\FeePayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FeeController extends Controller
 {
@@ -17,7 +18,7 @@ class FeeController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -156,7 +157,7 @@ class FeeController extends Controller
 
     public function feesPayment(Request $request)
     {
-        \DB::beginTransaction();
+        DB::beginTransaction();
 
         try {
             $feePayment = FeePayment::find($request->fee_payment_id);
@@ -186,11 +187,11 @@ class FeeController extends Controller
                 'status' => $status
             ]);
 
-            \DB::commit();
+            DB::commit();
 
             return redirect()->back()->with('success', 'Your payment has been processed successfully.');
         } catch (\Exception $e) {
-            \DB::rollBack();
+            DB::rollBack();
 
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
@@ -198,7 +199,7 @@ class FeeController extends Controller
 
     function checkPaymentStatus()
     {
-
+        //
     }
 
     function getReminingAmount($id)

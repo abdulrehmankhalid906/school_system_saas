@@ -103,6 +103,9 @@ Route::middleware(['auth'])->group(function(){
     //Exams + Grades
     Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
 
+    //School User Notifications
+    Route::get('/school-notificaions', [NotificationController::class, 'schoolUserNotifications'])->name('school.notifications');
+
     //Fees + Payment + installments
     Route::post('/single-fee-store', [FeeController::class,'singleFeeStore'])->name('single-fee-store');
     Route::get('/fee-history/{id}',[FeeController::class, 'feeHistory'])->name('fees.history');

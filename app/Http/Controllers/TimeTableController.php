@@ -112,9 +112,16 @@ class TimeTableController extends Controller
      */
     public function destroy(string $id)
     {
-        $timeTables = TimeTable::where('school_id', InitS::getSchoolid())->findOrFail($id);
-        $timeTables->delete();
+        try {
+            $timeTable = TimeTable::where('school_id', InitS::getSchoolid())->findOrFail($id);
 
-        return redirect()->route('timetables.index')->with('success', 'Timetable deleted successfully!');
+            $timeTable->delete();
+            return response()->json(['message' => 'Timetable has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 }

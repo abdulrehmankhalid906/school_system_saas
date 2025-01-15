@@ -1,6 +1,8 @@
 <!doctype html>
 
-<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free" data-style="light">
+<!-- Removing because of the Swal -->
+{{-- <html lang="en" class="light-style layout-menu-fixed layout-compact" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free" data-style="light"> --}}
+<html lang="en" dir="ltr">
 
 <head>
     <meta name="viewport"content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -27,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/buttons.dataTables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/css/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/sweetalert2.min.css') }}" />
 
     <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('/assets/js/config.js') }}"></script>
@@ -82,6 +85,7 @@
     <script src="{{ asset('assets/js/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
     @stack('footer_scripts')
 
     <script>
@@ -211,10 +215,12 @@
             });
         });
 
-        function deleteRec(id,route) {
+        function deleteRec(id,route,message = false) {
+            const messages = getMessages(message);
+            const confirmationMessage = message && messages[message] ? messages[message] : "You won't be able to revert this!";
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: confirmationMessage,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -234,7 +240,7 @@
                                 response.message,
                                 'success'
                             );
-                            const table = $('#basic-datatable').DataTable();
+                            const table = $('.dt-responsive').DataTable();
                             const row = $(`#row-${id}`);
                             table.row(row).remove().draw();
                         },
@@ -268,7 +274,21 @@
             });
         }
 
-        document.getElementById('transaction_date').value = new Date().toISOString().split('T')[0];
+
+        var transaction_date_element = document.getElementById('transaction_date');
+
+        if(transaction_date_element)
+        {
+            var transaction_date = transaction_date_element.value = new Date().toISOString().split('T')[0];
+        }
+
+        function getMessages(message) {
+            return {
+                'class_sections': 'All the classes & Sections will be deleted!',
+                'students_teachers': 'Students and Teachers will be affected!',
+                'data_files': 'Data and Files will be deleted!'
+            };
+        }
     </script>
 </body>
 </html>

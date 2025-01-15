@@ -46,11 +46,10 @@
                                                                 <button class="dropdown-item" onclick="editClass({{ $class->id }})">Edit</button>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ route('manage.sections', ['class_id' => $class->id]) }}" class="dropdown-item">Manage Sections</a>                                                            </li>
+                                                                <a href="{{ route('manage.sections', ['class_id' => $class->id]) }}" class="dropdown-item">Manage Sections</a>
+                                                            </li>
                                                             <li>
-                                                                <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="deleteRec({{ $class->id }}, 'classes')">
-                                                                    Delete
-                                                                </a>
+                                                                <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="deleteRec({{ $class->id }}, 'classes', 'class_sections')">Delete</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -94,38 +93,6 @@
           </div>
         </div>
     </div>
-
-    {{-- <div class="modal fade" id="sectionsModal" tabindex="-1" aria-labelledby="sectionsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="sectionsModalLabel">Manage Section</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="POST" action="{{ route('sections.manage') }}" enctype="multipart/form-data" autocomplete="off">
-                @csrf
-                <input type="text" name="class_id" value="1">
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <div class="col-md-6">
-                                <input type="text" name="section[]" class="form-control" required>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-success btn-sm add_section">+</button>
-                            </div>
-                        </div>
-                        <div id="append_able"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Update">&nbsp;
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div> --}}
 @endsection
 
 @push('footer_scripts')
@@ -155,36 +122,6 @@
             }
         });
     }
-
-    // function mangeSection(id)
-    // {
-    //     $.ajax({
-    //         url: "{{ route('get.Section') }}",
-    //         type: "GET",
-    //         dataType: 'JSON',
-    //         data: {
-    //             class_id: id
-    //         },
-    //         success: function(resp)
-    //         {
-    //             console.log(resp);
-    //             return false;
-    //             if(resp.status == 200)
-    //             {
-    //                 $('input[name="name"]').val(res.data.name);
-    //                 $('#classModalLabel').text('Edit Class');
-    //                 $('#classForm').attr('action', "{{ url('classes') }}/" + res.data.id);
-    //                 $('#classForm').append('<input type="hidden" name="_method" value="PUT">');
-    //                 $('#classModal').modal('show');
-    //             } else {
-    //                 alert('Error fetching class data');
-    //             }
-    //         },
-    //         error: function(err) {
-    //             alert('Error fetching class data', err);
-    //         }
-    //     });
-    // }
 
     $('#classModal').on('hidden.bs.modal', function () {
         $('#classForm')[0].reset();

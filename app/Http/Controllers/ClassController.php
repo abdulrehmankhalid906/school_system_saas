@@ -92,7 +92,7 @@ class ClassController extends Controller
 
             $class->delete();
 
-            return response()->json(['message' => 'The Class has been removed!']);
+            return response()->json(['message' => 'The Classes & Sections has been removed!']);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred. Please try again.',

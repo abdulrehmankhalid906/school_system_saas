@@ -73,7 +73,16 @@ class ExpenseController extends Controller
      */
     public function destroy(string $id)
     {
-        $expense = Expense::where('school_id', InitS::getSchoolid())->find($id);
-        $expense->delete();
+        try {
+            $expense = Expense::where('school_id', InitS::getSchoolid())->findOrFail($id);
+
+            $expense->delete();
+            return response()->json(['message' => 'The Expense has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 }

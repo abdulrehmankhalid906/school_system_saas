@@ -110,7 +110,7 @@
                     </li>
                     <li class="border-top">
                         <div class="d-grid p-4">
-                            <a class="btn btn-primary btn-sm d-flex" href="javascript:void(0);">
+                            <a class="btn btn-primary btn-sm d-flex" href="{{ route('school.notifications') }}">
                                 <small class="align-middle">View all notifications</small>
                             </a>
                         </div>

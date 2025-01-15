@@ -17,7 +17,7 @@
                                     <i class="mdi mdi-plus"></i> Create Time Table
                                 </a>
 
-                                <table id="example1" class="table dt-responsive nowrap w-100">
+                                <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -33,10 +33,8 @@
                                                 <td>{{ $ttable->klass->name ?? '' }}</td>
                                                 <td>{{ $ttable->section->name ?? '' }}</td>
                                                 <td>
-                                                    <a href="{{ route('timetables.edit', $ttable->id) }}" class="btn btn-primary btn-sm">
-                                                        Edit
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $ttable->id }}, 'teachers')">Delete</a>
+                                                    <a href="{{ route('timetables.edit', $ttable->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $ttable->id }}, 'timetables')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

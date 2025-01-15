@@ -17,7 +17,7 @@
                                     <i class="mdi mdi-plus"></i> Create Expense
                                 </a>
 
-                                <table id="example1" class="table dt-responsive nowrap w-100">
+                                <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -37,9 +37,7 @@
                                                 <td>{{ $expense->total_amount ?? '' }}</td>
                                                 <td>{{ $expense->date ?? '' }}</td>
                                                 <td>
-                                                    <a href="{{ route('expenses.edit', $expense->id) }}" class="btn btn-primary btn-sm">
-                                                        Edit
-                                                    </a>
+                                                    <a href="{{ route('expenses.edit', $expense->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $expense->id }}, 'expenses')">Delete</a>
                                                 </td>
                                             </tr>

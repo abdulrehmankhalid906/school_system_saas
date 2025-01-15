@@ -15,9 +15,9 @@
                                 <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#subjectModal">
                                     <i class="mdi mdi-plus"></i> Create Subjects
                                 </button>
-                                {{-- <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
+                                <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkUpload">
                                     <i class="mdi mdi-file-upload-outline"></i> Bulk Upload
-                                </button> --}}
+                                </button>
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
