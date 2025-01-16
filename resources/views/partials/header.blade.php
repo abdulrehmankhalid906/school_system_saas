@@ -156,6 +156,12 @@
                                 <i class="bx bx-cog bx-md me-3"></i><span>My School</span>
                             </a>
                         </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ route('subscription.history') }}">
+                                <i class="bx bx-credit-card bx-md me-3"></i><span>Billing</span>
+                            </a>
+                        </li>
                     @endif
                     <li>
                         <div class="dropdown-divider my-1"></div>

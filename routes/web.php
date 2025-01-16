@@ -111,6 +111,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/fee-history/{id}',[FeeController::class, 'feeHistory'])->name('fees.history');
     Route::post('/fee-payment',[FeeController::class, 'feesPayment'])->name('fees.payment');
 
+    //School Payment + Billing History
+    Route::get('/subscription-history', [SchoolController::class, 'billingHistory'])->name('subscription.history');
+
     //Permissions
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
     Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');

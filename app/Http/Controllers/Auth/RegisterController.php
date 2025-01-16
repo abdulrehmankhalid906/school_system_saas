@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\InitS;
 use App\Models\User;
 use App\Models\School;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Subscription;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -82,6 +84,13 @@ class RegisterController extends Controller
                 'website' => $data['website'] ?? null,
                 'registration_number' => 'REG-' . $baseYear . '-' . rand(1000, 9999),
                 'established_year' => $baseYear,
+            ]);
+
+            $subscription = Subscription::create([
+                'school_id' => $school->id,
+                'start_date' => InitS::currentDate(),
+                'end_date' => now()->addDays(15),
+                'duration' => '15 Days'
             ]);
 
             $user = User::create([
