@@ -16,13 +16,12 @@ class NotificationEvent implements ShouldBroadcast
 
     /**
      * Create a new event instance.
-     */
+    */
+    public $notification;
 
-    public $userid;
-    public $message;
-    public function __construct()
+    public function __construct($notification)
     {
-        //
+        $this->notification = $notification;
     }
 
     /**
@@ -33,7 +32,17 @@ class NotificationEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('notifications-channel'), //remove Private from here.
         ];
+    }
+
+    public function broadcastAs()
+    {
+        return 'show';
+    }
+
+    public function broadcastWith()
+    {
+
     }
 }

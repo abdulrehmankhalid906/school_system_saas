@@ -85,15 +85,17 @@ class NotificationController extends Controller
 
     public function sendNotifications(Request $request)
     {
-        $data = Notification::create([
-            'notification_template_id' => $request->notification_id,
-            'user_id' => $request->user_ids
-        ]);
+        foreach($request->user_ids as $userid)
+        {
+            Notification::create([
+                'notification_template_id' => $request->notification_id,
+                'user_id' => $userid
+            ]);
+        }
 
         return response()->json([
             'status' => true,
-            'message' => "The notification has been sent",
-            'data' => $data
+            'message' => "The notification has been sent"
         ]);
     }
 }

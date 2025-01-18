@@ -25,8 +25,8 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
-                                                <select id="user_ids" class="form-control select2" required>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                                                <select id="user_ids" class="form-control multiple-select" multiple required>
                                                     <option value="">Select User</option>
                                                     @foreach ($users as $user)
                                                         <option value="{{ $user->id }}">{{ Str::limit($user->school->name ?? '', 25) }}</option>
