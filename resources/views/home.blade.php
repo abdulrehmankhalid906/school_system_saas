@@ -74,7 +74,7 @@
                                                 <h5 class="text-nowrap mb-1">Schools</h5>
                                             </div>
                                             <div class="mt-sm-auto">
-                                                <h4 class="mb-0">{{ $data['school'] }}</h4>
+                                                <h4 class="mb-0">{{ $schools }}</h4>
                                             </div>
                                         </div>
                                     </div>

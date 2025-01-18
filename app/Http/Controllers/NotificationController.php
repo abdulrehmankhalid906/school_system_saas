@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Notification;
-use App\Models\NotificationTemplate;
 use Illuminate\Http\Request;
+use App\Models\NotificationTemplate;
 
 class NotificationController extends Controller
 {
@@ -13,8 +14,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
+        $users = User::select('id','name','school_id')->role('School')->with('school:id,name')->get();
         $notifications = NotificationTemplate::get();
-        return view('notifications.templates', compact('notifications'));
+        return view('notifications.templates', compact('notifications','users'));
     }
 
     /**
@@ -78,6 +80,20 @@ class NotificationController extends Controller
         $notifications = Notification::with('notificationTemplate')->where('user_id', auth()->user()->id)->get();
         return view('notifications.user_notifications',[
             'notifications' => $notifications
+        ]);
+    }
+
+    public function sendNotifications(Request $request)
+    {
+        $data = Notification::create([
+            'notification_template_id' => $request->notification_id,
+            'user_id' => $request->user_ids
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => "The notification has been sent",
+            'data' => $data
         ]);
     }
 }

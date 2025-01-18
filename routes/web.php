@@ -124,6 +124,8 @@ Route::middleware(['auth'])->group(function(){
     //Imports
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
 
+    route::post('/send-notifications', [NotificationController::class, 'sendNotifications'])->name('send.notifictions');
+
     Route::resources([
         'users' => UserController::class,
         'roles' => RoleController::class,

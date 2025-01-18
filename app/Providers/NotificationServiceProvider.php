@@ -24,7 +24,7 @@ class NotificationServiceProvider extends ServiceProvider
     {
         View::composer('partials.header', function ($view) {
 
-            $notifications = Auth::check() && Auth::user()->hasRole('school')
+            $notifications = Auth::check() && Auth::user()->role('school')
                 ? Notification::with('notificationTemplate')
                     ->where('user_id', Auth::id())
                     ->limit(3)

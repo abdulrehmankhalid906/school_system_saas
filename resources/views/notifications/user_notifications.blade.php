@@ -26,8 +26,8 @@
                                         @foreach ($notifications as $notification)
                                             <tr id="row-{{ $notification->id }}">
                                                 <td>{{ $notification->id ?? '' }}</td>
-                                                <td>{{ $notification->title ?? '' }}</td>
-                                                <td>{{ $notification->message ? Str::limit($notification->message,30) : ' '}}</td>
+                                                <td>{{ $notification->notificationTemplate->title ?? '' }}</td>
+                                                <td>{{ $notification->notificationTemplate->message ? Str::limit($notification->notificationTemplate->message,30) : ' '}}</td>
                                                 <td>
                                                     <button class="btn btn-primary btn-sm" onclick="getNotification({{ $notification->id }})">View</button>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $notification->id }}, 'notifications')">Delete</a>

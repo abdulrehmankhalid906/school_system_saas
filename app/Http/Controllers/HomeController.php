@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Helpers\InitS;
+use App\Models\School;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $students = $this->filterDate();
-        $roles = ['School', 'Teacher', 'Student'];
+        $roles = ['Teacher', 'Student'];
         $data = array_combine(
             array_map('strtolower', $roles),
             array_map(fn($role) => User::where('school_id', InitS::getSchoolid())->role($role)->count(), $roles)
@@ -36,6 +37,7 @@ class HomeController extends Controller
         return view('home',[
             'data' => $data,
             'students' => $students ?? [],
+            'schools' => School::count()
         ]);
     }
 
