@@ -19,6 +19,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TimeTableController;
 use App\Models\TimeTable;
 
@@ -142,6 +143,7 @@ Route::middleware(['auth'])->group(function(){
         'notifications' => NotificationController::class,
         'expenses' => ExpenseController::class,
         'site' => SiteController::class,
+        'subscriptions' => SubscriptionController::class,
     ]);
 });
 

@@ -30,4 +30,9 @@ class School extends Model
     {
         return $this->hasMany(ClassFee::class);
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

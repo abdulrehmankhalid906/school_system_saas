@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string('city', 100)->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('email')->unique();
-            $table->string('website')->nullable();
+            $table->enum('payment_status',['paid','pending'])->default('paid');
+            $table->enum('status', ['active','inactive'])->default('active');
             $table->string('registration_number', 50)->nullable();
             $table->year('established_year')->nullable();
             $table->string('logo')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

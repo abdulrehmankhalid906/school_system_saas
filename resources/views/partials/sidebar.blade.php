@@ -206,6 +206,14 @@
                     <div class="text-truncate" data-i18n="Settings">Settings</div>
                 </a>
                 <ul class="menu-sub">
+                    <li class="menu-item {{ setRoute('subscriptions.index') }}">
+                        <a href="{{ route('subscriptions.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Payments">Payments</div>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="menu-sub">
                     <li class="menu-item {{ setRoute('site.create') }}">
                         <a href="{{ route('site.create') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Set Site">Set Site</div>

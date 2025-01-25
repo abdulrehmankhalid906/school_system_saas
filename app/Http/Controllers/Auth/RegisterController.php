@@ -82,6 +82,8 @@ class RegisterController extends Controller
                 'phone' => $data['phone'] ?? '0300' . rand(1000, 9999),
                 'email' => $data['email'],
                 'website' => $data['website'] ?? null,
+                'payment_status' => 'paid',
+                'status' => 'active',
                 'registration_number' => 'REG-' . $baseYear . '-' . rand(1000, 9999),
                 'established_year' => $baseYear,
             ]);
@@ -89,8 +91,9 @@ class RegisterController extends Controller
             $subscription = Subscription::create([
                 'school_id' => $school->id,
                 'start_date' => InitS::currentDate(),
-                'end_date' => now()->addDays(15),
-                'duration' => '15 Days'
+                'end_date' => now()->addDays(30),
+                'duration' => '30 Days',
+                'status' => 'paid',
             ]);
 
             $user = User::create([
