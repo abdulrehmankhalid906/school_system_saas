@@ -125,6 +125,7 @@ Route::middleware(['auth'])->group(function(){
     route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
 
     route::post('/send-notifications', [NotificationController::class, 'sendNotifications'])->name('send.notifictions');
+    route::delete('/delete-notification/{id}', [NotificationController::class, 'deleteNotification'])->name('delete.notification');
 
     Route::resources([
         'users' => UserController::class,

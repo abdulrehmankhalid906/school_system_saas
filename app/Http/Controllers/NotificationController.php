@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\NotificationTemplate;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -41,9 +42,12 @@ class NotificationController extends Controller
     /**
      * Display the specified resource.
      */
+
+    //Function to view notification to the schools.
     public function show(string $id)
     {
-        //
+        $notificationsTem = Notification::with('notificationTemplate')->where('user_id', auth()->user()->id)->find($id);
+        return view('notifications.show_template', compact('notificationsTem'));
     }
 
     /**
@@ -97,5 +101,20 @@ class NotificationController extends Controller
             'status' => true,
             'message' => "The notification has been sent"
         ]);
+    }
+
+    public function deleteNotification(string $id)
+    {
+        try
+        {
+            $notification = Notification::where('user_id', auth()->user()->id)->find($id);
+            $notification->delete();
+            return response()->json(['message' => 'Notification has been removed!']);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 }

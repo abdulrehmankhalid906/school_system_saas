@@ -84,16 +84,20 @@
                             @forelse($notifications as $notification)
                                 <li class="list-group-item list-group-item-action dropdown-notifications-item">
                                     <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
+                                        {{-- <div class="flex-shrink-0 me-3">
                                             <div class="avatar">
                                                 <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="flex-grow-1">
-                                            <h6 class="small mb-0">{{ $notification->notificationTemplate->title ?? '' }}</h6>
-
-                                            <small class="mb-1 d-block text-body">{{ Str::limit($notification->notificationTemplate->message, 39) ?? '' }}</small>
-                                            <small class="text-muted">{{ $notification->created_at->diffForHumans() ?? '' }}</small>
+                                            <a href="{{ route('notifications.show', $notification->id) }}">
+                                                <h6 class="small mb-0 d-flex justify-content-between">
+                                                    <span>{{ $notification->notificationTemplate->title ?? '' }}</span>
+                                                    <span class="text-danger">&bull;</span>
+                                                </h6>
+                                                <small class="mb-1 d-block text-body"> {{ Str::limit($notification->notificationTemplate->message, 45) ?? '' }}</small>
+                                                <small class="text-muted">{{ $notification->created_at->diffForHumans() ?? '' }}</small>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -159,7 +163,7 @@
 
                         <li>
                             <a class="dropdown-item" href="{{ route('subscription.history') }}">
-                                <i class="bx bx-credit-card bx-md me-3"></i><span>Billing</span>
+                                <i class="bx bx-credit-card bx-md me-3"></i><span>Subscriptions</span>
                             </a>
                         </li>
                     @endif

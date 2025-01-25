@@ -29,8 +29,8 @@
                                                 <td>{{ $notification->notificationTemplate->title ?? '' }}</td>
                                                 <td>{{ $notification->notificationTemplate->message ? Str::limit($notification->notificationTemplate->message,30) : ' '}}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" onclick="getNotification({{ $notification->id }})">View</button>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $notification->id }}, 'notifications')">Delete</a>
+                                                    <a href="{{ route('notifications.show',$notification->id) }}" class="btn btn-primary btn-sm">View</a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $notification->id }}, 'delete-notification')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
