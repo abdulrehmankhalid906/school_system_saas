@@ -33,10 +33,10 @@ use App\Models\TimeTable;
 |
 */
 
-// Route::get('/migrate-fresh', function(){
-//     Artisan::call('optimize:clear');
-//     Artisan::call('migrate:fresh --seed');
-// });
+Route::get('/migrate-fresh', function(){
+    Artisan::call('optimize:clear');
+    Artisan::call('migrate:fresh --seed');
+});
 
 Route::get('/migrate', function(){
     Artisan::call('migrate');
