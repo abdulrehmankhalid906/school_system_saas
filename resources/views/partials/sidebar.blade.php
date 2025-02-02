@@ -4,7 +4,7 @@
             {{-- @if(!Auth::user()->hasRole('Super Admin'))
                 <img src="{{ InitS::getImage(Auth::user()->school->logo, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
             @else --}}
-                <span class="app-brand-text demo menu-text fw-bold ms-2 text-center">{{ Auth::user()->school->name ?? 'Hi, User' }}</span>
+                <span class="app-brand-text demo menu-text fw-bold ms-2 text-center">{{ Auth::user()->school->name ?? 'Hi, Admin' }}</span>
             {{-- @endif --}}
         </a>
 
