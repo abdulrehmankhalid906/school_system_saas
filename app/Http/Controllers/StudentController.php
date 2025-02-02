@@ -25,6 +25,7 @@ class StudentController extends Controller
 
         return view('students.index',[
             'students' => $students,
+            'classes' => Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get(),
         ]);
     }
 

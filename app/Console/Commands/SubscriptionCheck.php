@@ -21,22 +21,38 @@ class SubscriptionCheck extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update the subscription status of all the schools';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $subscription = User::whereHas('school.subscriptions', function ($query) {
-            $query->where('status', 'paid')->where('end_date', '<', now());
-        })->with(['school.subscriptions' => function ($query) {
-            $query->where('status', 'paid')->where('end_date', '<', now());
-        }])->role('School')->get();
+        $schools = School::with(['subscriptions' => function ($query) {
+            $query->where('status', 'paid')
+                ->where('end_date', '<', now())
+                ->where('status', '!=', 'finished');
+        }])->whereHas('subscriptions', function ($query) {
+            $query->where('status', 'paid')
+            ->where('end_date', '<', now())
+            ->where('status', '!=', 'finished');
+        })->get();
 
-        foreach ($subscription as $user) {
-            foreach ($user->school->subscriptions as $subscription) {
-                $subscription->update(['status' => 'expired']);
+        // dd($schools);
+
+        foreach ($schools as $school)
+        {
+            $updated = $school->update(['payment_status' => 'expired']);
+
+            if ($updated) {
+                \Log::channel('cron')->info("School ID {$school->id} payment_status updated to expired.");
+            } else {
+                \Log::channel('cron')->warning("Failed to update payment_status for School ID {$school->id}.");
+            }
+
+            foreach ($school->subscriptions as $subscription)
+            {
+                $subscription->update(['status' => 'finished']);
             }
         }
     }

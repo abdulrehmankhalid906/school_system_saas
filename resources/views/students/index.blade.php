@@ -12,8 +12,36 @@
                                 <h4 class="page-title d-inline-block">
                                     <i class="mdi mdi-account-circle title_icon"></i> Students
                                 </h4>
-                                <a href="{{ route('students.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">
-                                    <i class="mdi mdi-plus"></i>Register Student</a>
+                                <a href="{{ route('students.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end"><i class="mdi mdi-plus"></i>Register Student</a>
+
+                                {{-- <div class="row mb-3">
+                                    <form autocomplete="off">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                                                <select id="klass_id" class="form-control select2" name="klass_id">
+                                                    <option value="">Select Class</option>
+                                                    @foreach ($classes as $class)
+                                                        <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                                                <select id="section_id" class="form-control select2" name="section_id">
+                                                    <option value="">Select Section</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                                                <input type="text" class="form-control" name="name" placeholder="Search by name">
+                                            </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
+                                                <button type="button" class="btn btn-primary">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> --}}
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>

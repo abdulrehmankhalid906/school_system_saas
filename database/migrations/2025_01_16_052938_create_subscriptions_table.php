@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('usage_type',['trial','nonTrial'])->default('trial');
             $table->enum('payment_method', ['cash','bank_transfer','card','online'])->default('cash');
             $table->integer('amount')->default(0);
-            $table->enum('status', ['due','paid','overdue'])->default('due');
+            $table->enum('status', ['due','paid','finished'])->default('due');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('duration')->nullable();

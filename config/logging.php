@@ -117,6 +117,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        // Add this to the 'channels' array
+        'cron' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/cron.log'),
+            'level' => 'info',
+        ],
     ],
 
 ];
