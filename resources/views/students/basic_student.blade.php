@@ -40,28 +40,28 @@
                                             @csrf
                                             <div class="col-md-12">
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Name</label>
+                                                    <label class="col-md-3 col-form-label">Name <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" required>
+                                                        <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" placeholder="Enter Name" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Email</label>
+                                                    <label class="col-md-3 col-form-label">Email <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                                                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Enter Email" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Enter Password</label>
+                                                    <label class="col-md-3 col-form-label">Enter Password <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                                                        <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}" placeholder="Enter Password" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Select Parent</label>
+                                                    <label class="col-md-3 col-form-label">Select Parent <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
                                                         <select id="parent_id" name="parent_id" class="form-control select2">
                                                             <option value="">Select One</option>
@@ -73,7 +73,7 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Select Class</label>
+                                                    <label class="col-md-3 col-form-label">Select Class <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
                                                         <select name="klass_id" id="klass_id" class="form-control select2" required>
                                                             <option value="">Select One</option>
@@ -85,7 +85,7 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Select Section</label>
+                                                    <label class="col-md-3 col-form-label">Select Section <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
                                                         <select name="section_id" id="section_id" class="form-control select2" required>
                                                             <option value="">Select One</option>
@@ -94,16 +94,16 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Select Birthday</label>
+                                                    <label class="col-md-3 col-form-label">Select Birthday <span class="text-danger">*</span></label>
                                                     <div class="col-md-9 position-relative">
                                                         <input type="date" class="form-control" name="date_of_birth" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Select Gender</label>
+                                                    <label class="col-md-3 col-form-label">Select Gender <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <select name="gender" id="gender" class="form-control select2" required>
+                                                        <select name="gender" id="gender" value="{{ old('gender') }}" class="form-control select2" required>
                                                             <option value="">Select One</option>
                                                             @foreach (InitS::getGenders() as $gender)
                                                                 <option value="{{ $gender }}">{{ $gender }}</option>
@@ -113,23 +113,23 @@
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Monthly Fee</label>
+                                                    <label class="col-md-3 col-form-label">Monthly Fee <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="monthly_fee" placeholder="2500" required>
+                                                        <input type="text" class="form-control" name="monthly_fee" value="{{ old('monthly_fee') }}" placeholder="2500" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Enter Address</label>
+                                                    <label class="col-md-3 col-form-label">Enter Address <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="address" placeholder="Enter Address" required>
+                                                        <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Enter Address" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
-                                                    <label class="col-md-3 col-form-label">Enter Phone</label>
+                                                    <label class="col-md-3 col-form-label">Enter Phone <span class="text-danger">*</span></label>
                                                     <div class="col-md-9">
-                                                        <input type="number" id="phone" name="phone" class="form-control" placeholder="Enter Phone" required>
+                                                        <input type="number" id="phone" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="Enter Phone" required>
                                                     </div>
                                                 </div>
 
