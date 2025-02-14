@@ -123,15 +123,15 @@
                                 <div class="text-truncate" data-i18n="Mark Attendance">Mark Attendance</div>
                             </a>
                         </li>
+                    {{-- @endif --}}
 
+                    @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
                             <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Attendance Report">Attendance Report</div>
                             </a>
                         </li>
-                    {{-- @endif --}}
 
-                    @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('timetables.index') }}">
                             <a href="{{ route('timetables.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Timetables">Timetables</div>
