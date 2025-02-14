@@ -19,6 +19,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\AttendenceController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SubscriptionController;
@@ -34,10 +35,10 @@ use App\Http\Controllers\SubscriptionController;
 |
 */
 
-Route::get('/migrate-fresh', function(){
-    Artisan::call('optimize:clear');
-    Artisan::call('migrate:fresh --seed');
-});
+// Route::get('/migrate-fresh', function(){
+//     Artisan::call('optimize:clear');
+//     Artisan::call('migrate:fresh --seed');
+// });
 
 Route::get('/migrate', function(){
     Artisan::call('migrate');
@@ -139,6 +140,7 @@ Route::middleware(['auth'])->group(function(){
             'students' => StudentController::class,
             'teachers' => TeacherController::class,
             'timetables' => TimeTableController::class,
+            'grades' => GradeController::class,
             'notifications' => NotificationController::class,
             'expenses' => ExpenseController::class,
             'site' => SiteController::class,

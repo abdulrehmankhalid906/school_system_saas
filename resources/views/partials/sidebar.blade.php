@@ -159,16 +159,16 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="{{ route('classes.index') }}" class="menu-link">
+                        <a href="{{ route('grades.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Grades">Grades</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ route('subjects.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Marks">Marks</div>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
         @endif

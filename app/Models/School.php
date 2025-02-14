@@ -35,4 +35,9 @@ class School extends Model
     {
         return $this->hasMany(Subscription::class);
     }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }
