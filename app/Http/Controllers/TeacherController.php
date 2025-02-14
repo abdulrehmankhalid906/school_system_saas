@@ -142,10 +142,13 @@ class TeacherController extends Controller
 
     public function getTeacherAttendance()
     {
-        $attendances = TeacherAttendance::where('teacher_id', Auth::user()->teacher->id)->get();
+        $teachers = Teacher::with('user')->whereHas('user', function($query) {
+            $query->where('school_id', InitS::getSchoolid());
+        })->get();
+        // $attendances = TeacherAttendance::where('teacher_id', Auth::user()->teacher->id)->get();
 
         return view('teachers.attendance-report', [
-            'attendances' => $attendances
+            'teachers' => $teachers
         ]);
     }
 

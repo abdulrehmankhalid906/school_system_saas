@@ -5,7 +5,7 @@
 </style>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-6 countable-tab">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 mb-2">
                 <div class="card">
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-6 submittion-tab">
         <form action="{{ route('fees.payment') }}" method="POST" autocomplete="off">
             @csrf
             <input type="hidden" class="fee_payment_id" name="fee_payment_id">

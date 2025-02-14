@@ -24,7 +24,7 @@
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation" id="paymentTab" style="display:none;">
-                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-totalfee" aria-controls="navs-top-totalfee" aria-selected="false" tabindex="-1">
+                                <button type="button" id="paymentBtnName" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-totalfee" aria-controls="navs-top-totalfee" aria-selected="false" tabindex="-1">
                                     Payment
                                 </button>
                             </li>
@@ -103,8 +103,9 @@
             });
         });
 
-        function feePayment(id)
+        function feePayment(id,type)
         {
+            var tabName = type === 'pay' ? 'Payment' : 'Histroy';
             $.ajax({
                 url: "{{ url('fee-history') }}/" + id,
                 type: "GET",
@@ -113,25 +114,37 @@
                 },
                 beforeSend: function()
                 {
+                    $('.countable-tab').show();
+                    $('.submittion-tab').show();
                     $('.fee_payment_id').html();
                     $('.total_payable_amount').html();
                     $('.overall_rem_amount').html();
                     $('.term_rem_amount').html();
                     $('.paymentHistory').val();
+                    $('#paymentBtnName').html();
                 },
                 success: function(response) {
                     // Show the Payment tab
                     document.getElementById('paymentTab').style.display = 'block';
+                    $('#paymentBtnName').html(tabName);
 
                     // Switch to the Payment tab
                     let paymentTab = document.querySelector('[data-bs-target="#navs-top-totalfee"]');
                     let bootstrapTab = new bootstrap.Tab(paymentTab);
                     bootstrapTab.show();
 
-                    $('.fee_payment_id').val(response.data.fees.id);
-                    $('.total_payable_amount').html(response.data.fees.amount);
-                    $('.overall_rem_amount').html(response.data.rembalance);
-                    $('.term_rem_amount').html(response.data.fees.balance_due);
+                    if(type === 'pay')
+                    {
+                        $('.fee_payment_id').val(response.data.fees.id);
+                        $('.total_payable_amount').html(response.data.fees.amount);
+                        $('.overall_rem_amount').html(response.data.rembalance);
+                        $('.term_rem_amount').html(response.data.fees.balance_due);
+                    }
+                    else
+                    {
+                        $('.countable-tab').hide();
+                        $('.submittion-tab').hide();
+                    }
 
                     // Appending fee history
                     if (response.data.fees.feehistories && response.data.fees.feehistories.length > 0) {

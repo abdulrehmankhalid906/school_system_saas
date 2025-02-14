@@ -26,9 +26,9 @@
                             <td>
                                 {{-- try to add the type to reduce the fucntions --}}
                                 @if($fee->status != 'paid')
-                                    <button class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }})">Pay</button>
+                                    <button class="btn btn-primary btn-sm" onclick="feePayment({{ $fee->id }}, 'pay')">Pay</button>
                                 @endif
-                                <a href="javascript:void(0);" class="btn btn-secondary btn-sm" onclick="feepaymentHistory({{ $fee->id }})">History</a>
+                                <button class="btn btn-secondary btn-sm" onclick="feePayment({{ $fee->id }}, 'history')">History</button>
                             </td>
                         </tr>
                     @endforeach
