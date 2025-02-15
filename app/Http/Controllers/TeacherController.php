@@ -140,17 +140,34 @@ class TeacherController extends Controller
         }
     }
 
-    public function getTeacherAttendance()
+    public function getTeacherAttendance(Request $request)
     {
-        $teachers = Teacher::with('user')->whereHas('user', function($query) {
+        $teachers = Teacher::with('user')->whereHas('user', function ($query) {
             $query->where('school_id', InitS::getSchoolid());
         })->get();
-        // $attendances = TeacherAttendance::where('teacher_id', Auth::user()->teacher->id)->get();
+
+        $teacherAttendance = TeacherAttendance::with('teacher.user');
+
+        if($request->has('teacher_id') && !empty($request->teacher_id))
+        {
+            $teacherAttendance->where('teacher_id', $request->teacher_id);
+        }
+
+        if ($request->has('month') && !empty($request->month)) {
+            $year = substr($request->month, 0, 4);
+            $month = substr($request->month, 5, 2);
+
+            $teacherAttendance->whereYear('date', $year)->whereMonth('date', $month);
+        }
+
+        $attendances = $teacherAttendance->orderBy('id','DESC')->get();
 
         return view('teachers.attendance-report', [
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'attendances' => $attendances
         ]);
     }
+
 
     public function markTeacherAttendance(Request $request)
     {

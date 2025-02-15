@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/generate-fee',[FeeController::class,'generateFee'])->name('generate.fees');
 
         //Teacher Permissions Attendance + Marks
-        Route::get('/get-teacher-attendance',[TeacherController::class,'getTeacherAttendance'])->name('get.teacher.attendence');
+        Route::get('/teacher-attendance',[TeacherController::class,'getTeacherAttendance'])->name('get.teacher.attendence');
         Route::post('/mark-teacher-attendance',[TeacherController::class,'markTeacherAttendance'])->name('mark.teacher.attendence');
         Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
         Route::post('/store-teacher-permissions',[TeacherController::class,'storeTeacherPermission'])->name('store.teacher.permissions');

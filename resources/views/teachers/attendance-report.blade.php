@@ -13,24 +13,26 @@
                                     <i class="mdi mdi-account-circle title_icon"></i> Teacher Attendance
                                 </h4>
 
-                                <div class="row">
-                                    <form class="p-3 d-block" autocomplete="off">
+                                <div class="row mb-2">
+                                    <form action="{{ route('get.teacher.attendence') }}" method="GET">
                                         <div class="row">
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
-                                                <select id="klass_id" class="form-control select2" required>
-                                                    <option value="">Select Teacher</option>
+                                                <select name="teacher_id" id="teacher_id" class="form-control select2">
+                                                    {{-- <option value="All">Select All</option> --}}
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
+                                                        <option value="{{ $teacher->id }}" {{ request('teacher_id') == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->user->name }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
-                                                <input type="date" class="form-control" id="attendence_date" required>
+                                                <input type="month" class="form-control" name="month" value="{{ request('month') ?? '' }}">
                                             </div>
 
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
-                                                <button type="button" class="btn btn-primary btn-sm">Filter</button>
+                                                <button type="submit" class="btn btn-primary">Filter</button>
                                             </div>
                                         </div>
                                     </form>
@@ -39,22 +41,24 @@
                                 <table id="example" class="table dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
+                                            <th>Name</th>
                                             <th>Check In</th>
                                             <th>Check Out</th>
+                                            <th>Date</th>
                                             <th>Remarks</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
+                                    <tbody>
                                         @foreach ($attendances as $attendance)
                                             <tr id="row-{{ $attendance->id }}">
-                                                <td>{{ $attendance->date }} {!! $attendance->date === InitS::currentDate() ? "<span class='badge bg-success'>Today</span>" : '' !!} </td>
+                                                <th>{{ $attendance->teacher->user->name ?? '' }}</th>
                                                 <td>{{ $attendance->check_in }}</td>
                                                 <td>{{ $attendance->check_out }}</td>
+                                                <td>{{ $attendance->date }} {!! $attendance->date === InitS::currentDate() ? "<span class='badge bg-success'>Today</span>" : '' !!} </td>
                                                 <td>{{ $attendance->remarks }}</td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

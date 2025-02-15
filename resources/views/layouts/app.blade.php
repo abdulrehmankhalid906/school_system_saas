@@ -286,7 +286,8 @@
             return {
                 'class_sections': 'All the classes & Sections will be deleted!',
                 'students_teachers': 'Students and Teachers will be affected!',
-                'data_files': 'Data and Files will be deleted!'
+                'data_files': 'Data and Files will be deleted!',
+                'school_del': 'Everything will be deleted upon deleting the school'
             };
         }
     </script>

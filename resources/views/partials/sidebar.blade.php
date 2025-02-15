@@ -69,6 +69,12 @@
 
                     @if(Auth::user()->hasRole('School'))
 
+                        <li class="menu-item {{ setRoute('index.parents') }}">
+                            <a href="{{ route('index.parents') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Parents">Parents</div>
+                            </a>
+                        </li>
+
                         <li class="menu-item {{ setRoute('students.index') }}">
                             <a href="{{ route('students.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Students">Students</div>
@@ -78,12 +84,6 @@
                         <li class="menu-item {{ setRoute('teachers.index') }}">
                             <a href="{{ route('teachers.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Teachers">Teachers</div>
-                            </a>
-                        </li>
-
-                        <li class="menu-item {{ setRoute('index.parents') }}">
-                            <a href="{{ route('index.parents') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Parents">Parents</div>
                             </a>
                         </li>
                     @endif
@@ -126,12 +126,6 @@
                     {{-- @endif --}}
 
                     @if(Auth::user()->hasRole('School'))
-                        <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
-                            <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Attendance Report">Attendance Report</div>
-                            </a>
-                        </li>
-
                         <li class="menu-item {{ setRoute('timetables.index') }}">
                             <a href="{{ route('timetables.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Timetables">Timetables</div>
@@ -182,15 +176,15 @@
                     <div class="text-truncate" data-i18n="Accounts">Accounts</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ setRoute('fees.create') }}">
-                        <a href="{{ route('fees.create') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
-                        </a>
-                    </li>
-
                     <li class="menu-item {{ setRoute('expenses.index') }}">
                         <a href="{{ route('expenses.index') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Expense Manager">Expense Manager</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('fees.create') }}">
+                        <a href="{{ route('fees.create') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Fee Manager">Fee Manager</div>
                         </a>
                     </li>
                 </ul>
@@ -223,18 +217,25 @@
             </li>
         @endif
 
-        {{-- Notification Tab --}}
+        {{-- Reports / Notification Tab --}}
 
         @if(Auth::user()->hasRole('School'))
             <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-bell"></i>
-                    <div class="text-truncate" data-i18n="Notifications Alerts">Notifications Alerts</div>
+                    <div class="text-truncate" data-i18n="Reports">Reports</div>
                 </a>
+
                 <ul class="menu-sub">
                     <li class="menu-item {{ setRoute('school.notifications') }}">
                         <a href="{{ route('school.notifications') }}" class="menu-link">
                             <div class="text-truncate" data-i18n="Notifications">Notifications</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ setRoute('get.teacher.attendence') }}">
+                        <a href="{{ route('get.teacher.attendence') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Teacher Attendance">Teacher Attendance</div>
                         </a>
                     </li>
                 </ul>

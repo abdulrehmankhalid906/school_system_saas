@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Generate Fee')
+@section('title', 'Dashboard | Mange Fee')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
@@ -152,7 +152,7 @@
                             $('.paymentHistory').append(`
                                 <tr>
                                     <td>${history.id}</td>
-                                    <td>${response.data.fees.user_id}</td>
+                                    <td>${response.data.fees.user.name}</td>
                                     <td>${history.amount}</td>
                                     <td>${history.method}</td>
                                     <td>${history.transaction_date}</td>

@@ -124,7 +124,7 @@ class FeeController extends Controller
 
     public function feeHistory($id)
     {
-        $fees = FeePayment::with('feehistories')->where('id', $id)->first();   //for time being remove feehistoies because there are no data in table
+        $fees = FeePayment::with(['user','feehistories'])->where('id', $id)->first();
         $reminingbalance = $this->getReminingAmount($id);
 
         $data = [
