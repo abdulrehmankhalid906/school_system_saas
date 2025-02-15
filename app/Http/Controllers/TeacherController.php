@@ -148,7 +148,7 @@ class TeacherController extends Controller
 
         $teacherAttendance = TeacherAttendance::with('teacher.user');
 
-        if($request->has('teacher_id') && !empty($request->teacher_id))
+        if($request->has('teacher_id') && ($request->teacher_id !== 'All'))
         {
             $teacherAttendance->where('teacher_id', $request->teacher_id);
         }

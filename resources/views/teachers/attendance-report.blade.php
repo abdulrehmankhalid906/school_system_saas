@@ -18,7 +18,7 @@
                                         <div class="row">
                                             <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3 mb-lg-0">
                                                 <select name="teacher_id" id="teacher_id" class="form-control select2">
-                                                    {{-- <option value="All">Select All</option> --}}
+                                                    <option value="All">Select All</option>
                                                     @foreach ($teachers as $teacher)
                                                         <option value="{{ $teacher->id }}" {{ request('teacher_id') == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->user->name }}
@@ -45,7 +45,7 @@
                                             <th>Check In</th>
                                             <th>Check Out</th>
                                             <th>Date</th>
-                                            <th>Remarks</th>
+                                            <th>W/Hours</th>
                                         </tr>
                                     </thead>
                                     <tbody>
