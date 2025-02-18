@@ -140,7 +140,7 @@
                                     </div>
                                 </div> --}}
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-0">Welcome ! {{ Auth::user()->name ?? 'Agent User' }} - {{ Auth::id() ?? '0' }}</h6>
+                                    <h6 class="mb-0">Welcome ! {{ Auth::user()->name ?? 'Agent User' }}</h6>
                                     <small class="text-muted">Logged In: {{ Auth::user()?->roles->implode('name', ', ') }}</small>
                                 </div>
                             </div>
