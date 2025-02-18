@@ -174,9 +174,9 @@
                         console.log('somethind went wrong');
                     }
                 },
-                error: function()
+                error: function(error)
                 {
-                    //
+                    console.log('Something went wrong!', error);
                 },
             });
         });
@@ -208,9 +208,9 @@
                         console.log('somethind went wrong');
                     }
                 },
-                error: function()
+                error: function(error)
                 {
-                    //
+                    console.log('Something went wrong!', error);
                 },
             });
         });

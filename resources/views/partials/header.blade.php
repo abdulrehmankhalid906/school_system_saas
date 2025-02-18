@@ -157,7 +157,7 @@
                     @if(Auth::user()->hasRole('School'))
                         <li>
                             <a class="dropdown-item" href="{{ route('school.index') }}">
-                                <i class="bx bx-cog bx-md me-3"></i><span>My School</span>
+                                <i class="bx bxs-school bx-md me-3"></i><span>My School</span>
                             </a>
                         </li>
 
