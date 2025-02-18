@@ -1,11 +1,8 @@
-/*
-* demo.css
-* File include item demo only specific css only
-******************************************************************************/
-
 .menu .app-brand.demo {
-  height: 64px;
-  margin-top: 12px;
+ height: auto;
+ margin-top: 12px;
+ display: flex;
+ justify-content: center;
 }
 
 .app-brand-logo.demo svg {
@@ -18,7 +15,6 @@
   letter-spacing: -0.5px;
 }
 
-/* ! For .layout-navbar-fixed added fix padding top to .layout-page */
 /* Detached navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {
   padding-top: 74px !important;
