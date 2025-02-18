@@ -11,7 +11,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="true">
-                                    School Info
+                                    School Information (<small><i>{{ $school->registration_number ?? '' }}</small>)
                                 </button>
                             </li>
                             {{-- <li class="nav-item" role="presentation">
@@ -28,8 +28,8 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="navs-top-home" role="tabpanel">
                                 <div class="row">
-                                    <div class="col-12 col-sm-12 col-md-12 mb-4">
-                                        <h4 class="header-title">School Information (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4>
+                                    <div class="col-12 col-sm-12 col-md-12 mb-2">
+                                        {{-- <h4 class="header-title">School Details (<small><i>{{ $school->registration_number ?? '' }}</i></small>)</h4> --}}
                                         <form method="POST" action="{{ route('school.manage') }}" enctype="multipart/form-data" autocomplete="off">
                                             @csrf
 
@@ -47,17 +47,17 @@
 
                                             <div class="row g-6">
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="system_name">School Name</label>
+                                                    <label class="form-label" for="name">School Name <span class="text-danger">*</span></label>
                                                     <input type="text" id="name" name="name" class="form-control" value="{{ $school->name ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="system_email">School Email</label>
+                                                    <label class="form-label" for="email">School Email <small><i>(Official)</i></small></label>
                                                     <input type="email" id="email" name="email" class="form-control" value="{{ $school->email ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="phone">Phone</label>
+                                                    <label class="form-label" for="phone">School Phone <span class="text-danger">*</span></label>
                                                     <input type="text" id="phone" name="phone" class="form-control" value="{{ $school->phone ?? '' }}" required>
                                                 </div>
 
@@ -73,17 +73,17 @@
 
                                                 <div class="col-md-6">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" value="{{ $school->address ?? '' }}" required>
+                                                    <input type="text" class="form-control" id="address" name="address" value="{{ $school->address ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="purchase_code">Website</label>
-                                                    <input type="text" id="purchase_code" name="website" class="form-control" value="{{ $school->website ?? '' }}">
+                                                    <label class="form-label" for="website">Website</label>
+                                                    <input type="text" id="website" name="website" class="form-control" value="{{ $school->website ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="established_year">Established Year</label>
-                                                    <input type="text" class="form-control" value="{{ $school->established_year ?? '' }}" disabled>
+                                                    <label class="form-label" for="registeration_year">Registeration Year</label>
+                                                    <input type="text" id="registeration_year" class="form-control" value="{{ $school->established_year ?? '' }}" disabled>
                                                 </div>
 
                                                 <div class="text-end">
@@ -94,8 +94,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
-                                {{-- <div class="row">
+
+                            <!-- Update Version 2.0 -->
+                            {{-- <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+                                <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 mb-4">
                                         <h4 class="header-title">Class Fee</h4>
                                         <form method="POST" action="{{ route('manage.school.fee') }}" autocomplete="off">
@@ -118,11 +120,10 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
-
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

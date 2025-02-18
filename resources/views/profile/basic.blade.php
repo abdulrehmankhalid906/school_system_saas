@@ -26,18 +26,18 @@
 
                                     <div class="row g-6">
                                         <div class="col-md-4">
-                                            <label class="form-label" for="name">Name</label>
+                                            <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
                                             <input type="text" id="name" name="name" class="form-control" value="{{ Auth::user()->name ?? '' }}" required>
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="form-label" for="email">Email</label>
+                                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
                                             <input type="email" id="email" name="email" class="form-control" value="{{ Auth::user()->email ?? '' }}" required>
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="form-label" for="phone"> Phone</label>
-                                            <input type="text" id="phone" name="phone" class="form-control" value="{{ Auth::user()->phone ?? '' }}">
+                                            <label class="form-label" for="phone"> Phone <span class="text-danger">*</span></label>
+                                            <input type="text" id="phone" name="phone" class="form-control" value="{{ Auth::user()->phone ?? '' }}" required>
                                         </div>
 
                                         {{-- <div class="col-md-4">
@@ -45,7 +45,7 @@
                                             <input type="text" id="address" name="address" class="form-control" value="{{ Auth::user()->address ?? '' }}">
                                         </div> --}}
 
-                                        <div class="text-start">
+                                        <div class="text-end">
                                             <button type="submit" class="btn btn-primary me-3 mb-4">Update</button>
                                         </div>
                                     </div>
@@ -67,16 +67,16 @@
                                     @method('PUT')
                                     <div class="row g-6">
                                         <div class="col-md-4">
-                                            <label class="form-label" for="new_password">New Password</label>
+                                            <label class="form-label" for="new_password">New Password <span class="text-danger">*</span></label>
                                             <input type="password" id="new_password" name="new_password" class="form-control" required>
                                         </div>
 
                                         <div class="col-md-4">
-                                            <label class="form-label" for="confirm_password">Confirm Password</label>
+                                            <label class="form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                             <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
                                         </div>
 
-                                        <div class="text-start">
+                                        <div class="text-end">
                                             <button type="submit" class="btn btn-primary me-3 mb-4">Change</button>
                                         </div>
                                     </div>
