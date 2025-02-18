@@ -1,11 +1,11 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="{{ route('home') }}" class="app-brand-link">
-            {{-- @if(!Auth::user()->hasRole('Super Admin'))
+            @if(!Auth::user()->hasRole('Super Admin'))
                 <img src="{{ InitS::getImage(Auth::user()->school->logo, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
-            @else --}}
+            @else
                 <span class="app-brand-text demo menu-text fw-bold ms-2 text-center">{{ Auth::user()->school->name ?? 'Hi, Admin' }}</span>
-            {{-- @endif --}}
+            @endif
         </a>
 
         <a href="javascript:void(0);"

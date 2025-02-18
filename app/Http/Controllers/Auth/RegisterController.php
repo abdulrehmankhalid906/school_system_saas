@@ -79,7 +79,7 @@ class RegisterController extends Controller
                 'address' => $data['address'] ?? 'Default Address',
                 'district' => $data['district'] ?? 'Default District',
                 'city' => $data['city'] ?? 'Default City',
-                'phone' => $data['phone'] ?? '0300' . rand(1000, 9999),
+                'phone' => $data['phone'] ?? '',
                 'email' => $data['email'],
                 'website' => $data['website'] ?? null,
                 'payment_status' => 'paid',

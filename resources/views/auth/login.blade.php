@@ -14,7 +14,7 @@
         @csrf
 
         <div class="mb-4">
-            <label class="form-label" for="email">{{ __('Email Address') }}</label>
+            <label class="form-label" for="email">{{ __('Email Address') }} <span class="text-danger">*</span></label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email" placeholder="Enter your email"/>
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="mb-4 form-password-toggle">
-            <label class="form-label" for="password">{{ __('Password') }}</label>
+            <label class="form-label" for="password">{{ __('Password') }} <span class="text-danger">*</span></label>
             <div class="input-group input-group-merge">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"/>
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
