@@ -35,14 +35,14 @@ use App\Http\Controllers\SubscriptionController;
 |
 */
 
-// Route::get('/migrate-fresh', function(){
-//     Artisan::call('optimize:clear');
-//     Artisan::call('migrate:fresh --seed');
-// });
+Route::get('/make-fresh-migrate', function(){
+    Artisan::call('optimize:clear');
+    Artisan::call('migrate:fresh --seed');
+});
 
-// Route::get('/migrate', function(){
-//     Artisan::call('migrate');
-// });
+Route::get('/make-update-migrate', function(){
+    Artisan::call('migrate');
+});
 
 // Route::get('/optimize', function(){
 //     Artisan::call('optimize');
