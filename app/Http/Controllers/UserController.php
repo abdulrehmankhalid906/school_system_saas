@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
-use App\Helpers\InitS;
-use App\Http\Requests\StoreParentRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -101,27 +98,5 @@ class UserController extends Controller
                 'failure' => $ex->getMessage()
             ], 500);
         }
-    }
-
-
-    public function allParents()
-    {
-        $parents = User::with('students.user')->withCount('students')->role('Parent')->where('school_id', InitS::getSchoolid())->get();
-
-        return view('parents.parents',[
-            'parents' => $parents
-        ]);
-    }
-
-    public function createParent(StoreParentRequest $request)
-    {
-        $data = $request->validated();
-        $data['password'] = Hash::make($request->password);
-        $data['school_id'] = InitS::getSchoolid();
-
-        $user = User::create($data);
-        $user->syncRoles('Parent');
-
-        return redirect()->back()->with('success', 'Parent has been created!');
     }
 }

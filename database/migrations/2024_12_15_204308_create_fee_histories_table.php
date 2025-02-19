@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('fee_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fee_payment_id')->constrained('fee_payments')->onDelete('cascade');
+            $table->foreignId('fee_payment_id')->nullable()->constrained('fee_payments')->onDelete('cascade');
             $table->integer('amount')->default(0);
             $table->enum('method', ['cash', 'bank_transfer', 'card', 'online'])->default('cash');
             $table->date('transaction_date');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('school_id')->constrained();
+            $table->foreignId('school_id')->constrained('schools')->onDelete('cascade');
             $table->enum('type',['basic','premium'])->default('basic');
             $table->enum('usage_type',['trial','nonTrial'])->default('trial');
             $table->enum('payment_method', ['cash','bank_transfer','card','online'])->default('cash');

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('time_tables', function (Blueprint $table) {
             $table->id();
             $table->string('title',100);
-            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('school_id')->nullable()->constrained('schools')->onDelete('cascade');
             $table->json('time_table');
-            $table->foreignId('klass_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('klass_id')->nullable()->constrained('klasses')->onDelete('set null');
+            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('set null');
             $table->timestamps();
         });
     }

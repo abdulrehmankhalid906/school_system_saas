@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('fee_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('fee_type_id')->constrained('fee_types')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('fee_type_id')->nullable()->constrained('fee_types')->onDelete('set null');
             $table->integer('amount')->default(0);
             $table->integer('balance_due')->default(0);
             $table->date('due_date');
             $table->enum('status', ['due', 'paid', 'overdue'])->default('due');
             $table->string('fee_month',100);
             $table->timestamp('payment_date')->nullable();
-            $table->foreignId('school_id')->constrained()->onDelete('cascade');
+            $table->foreignId('school_id')->nullable()->constrained('schools')->onDelete('cascade');
             $table->timestamps();
         });
     }

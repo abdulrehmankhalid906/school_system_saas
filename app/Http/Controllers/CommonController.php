@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Helpers\InitS;
 use App\Models\School;
-use App\Models\FeeType;
-use App\Models\ClassFee;
 use Illuminate\Http\Request;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +51,7 @@ class CommonController extends Controller
     public function basicSchoolDetails()
     {
         return view('profile.basic_school',[
-            'school' => School::with('classfee.klass')->where('id', Auth::user()->school_id)->first()
+            'school' => School::where('id', Auth::user()->school_id)->first()
         ]);
     }
 
@@ -73,35 +71,4 @@ class CommonController extends Controller
         return redirect()->back()->with('success', 'School updated successfully');
     }
 
-    public function manageSchoolFee(Request $request)
-    {
-        $ids = $request->ids;
-        $fees = $request->fees;
-
-        if (!is_array($ids) || !is_array($fees) || count($ids) !== count($fees))
-        {
-            return redirect()->back()->with('error', 'Invalid input: IDs and fees must be arrays of the same length.');
-        }
-
-        foreach ($ids as $index => $id) {
-            $classfee = ClassFee::where('id', $id)->where('school_id', InitS::getSchoolid())->first();
-
-            if ($classfee) {
-                $classfee->class_fee = $fees[$index];
-                $classfee->save();
-            } else {
-                return redirect()->back()->with('error', "ClassFee record not found for ID: $id");
-            }
-        }
-
-        return redirect('school')->back()->with('success', 'The fees have been updated successfully.');
-    }
-
-    // public function feeTypes()
-    // {
-    //     return view('fees.feetype',[
-    //         'feetypes' => FeeType::get()
-    //     ]);
-    // }
-    // basic_school_update
 }

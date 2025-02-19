@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ClassController;
@@ -22,6 +21,7 @@ use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SubscriptionController;
 
 /*
@@ -73,9 +73,6 @@ Route::middleware(['auth'])->group(function(){
     //Manage Classes + Sections
     Route::get('/manage-sections/{class_id}/{section_id?}',[ClassController::class, 'manageSection'])->name('manage.sections');
     Route::post('/sections-manage',[ClassController::class, 'Sectionmanage'])->name('sections.manage');
-
-    Route::get('/parents',[UserController::class,'allParents'])->name('index.parents');
-    Route::post('/store-parent',[UserController::class,'createParent'])->name('store.parents');
 
     Route::get('/get-sections',[StudentController::class,'getSections'])->name('get.Section');
 
@@ -131,6 +128,7 @@ Route::middleware(['auth'])->group(function(){
         'roles' => RoleController::class,
         'permissions' => PermissionController::class,
         'schools' => SchoolController::class,
+        'parents' => ParentController::class,
         'exams' => ExamController::class,
         'fees' => FeeController::class,
         'subjects' => SubjectController::class,
@@ -141,7 +139,6 @@ Route::middleware(['auth'])->group(function(){
         'grades' => GradeController::class,
         'notifications' => NotificationController::class,
         'expenses' => ExpenseController::class,
-        'site' => SiteController::class,
         'subscriptions' => SubscriptionController::class,
     ]);
     // });

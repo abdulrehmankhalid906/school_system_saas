@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard | Manage Subjects')
+@section('title', 'Dashboard | Manage Parents')
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -37,7 +37,7 @@
                                                 <td>{{ $parent->created_at }}</td>
                                                 <td>
                                                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parentModal">Edit</button>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $parent->id }}, 'subjects')">Delete</a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $parent->id }}, 'parents')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -58,7 +58,7 @@
               <h5 class="modal-title" id="roleModalLabel">Create Parent</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="roleForm" method="POST" action="{{ route('store.parents') }}" autocomplete="off">
+            <form id="roleForm" method="POST" action="{{ route('parents.store') }}" autocomplete="off">
                 @csrf
                 <div class="modal-body">
                     <div class="col-12">

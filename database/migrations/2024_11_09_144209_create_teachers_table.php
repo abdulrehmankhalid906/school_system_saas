@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->string('salary')->nullable();
             $table->string('code')->nullable();
             $table->boolean('is_attendance')->default(false);
             $table->boolean('is_mark')->default(false);

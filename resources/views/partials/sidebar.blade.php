@@ -69,8 +69,8 @@
 
                     @if(Auth::user()->hasRole('School'))
 
-                        <li class="menu-item {{ setRoute('index.parents') }}">
-                            <a href="{{ route('index.parents') }}" class="menu-link">
+                        <li class="menu-item {{ setRoute('parents.index') }}">
+                            <a href="{{ route('parents.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Parents">Parents</div>
                             </a>
                         </li>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
-            $table->foreignId('parent_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('klass_id')->nullable()->constrained('klasses')->onDelete('set null');
             $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('set null');
             $table->string('roll_no')->nullable();
