@@ -8,9 +8,12 @@ use App\Helpers\InitS;
 use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Imports\StudentUserImport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreStudentRequest;
+use Exception;
 
 class StudentController extends Controller
 {
@@ -50,13 +53,6 @@ class StudentController extends Controller
         ]);
     }
 
-
-    public function studentBulk()
-    {
-        return view('students.bulk_student',[
-            'data' => $this->classAndParents(),
-        ]);
-    }
     /**
      * Store a newly created resource in storage.
      */
@@ -103,9 +99,27 @@ class StudentController extends Controller
         }
     }
 
-    public function storeBulkStudents(Request $request)
+    public function bulkImportStudent(Request $request)
     {
-        dd($request->all());
+        try
+        {
+            $data = $request->validate([
+                'bulk_upload_file' => 'required|mimes:xlsx,xls,csv',
+                'klass_id' => 'required|exists:klasses,id',
+                'section_id' => 'required|exists:sections,id',
+            ]);
+
+            Excel::import(new StudentUserImport($data['klass_id'], $data['section_id']), $request->file('bulk_upload_file'));
+            return redirect()->back()->with('success','File uploaded successfully');
+
+        }
+        catch(Exception $ex)
+        {
+            return response()->json([
+                'message' => 'An error occurred during file upload',
+                'error' => $ex->getMessage(),
+            ], 500);
+        }
     }
 
     /**

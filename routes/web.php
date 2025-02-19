@@ -93,7 +93,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/generate-fee',[FeeController::class,'generateFee'])->name('generate.fees');
 
     //Teacher Permissions Attendance + Marks
-    Route::post('/bulk-import-teachers', [TeacherController::class, 'bulkImportTeacher'])->name('bulk.import.teacher');
     Route::get('/teacher-attendance',[TeacherController::class,'getTeacherAttendance'])->name('get.teacher.attendence');
     Route::post('/mark-teacher-attendance',[TeacherController::class,'markTeacherAttendance'])->name('mark.teacher.attendence');
     Route::get('/teacher-permissions/{id}',[TeacherController::class,'mangeTeacherPermission'])->name('teacher.permissions');
@@ -104,9 +103,6 @@ Route::middleware(['auth'])->group(function(){
 
     //Exams + Grades
     Route::get('manage-exams/{id?}',[ExamController::class,'addEditExam'])->name('manage.exam');
-
-    //School User Notifications
-    Route::get('/school-notificaions', [NotificationController::class, 'schoolUserNotifications'])->name('school.notifications');
 
     //Fees + Payment + installments
     Route::post('/single-fee-store', [FeeController::class,'singleFeeStore'])->name('single-fee-store');
@@ -120,14 +116,15 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/assign-permission/{id}', [RoleController::class, 'assignRolePermissions'])->name('role.assign.permission');
     Route::post('/assign-permission/{id}', [RoleController::class, 'updateRolePermissions'])->name('role.update.permission');
 
-    Route::get('/student-bulk',[StudentController::class,'studentBulk'])->name('students.bulkcreate');
-    // Route::post('/student-bulk-store',[StudentController::class,'storeBulkStudents'])->name('store.bulk.students');
+    //Bulk Imports
+    Route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
+    Route::post('/bulk-import-teachers', [TeacherController::class, 'bulkImportTeacher'])->name('bulk.import.teacher');
+    Route::post('/bulk-import-students', [StudentController::class, 'bulkImportStudent'])->name('bulk.import.student');
 
-    //Imports
-    route::post('/import-subjects', [SubjectController::class,'bulkImportSubject'])->name('imports.subjects');
-
-    route::post('/send-notifications', [NotificationController::class, 'sendNotifications'])->name('send.notifictions');
-    route::delete('/delete-notification/{id}', [NotificationController::class, 'deleteNotification'])->name('delete.notification');
+    //Notification System
+    Route::get('/school-notificaions', [NotificationController::class, 'schoolUserNotifications'])->name('school.notifications');
+    Route::post('/send-notifications', [NotificationController::class, 'sendNotifications'])->name('send.notifictions');
+    Route::delete('/delete-notification/{id}', [NotificationController::class, 'deleteNotification'])->name('delete.notification');
 
     Route::resources([
         'users' => UserController::class,
