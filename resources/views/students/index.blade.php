@@ -89,6 +89,12 @@
                             <input type="file" name="bulk_upload_file" id="upload_file_std" class="form-control" required>
                         </div>
                     </div>
+
+                    <div class="row mt-2">
+                        <span class="preview_img">
+                            <a href="{{ asset('/assets/previews/student_preview.png') }}" target="_blank">Excel File Preview (Please check)</a>
+                        </span>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <input class="btn btn-primary" type="submit" value="Upload File">&nbsp;

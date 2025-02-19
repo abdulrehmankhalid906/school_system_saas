@@ -62,7 +62,7 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Subject Name</label>
+                            <label class="col-md-3 col-form-label" for="course_name">Subject Name</label>
                             <div class="col-md-9">
                                 <input type="text" name="course_name" class="form-control" required>
                             </div>
@@ -98,11 +98,16 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Upload File</label>
+                            <label class="col-md-3 col-form-label" for="bulk_upload_file">Upload File <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                                <input type="file" name="bulk_upload_file" class="form-control" required>
+                                <input type="file" id="bulk_upload_file" name="bulk_upload_file" class="form-control" required>
                             </div>
                         </div>
+                    </div>
+                    <div class="row mt-2">
+                        <span class="preview_img">
+                            <a href="{{ asset('/assets/previews/subject_preview.png') }}" target="_blank">Excel File Preview (Please check)</a>
+                        </span>
                     </div>
                 </div>
                 <div class="modal-footer">
