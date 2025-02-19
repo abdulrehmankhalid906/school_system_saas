@@ -16,16 +16,14 @@
                                 @csrf
                                 <input type="hidden" id="class_id" name="class_id" value="{{ $classes->id ?? '' }}">
                                 <input type="hidden" id="section_id" name="section_id" value="{{ $getsection->id ?? '' }}">
-                                <div class="row">
+                                <div class="row mb-2">
                                     <div class="col-lg-4">
-                                        <label for="basiInput" class="form-label">Section Name</label>
-                                        <input type="text" placeholder="Create Section" class="form-control" id="section" name="section" value="{{ $getsection->name ?? '' }}" required>
+                                        <label for="section" class="form-label">Section Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="section" name="section" value="{{ $getsection->name ?? '' }}" placeholder="Section" required>
                                     </div>
-                                </div>
 
-                                <div class="row mt-4">
-                                    <div class="col-lg-6">
-                                        <input type="submit" class="btn btn rounded-pill btn-primary waves-effect waves-light" value="Update">
+                                    <div class="col-lg-4 d-flex align-items-end mt-2">
+                                        <input type="submit" class="btn btn-primary btn-md" value="{{ $getsection && $getsection->id ? 'Update' : 'Create' }}">
                                     </div>
                                 </div>
                             </form>
