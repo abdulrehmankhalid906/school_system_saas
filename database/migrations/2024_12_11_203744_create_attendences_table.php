@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('attendences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('klass_id')->constrained();
-            $table->foreignId('section_id')->constrained();
-            $table->enum('status',['absent','leave']);
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('klass_id')->nullable()->constrained('klasses')->onDelete('cascade');
+            $table->foreignId('section_id')->nullable()->constrained('sections')->onDelete('cascade');
+            $table->enum('status',['present','absent','leave']);
             $table->date('date');
             $table->timestamps();
         });
