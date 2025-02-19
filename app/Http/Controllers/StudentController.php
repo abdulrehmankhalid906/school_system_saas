@@ -205,7 +205,27 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try
+        {
+            $student = Student::with('user')->whereHas('user', function ($query) {
+                $query->where('school_id', InitS::getSchoolid());
+            })->findOrFail($id);
+
+            if($student->user)
+            {
+                $student->user->delete();
+            }
+
+            $student->delete();
+
+            return response()->json(['message' => 'Student has been removed!']);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function getSections(Request $request)

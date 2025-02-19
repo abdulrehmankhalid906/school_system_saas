@@ -40,7 +40,7 @@
                                                 <td>{{ $student->monthly_fee ?? '' }}</td>
                                                 <td>
                                                     <a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $student->id }}, 'schools')">Delete</a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $student->id }}, 'students')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

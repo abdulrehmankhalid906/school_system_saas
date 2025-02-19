@@ -46,7 +46,7 @@ class StudentUserImport implements ToCollection, WithHeadingRow
 
                 $user = User::create([
                     'name' => $row['name'] ?? NULL,
-                    'email' => $row['email'] ?? NULL,
+                    'email' => $row['email'] ?? $this->createUniqueEmail($row['name'] ?? 'Name'),
                     'password' => bcrypt($row['password'] ?? '12345678'),
                     'school_id' => InitS::getSchoolid(),
                     'phone' => $row['phone'] ?? NULL,
@@ -68,5 +68,14 @@ class StudentUserImport implements ToCollection, WithHeadingRow
                 ]);
             }
         });
+    }
+
+    function createUniqueEmail($name)
+    {
+        $formattedName = str_replace(' ', '-', strtolower($name));
+        $formattedName = preg_replace('/[^a-z0-9-]/', '', $formattedName);
+
+        $uniqueIdentifier = uniqid();
+        return $formattedName . '-' . $uniqueIdentifier . '@gmail.com';
     }
 }
