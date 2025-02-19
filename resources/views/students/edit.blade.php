@@ -56,17 +56,17 @@
 
                                             <div class="row g-3">
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="system_name">Student Name</label>
+                                                    <label class="form-label" for="system_name">Student Name <span class="text-danger">*</span></label>
                                                     <input type="text" id="name" name="name" class="form-control" value="{{ $student->user->name ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="system_email">Student Email</label>
+                                                    <label class="form-label" for="system_email">Student Email <span class="text-danger">*</span></label>
                                                     <input type="email" id="email" name="email" class="form-control" value="{{ $student->user->email ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="phone">Student Phone</label>
+                                                    <label class="form-label" for="phone">Student Phone <span class="text-danger">*</span></label>
                                                     <input type="text" id="phone" name="phone" class="form-control" value="{{ $student->user->phone ?? '' }}">
                                                 </div>
 
@@ -76,7 +76,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="klass_id">Class</label>
+                                                    <label class="form-label" for="klass_id">Class <span class="text-danger">*</span></label>
                                                     <select class="form-control" id="klass_id" name="klass_id" required>
                                                         <option value="">Select One</option>
                                                         @foreach($classes as $class)
@@ -86,7 +86,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="section_id">Section</label>
+                                                    <label class="form-label" for="section_id">Section <span class="text-danger">*</span></label>
                                                     <select class="form-control" id="section_id" name="section_id">
                                                         <option value="">Select One</option>
                                                         @foreach($sections as $section)
@@ -96,12 +96,12 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="monthly_fee">Monthly Fee</label>
+                                                    <label class="form-label" for="monthly_fee">Monthly Fee <span class="text-danger">*</span></label>
                                                     <input type="text" id="monthly_fee" name="monthly_fee" class="form-control" value="{{ $student->monthly_fee ?? '' }}">
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="date_of_birth">Date of Birth</label>
+                                                    <label class="form-label" for="date_of_birth">Date of Birth <span class="text-danger">*</span></label>
                                                     <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth ?? '' }}">
                                                 </div>
 

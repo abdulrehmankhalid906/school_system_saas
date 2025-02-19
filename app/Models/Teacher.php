@@ -9,7 +9,7 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','code','join_date','is_attendance','is_mark'];
+    protected $fillable = ['user_id','salary','code','join_date','is_attendance','is_mark'];
 
     protected $casts = [
         'is_attendance' => 'boolean',

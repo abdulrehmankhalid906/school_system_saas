@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Helpers\InitS;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\TeacherAttendance;
+use App\Imports\TeacherUserImport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -34,7 +37,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-
+        return view('teachers.add');
     }
 
     /**
@@ -59,6 +62,7 @@ class TeacherController extends Controller
 
             $teacher = [
                 'user_id' => $Auser->id,
+                'salary' => $data['salary'],
                 'join_date' => now(),
             ];
 
@@ -87,7 +91,13 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $teacher = Teacher::with('user')->whereHas('user', function ($query) {
+            $query->where('school_id', InitS::getSchoolid());
+        })->where('id', $id)->firstOrFail();
+
+        return view('teachers.edit',[
+            'teacher' => $teacher
+        ]);
     }
 
     /**
@@ -95,7 +105,39 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $data = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'address' => 'nullable|string',
+                'phone' => 'nullable|string',
+                'salary' => 'required',
+            ]);
+
+            $teacher = Teacher::with('user')->whereHas('user', function ($query) {
+                $query->where('school_id', InitS::getSchoolid());
+            })->where('id', $id)->firstOrFail();
+
+            $teacher->user->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'] ?? NULL,
+                'phone' => $data['phone'] ?? NULL,
+            ]);
+
+            $teacher->update([
+                'salary' => $data['salary'],
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'The Teacher has been updated.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => 'Failed to update teacher: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -103,7 +145,48 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try
+        {
+            $teacher = Teacher::with('user')->whereHas('user', function ($query) {
+                $query->where('school_id', InitS::getSchoolid());
+            })->findOrFail($id);
+
+            if($teacher->user)
+            {
+                $teacher->user->delete();
+            }
+
+            $teacher->delete();
+
+            return response()->json(['message' => 'Teacher has been removed!']);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred. Please try again.',
+                'failure' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function bulkImportTeacher(Request $request)
+    {
+        try
+        {
+            $request->validate([
+                'bulk_upload_file' => 'required|mimes:xlsx,xls,csv',
+            ]);
+
+            Excel::import(new TeacherUserImport, $request->file('bulk_upload_file'));
+
+            return redirect()->back()->with('success','File uploaded successfully');
+        }
+        catch(Exception $ex)
+        {
+            return response()->json([
+                'message' => 'An error occurred during file upload',
+                'error' => $ex->getMessage(),
+            ], 500);
+        }
     }
 
     public function mangeTeacherPermission(Request $request, $id)

@@ -12,8 +12,10 @@
                                 <h4 class="page-title d-inline-block">
                                     <i class="mdi mdi-account-circle title_icon"></i> Teachers
                                 </h4>
-                                <button type="button" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end" data-bs-toggle="modal" data-bs-target="#teacherModal">
-                                    <i class="mdi mdi-plus"></i> Create Teacher
+                                <a href="{{ route('teachers.create') }}" class="btn btn-outline-primary btn-rounded align-middle mt-1 float-end">Create Teacher</a>
+
+                                <button type="button" class="btn btn-outline-success btn-rounded align-middle mt-1 float-end me-2" data-bs-toggle="modal" data-bs-target="#bulkTeacherUpload">
+                                    <i class="mdi mdi-file-upload-outline"></i> Bulk Upload
                                 </button>
 
                                 <table id="example" class="table dt-responsive nowrap w-100">
@@ -30,7 +32,7 @@
                                                 <td>{{ $teacher->user->name }}</td>
                                                 <td><b>Attendance:</b> {{ $teacher->is_attendance == true ? 'Yes' : 'No' }} - <b>Marks:</b> {{ $teacher->is_mark == true ? 'Yes' : 'No' }}</td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#teacherModal">Edit</button>
+                                                    <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteRec({{ $teacher->id }}, 'teachers')">Delete</a>
                                                     <button class="btn btn-primary btn-sm" onclick="managePermission({{ $teacher->id }})">Manage Permission</button>
                                                 </td>
@@ -46,49 +48,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="teacherModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="roleModalLabel">Create Teacher</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="roleForm" method="POST" action="{{ route('teachers.store') }}" autocomplete="off">
-                @csrf
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Teacher Name</label>
-                            <div class="col-md-9">
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Email</label>
-                            <div class="col-md-9">
-                                <input type="email" name="email" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group row mb-3">
-                            <label class="col-md-3 col-form-label" for="system_name">Password</label>
-                            <div class="col-md-9">
-                                <input type="password" name="password" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <input class="btn btn-primary" type="submit" value="Save changes">&nbsp;
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-          </div>
-        </div>
-    </div>
 
     <div class="modal fade" id="teacherperModal" tabindex="-1" aria-labelledby="teacherperModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -120,6 +79,34 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bulkTeacherUpload" tabindex="-1" aria-labelledby="bulkteacherModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="roleModalLabel">Bulk Upload</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('bulk.import.teacher') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="form-group row mb-3">
+                            <label class="col-md-3 col-form-label" for="system_name">Upload File</label>
+                            <div class="col-md-9">
+                                <input type="file" name="bulk_upload_file" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" type="submit" value="Upload File">&nbsp;
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+          </div>
         </div>
     </div>
 @endsection
