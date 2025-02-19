@@ -23,7 +23,7 @@ class TeacherUserImport implements ToCollection, WithHeadingRow
             foreach ($collection as $row)
             {
                 $user = User::create([
-                    'name' => $row['name'],
+                    'name' => $row['name'] ?? '',
                     'email' => $row['email'] ?? '',
                     'password' => Hash::make($row['password'] ?? '123456789'),
                     'school_id' => InitS::getSchoolid()
