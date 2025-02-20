@@ -206,14 +206,6 @@
                         </a>
                     </li>
                 </ul>
-
-                <ul class="menu-sub">
-                    <li class="menu-item {{ setRoute('site.create') }}">
-                        <a href="{{ route('site.create') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Set Site">Set Site</div>
-                        </a>
-                    </li>
-                </ul>
             </li>
         @endif
 
