@@ -26,11 +26,6 @@ class School extends Model
         return $this->hasMany(Klass::class);
     }
 
-    public function classfee()
-    {
-        return $this->hasMany(ClassFee::class);
-    }
-
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
@@ -39,5 +34,17 @@ class School extends Model
     public function grades()
     {
         return $this->hasMany(Grade::class);
+    }
+
+    public function scopeStudentAndTeacherCounts($query)
+    {
+        return $query->withCount([
+            'users as students' => function ($query) {
+                $query->role('Student');
+            },
+            'users as teachers' => function ($query) {
+                $query->role('Teacher');
+            }
+        ]);
     }
 }

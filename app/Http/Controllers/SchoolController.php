@@ -19,8 +19,9 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        return view('schools.schools',[
-            'schools' => School::get()
+        $schools = School::StudentAndTeacherCounts()->get();
+        return view('schools.index',[
+            'schools' => $schools
         ]);
     }
 
@@ -70,15 +71,13 @@ class SchoolController extends Controller
     public function destroy(string $id)
     {
         try {
-            $school = School::with('user')->findOrFail($id);
+            $school = School::with('users')->findOrFail($id);
 
-            $school->delete();
-
-            if ($school->user)
-            {
-                $school->user->delete();
+            if ($school->users->isNotEmpty()) {
+                $school->delete();
             }
 
+            $school->delete();
             return response()->json(['message' => 'The School and all the associated data have been Removed!']);
         } catch (\Exception $e) {
             return response()->json([
