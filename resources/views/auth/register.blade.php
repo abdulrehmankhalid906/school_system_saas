@@ -1,5 +1,8 @@
 @extends('guests-layout.app')
 @section('title', 'Register Account')
+@push('header_scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endpush
 @section('guest-content')
 
 <div class="card-body">
@@ -51,6 +54,8 @@
             <label for="name" class="form-label">{{ __('Confirm Password') }} <span class="text-danger">*</span></label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password_confirmation') }}" id="password_confirmation" name="password_confirmation"/>
         </div>
+
+        <div class="mb-2 g-recaptcha mt-4" data-sitekey={{config('services.recaptcha.site_key')}}></div>
 
         {{-- <div class="my-8">
             <div class="form-check mb-0 ms-2">
