@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'school_name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:30', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'g-recaptcha-response' => 'required|captcha'
+            //'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
