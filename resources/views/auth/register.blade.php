@@ -56,6 +56,9 @@
         </div>
 
         <div class="mb-2 g-recaptcha mt-4" data-sitekey={{config('services.recaptcha.site_key')}}></div>
+        @error('g-recaptcha-response')
+            <span style="color: red;">{{ $message }}</span>
+        @enderror
 
         {{-- <div class="my-8">
             <div class="form-check mb-0 ms-2">
