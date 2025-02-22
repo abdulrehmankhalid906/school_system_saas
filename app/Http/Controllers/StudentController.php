@@ -77,7 +77,7 @@ class StudentController extends Controller
 
             $student = [
                 'user_id' => $Auser->id,
-                //'parent_id' => $data['parent_id'],
+                'parent_id' => $data['parent_id'] ?? null,
                 'klass_id' => $data['klass_id'],
                 'section_id' => $data['section_id'],
                 'monthly_fee' => $data['monthly_fee'],

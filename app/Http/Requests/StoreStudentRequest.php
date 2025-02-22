@@ -26,7 +26,7 @@ class StoreStudentRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|min:8|string',
             'phone' => 'required',
-            //'parent_id' => 'required',
+            'parent_id' => 'nullable',
             'klass_id' => 'required',
             'section_id' => 'required',
             'monthly_fee' => 'required|numeric',
