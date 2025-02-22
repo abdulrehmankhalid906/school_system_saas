@@ -78,7 +78,10 @@ class ParentController extends Controller
             $parent = User::with('students.user')->role('Parent')->where('school_id', InitS::getSchoolid())->findOrFail($id);
 
             if ($parent->students->isNotEmpty()) {
-                $parent->students->each->delete();
+                foreach ($parent->students as $student) {
+                    $student->user()->delete();
+                    $student->delete();
+                }
             }
 
             $parent->delete();
