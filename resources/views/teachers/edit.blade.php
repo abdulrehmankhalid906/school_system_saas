@@ -54,12 +54,12 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="phone">Student Phone <span class="text-danger">*</span></label>
+                                                    <label class="form-label" for="phone">Teacher Phone <span class="text-danger">*</span></label>
                                                     <input type="text" id="phone" name="phone" class="form-control" value="{{ $teacher->user->phone ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="address">Student Address</label>
+                                                    <label class="form-label" for="address">Teacher Address</label>
                                                     <input type="text" class="form-control" id="address" name="address" value="{{ $teacher->user->address ?? '' }}">
                                                 </div>
 

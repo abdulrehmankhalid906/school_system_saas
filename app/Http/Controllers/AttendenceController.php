@@ -7,10 +7,13 @@ use App\Helpers\InitS;
 use GuzzleHttp\Client;
 use App\Models\Student;
 use App\Models\Attendence;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
 class AttendenceController extends Controller
 {
+    use HttpResponses;
+
     public function index()
     {
         $classes = Klass::where('school_id', InitS::getSchoolid())->select('id', 'name')->get();
@@ -26,11 +29,7 @@ class AttendenceController extends Controller
         }])->where('klass_id', $request->class_id)->where('section_id', $request->section_id)->get();
 
         //dd($attendence);
-
-        return response()->json([
-            'message' => "No Data",
-            'data' => $attendence
-        ]);
+        return $this->success($attendence, "Students fetched successfully");
     }
 
     public function submitAttendance(Request $request)
@@ -38,34 +37,27 @@ class AttendenceController extends Controller
         $attendanceData = $request->attendance;
 
         if (empty($attendanceData)) {
-            return response()->json(['message' => 'No attendance data provided.'], 400);
+            return $this->error([], "No attendance data provided", 404);
         }
 
         foreach ($attendanceData as $attendance) {
-            Attendence::create(
-                [
-                    'klass_id' => $request->class_id,
-                    'section_id' => $request->section_id,
-                    'user_id' => $attendance['user_id'],
-                    'date' => $request->date,
-                ],
-                [
-                    'status' => $attendance['status'],
-                ]
-            );
+            Attendence::create([
+                'klass_id' => $request->class_id,
+                'section_id' => $request->section_id,
+                'date' => $request->date,
+                'user_id' => $attendance['user_id'],
+                'status' => $attendance['status']
+            ]);
         }
 
-        return response()->json(['message' => 'Attendance saved successfully.'], 200);
+        return $this->success([], "Attendance saved successfully");
     }
 
     public function showAttendance(Request $request)
     {
         $attendance = Attendence::with('user')->where('klass_id', $request->class_id)->where('section_id',$request->section_id)->where('date', $request->attendence_date)->get();
 
-        return response()->json([
-            'message' => "Attendance Fetch Successfully!",
-            'data' => $attendance
-        ]);
+        return $this->success($attendance, "Attendance Fetch Successfully!");
     }
 
     //Under Verification...
