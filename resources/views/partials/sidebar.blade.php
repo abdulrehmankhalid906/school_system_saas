@@ -117,13 +117,14 @@
                         </li>
                     @endif
 
-                    {{-- @if(Auth::user()->hasRole('School') || (Auth::user()->hasRole('Teacher') && Auth::user()->teacher?->is_attendance == 1)) --}}
+                    {{-- Since is_attendance is boolean we can just set it is_boolean that's it --}}
+                    @if(Auth::user()->hasRole('School') || (Auth::user()->hasRole('Teacher') && Auth::user()->teacher->is_attendance))
                         <li class="menu-item {{ setRoute('get.attendence') }}">
                             <a href="{{ route('get.attendence') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Mark Attendance">Mark Attendance</div>
                             </a>
                         </li>
-                    {{-- @endif --}}
+                    @endif
 
                     @if(Auth::user()->hasRole('School'))
                         <li class="menu-item {{ setRoute('timetables.index') }}">
@@ -138,31 +139,36 @@
 
         {{-- Exam Tab --}}
 
-        @if(Auth::user()->hasRole('School'))
+        @if(Auth::user()->hasRole(['School','Teacher']))
             <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-trophy"></i>
                     <div class="text-truncate" data-i18n="Examination">Examination</div>
                 </a>
+
                 <ul class="menu-sub">
 
-                    <li class="menu-item {{ setRoute('exams.index') }}">
-                        <a href="{{ route('exams.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Exams">Exams</div>
-                        </a>
-                    </li>
+                    @if(Auth::user()->hasRole('School'))
+                        <li class="menu-item {{ setRoute('exams.index') }}">
+                            <a href="{{ route('exams.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Exams">Exams</div>
+                            </a>
+                        </li>
 
-                    <li class="menu-item">
-                        <a href="{{ route('grades.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Grades">Grades</div>
-                        </a>
-                    </li>
+                        <li class="menu-item">
+                            <a href="{{ route('grades.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Grades">Grades</div>
+                            </a>
+                        </li>
+                    @endif
 
-                    {{-- <li class="menu-item">
-                        <a href="{{ route('subjects.index') }}" class="menu-link">
-                            <div class="text-truncate" data-i18n="Marks">Marks</div>
-                        </a>
-                    </li> --}}
+                    {{-- @if(Auth::user()->hasRole('School') || Auth::user()->hasRole('School') && Auth::user()->teacher->is_mark)
+                        <li class="menu-item">
+                            <a href="{{ route('subjects.index') }}" class="menu-link">
+                                <div class="text-truncate" data-i18n="Marks">Marks</div>
+                            </a>
+                        </li>
+                    @endif --}}
                 </ul>
             </li>
         @endif

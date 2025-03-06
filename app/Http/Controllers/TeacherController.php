@@ -70,7 +70,7 @@ class TeacherController extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('success', 'The Teacher has been created');
+            return redirect()->route('teachers.index')->with('success', 'The Teacher has been created');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => 'Failed to create teacher: ' . $e->getMessage()]);
