@@ -127,7 +127,7 @@
             type: "GET",
             dataType: 'JSON',
             success: function(res) {
-                if (res.status == 200) {
+                if (res.status === true) {
                     $('#can_mark').prop('checked', res.data.is_mark);
                     $('#can_attendance').prop('checked', res.data.is_attendance);
 

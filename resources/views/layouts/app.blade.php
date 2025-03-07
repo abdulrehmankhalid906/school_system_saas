@@ -46,7 +46,6 @@
 
                 @include('partials.header')
 
-                <!-- Content wrapper -->
                 <div class="content-wrapper">
 
                     @yield('content')
@@ -289,6 +288,44 @@
                 'data_files': 'Data and Files will be deleted!',
                 'school_del': 'Everything will be deleted upon deleting the school'
             };
+        }
+
+        function triggerLogout() {
+            const logoutForm = document.getElementById('logout-form');
+            if (logoutForm) {
+                logoutForm.submit();
+            }
+        }
+
+        let urlHost = window.location.hostname;
+        if (urlHost !== 'localhost')
+        {
+            (function() {
+                function checkDevTools() {
+                    const widthDiff = window.outerWidth - window.innerWidth;
+                    const heightDiff = window.outerHeight - window.innerHeight;
+                    const devtoolsDetected = widthDiff > 160 || heightDiff > 160;
+
+                    if (devtoolsDetected) {
+                        alert("DevTools detected! Logging out...");
+                        triggerLogout();
+                    }
+                }
+
+                setInterval(checkDevTools, 3000);
+
+                document.addEventListener("keydown", function(event) {
+                    if (
+                        event.code === "F12" ||
+                        (event.ctrlKey && event.shiftKey && ["I", "J", "C"].includes(event.key))
+                    ) {
+                        alert("DevTools detected! Logging out...");
+                        triggerLogout();
+                        event.preventDefault();
+                    }
+                });
+
+            })();
         }
     </script>
 </body>

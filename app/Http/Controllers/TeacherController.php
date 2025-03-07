@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\TeacherAttendance;
 use App\Imports\TeacherUserImport;
+use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +17,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -158,13 +160,9 @@ class TeacherController extends Controller
 
             $teacher->delete();
 
-            return response()->json(['message' => 'Teacher has been removed!']);
-
+            return $this->success([],'Teacher has been removed!');
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'An error occurred. Please try again.',
-                'failure' => $e->getMessage()
-            ], 500);
+            return $this->error([], 'Something went wrong!. ' .$e->getMessage(), 500);
         }
     }
 
@@ -195,10 +193,7 @@ class TeacherController extends Controller
             $query->where('school_id', InitS::getSchoolid());
         })->where('id', $id)->firstOrFail();
 
-        return response()->json([
-            'status' => 200,
-            'data' => $teacher
-        ]);
+        return $this->success($teacher,'Permission retrive successfully!');
     }
 
 
@@ -267,16 +262,9 @@ class TeacherController extends Controller
                     'check_in' => InitS::currentTime(),
                 ]);
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'You have checked in successfully'
-                ]);
+                return $this->success([], 'You have checked in successfully');
             } else {
-
-                return response()->json([
-                    'status' => false,
-                    'message' => 'You have already checked in today'
-                ]);
+                return $this->error([], 'You have already checked in today',208);
             }
         }
 
@@ -284,17 +272,11 @@ class TeacherController extends Controller
         else if ($request->type == 'check_out') {
 
             if (!$attendance || !$attendance->check_in) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'You have not checked in yet'
-                ]);
+                return $this->error([], 'You have not checked in yet',404);
             }
 
             if ($attendance->check_out) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'You have already checked out today'
-                ]);
+                return $this->error([], 'You have already checked out today',208);
             }
 
             $attendance->update([
@@ -302,16 +284,10 @@ class TeacherController extends Controller
                 'remarks' => $this->calculateAttendanceTime($attendance->check_in, InitS::currentTime()),
             ]);
 
-            return response()->json([
-                'status' => true,
-                'message' => 'You have checked out successfully'
-            ]);
+            return $this->success([], 'You have checked out successfully');
         }
         else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid request'
-            ]);
+            return $this->error([], 'Invalid request', 400);
         }
     }
 
