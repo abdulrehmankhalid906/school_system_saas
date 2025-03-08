@@ -36,12 +36,6 @@
 
                 <ul class="menu-sub">
                     @if(Auth::user()->hasRole('Super Admin'))
-                        <li class="menu-item {{ setRoute('users.index') }}">
-                            <a href="{{ route('users.index') }}" class="menu-link">
-                                <div class="text-truncate" data-i18n="Users">Users</div>
-                            </a>
-                        </li>
-
                         <li class="menu-item {{ setRoute('roles.index') }}">
                             <a href="{{ route('roles.index') }}" class="menu-link">
                                 <div class="text-truncate" data-i18n="Roles">Roles</div>

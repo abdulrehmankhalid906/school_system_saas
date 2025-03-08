@@ -14,11 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withoutRole('Super Admin')->with(['roles','school'])->get();
+        // $users = User::withoutRole('Super Admin')->with(['roles','school'])->get();
 
-        return view('users.users',[
-            'users' => $users
-        ]);
+        // return view('users.users',[
+        //     'users' => $users
+        // ]);
     }
 
     /**

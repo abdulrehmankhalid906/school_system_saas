@@ -31,6 +31,11 @@ class School extends Model
         return $this->hasMany(Subscription::class);
     }
 
+    public function active_subscription()
+    {
+        return $this->hasOne(Subscription::class)->latest('id');
+    }
+
     public function grades()
     {
         return $this->hasMany(Grade::class);

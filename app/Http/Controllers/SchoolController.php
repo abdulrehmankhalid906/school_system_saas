@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use App\Models\User;
 use App\Helpers\InitS;
 use App\Models\School;
 use App\Models\Subscription;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Days;
 
 class SchoolController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */
@@ -54,7 +51,11 @@ class SchoolController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $school = School::with('active_subscription')->StudentAndTeacherCounts()->where('id', $id)->firstOrFail();
+
+        return view('schools.edit', [
+            'school' => $school
+        ]);
     }
 
     /**
@@ -78,12 +79,10 @@ class SchoolController extends Controller
             }
 
             $school->delete();
-            return response()->json(['message' => 'The School and all the associated data have been Removed!']);
+
+            return $this->success([],'The School and all the associated data have been Removed!');
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'An error occurred. Please try again.',
-                'failure' => $e->getMessage()
-            ], 500);
+            return $this->error([],'Something went wrong!' .$e->getMessage(), 500);
         }
     }
 
