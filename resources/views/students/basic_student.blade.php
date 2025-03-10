@@ -51,7 +51,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="parent_id">Select Parent <span class="text-danger">*</span></label>
+                                                    <label class="form-label" for="parent_id">Select Parent <span class="text-danger"><small>(Optional)</small></span></label>
                                                     <select id="parent_id" name="parent_id" class="form-control select2">
                                                         <option value="">Select One</option>
                                                         @foreach ($data['parents'] as $parent)
