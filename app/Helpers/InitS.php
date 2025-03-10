@@ -115,7 +115,7 @@ class InitS{
 
     public static function getImage($variable, $folder)
     {
-       return $variable ? asset("/uploads/{$folder}/" .$variable) : asset('assets/img/avatars/1.png');
+       return $variable ? asset("/uploads/{$folder}/" .$variable) : asset('assets/img/avatars/1.jpg');
     }
 
     public static function generateCred($name)

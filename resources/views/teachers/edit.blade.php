@@ -49,7 +49,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="system_email">Teacher Email <span class="text-danger">*</span></label>
+                                                    <label class="form-label" for="email">Teacher Email <span class="text-danger">*</span></label>
                                                     <input type="email" id="email" name="email" class="form-control" value="{{ $teacher->user->email ?? '' }}" required>
                                                 </div>
 
@@ -66,7 +66,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="salary">Monthly Salary <span class="text-danger">*</span></label>
-                                                    <input type="text" id="salary" name="salary" class="form-control" value="{{ $teacher->salary ?? '' }}">
+                                                    <input type="number" id="salary" name="salary" class="form-control" value="{{ $teacher->salary ?? '' }}">
                                                 </div>
 
                                                 <div class="text-end">

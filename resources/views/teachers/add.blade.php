@@ -62,7 +62,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="salary">Monthly Salary <span class="text-danger">*</span></label>
-                                                    <input type="text" id="salary" name="salary" class="form-control" required>
+                                                    <input type="number" id="salary" name="salary" class="form-control" required>
                                                 </div>
 
                                                 <div class="text-end">

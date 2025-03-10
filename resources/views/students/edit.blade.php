@@ -61,7 +61,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="system_email">Student Email <span class="text-danger">*</span></label>
+                                                    <label class="form-label" for="email">Student Email <span class="text-danger">*</span></label>
                                                     <input type="email" id="email" name="email" class="form-control" value="{{ $student->user->email ?? '' }}" required>
                                                 </div>
 
@@ -72,7 +72,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="address">Student Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address" value="{{ $student->user->address ?? '' }}">
+                                                    <input type="text" class="form-control" id="address" name="address" value="{{ $student->user->address ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
@@ -87,7 +87,7 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="section_id">Section <span class="text-danger">*</span></label>
-                                                    <select class="form-control" id="section_id" name="section_id">
+                                                    <select class="form-control" id="section_id" name="section_id" required>
                                                         <option value="">Select One</option>
                                                         @foreach($sections as $section)
                                                             <option value="{{ $section->id }}" {{ $student->section_id == $section->id ? 'selected' : '' }}>{{ $section->name }}</option>
@@ -97,12 +97,12 @@
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="monthly_fee">Monthly Fee <span class="text-danger">*</span></label>
-                                                    <input type="text" id="monthly_fee" name="monthly_fee" class="form-control" value="{{ $student->monthly_fee ?? '' }}">
+                                                    <input type="number" id="monthly_fee" name="monthly_fee" class="form-control" value="{{ $student->monthly_fee ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <label class="form-label" for="date_of_birth">Date of Birth <span class="text-danger">*</span></label>
-                                                    <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth ?? '' }}">
+                                                    <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth ?? '' }}" required>
                                                 </div>
 
                                                 <div class="col-md-4">
