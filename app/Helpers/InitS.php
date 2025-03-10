@@ -92,8 +92,15 @@ class InitS{
         return new \DateTime("now", new \DateTimeZone("Asia/Karachi"));
     }
 
-    public static function uploadImage($image, $folder)
+    public static function uploadImage($image, $folder, $oldImage = null)
     {
+        if ($oldImage) {
+            $oldImagePath = public_path("uploads/{$folder}/{$oldImage}");
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+
         if ($_SERVER['SERVER_NAME'] == 'localhost') {
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path("uploads/{$folder}"), $imageName);
@@ -113,7 +120,7 @@ class InitS{
         return $imageName;
     }
 
-    public static function getImage($variable, $folder)
+    public static function getImage($variable = null , $folder = null)
     {
        return $variable ? asset("/uploads/{$folder}/" .$variable) : asset('assets/img/avatars/1.jpg');
     }

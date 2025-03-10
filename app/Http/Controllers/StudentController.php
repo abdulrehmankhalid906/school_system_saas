@@ -70,7 +70,14 @@ class StudentController extends Controller
                 'address' => $data['address'],
                 'phone' => $data['phone'],
                 'school_id' => InitS::getSchoolid(),
+                'profile_image' => null
             ];
+
+            if ($request->hasFile('student_image')) {
+                $profileImage = $request->file('student_image');
+                $profileImageName = InitS::uploadImage($profileImage, 'profile');
+                $user['profile_image'] = $profileImageName;
+            }
 
             $Auser = User::create($user);
             $Auser->syncRoles('Student');

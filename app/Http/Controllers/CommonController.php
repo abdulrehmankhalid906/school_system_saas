@@ -27,7 +27,7 @@ class CommonController extends Controller
         if ($request->hasFile('profile_img'))
         {
             $profileImage = $request->file('profile_img');
-            $profileImageName = InitS::uploadImage($profileImage, 'profile');
+            $profileImageName = InitS::uploadImage($profileImage, 'profile', $user->profile_image); //User Profile = Profile Folder
             $user->profile_image = $profileImageName;
             $user->save();
         }
@@ -63,7 +63,7 @@ class CommonController extends Controller
 
         if ($request->hasFile('logo')) {
             $schoolLogo = $request->file('logo');
-            $profileImageName = InitS::uploadImage($schoolLogo, 'logo');
+            $profileImageName = InitS::uploadImage($schoolLogo, 'logo', $school->logo);  //school logo = Logo Folder
             $school->logo = $profileImageName;
             $school->save();
         }

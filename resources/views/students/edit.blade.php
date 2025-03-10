@@ -43,7 +43,7 @@
                                             @method('PUT')
 
                                             <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4">
-                                                <img src="{{ InitS::getImage($student->user->profile_image, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                                <img src="{{ InitS::getImage($student->user->profile_image, 'profile') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                                 <div class="button-wrapper">
                                                     <label for="upload" class="btn btn-primary me-3 mb-4" tabindex="0">
                                                         <span class="d-none d-sm-block">Upload Image</span>

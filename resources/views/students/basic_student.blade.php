@@ -23,12 +23,12 @@
                                             @csrf
 
                                             <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4">
-                                                <img src="{{ InitS::getImage(false, 'logo') }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
+                                                <img src="{{ InitS::getImage() }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar">
                                                 <div class="button-wrapper">
                                                     <label for="upload" class="btn btn-primary me-3 mb-4" tabindex="0">
-                                                        <span class="d-none d-sm-block">Upload Logo</span>
+                                                        <span class="d-none d-sm-block">Upload Image</span>
                                                         <i class="bx bx-upload d-block d-sm-none"></i>
-                                                        <input type="file" name="student_image" id="student_image" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                                                        <input type="file" id="upload" name="student_image" class="account-file-input" hidden="" accept="image/png, image/jpeg">
                                                     </label>
                                                     <div>Allowed JPG, JPEG or PNG. Max size of 2MB</div>
                                                 </div>
@@ -98,13 +98,13 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="phone">Enter Phone <span class="text-danger">*</span></label>
-                                                    <input type="text" id="phone" name="phone" class="form-control" required>
+                                                    <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
+                                                    <input type="text" id="phone" name="phone" class="form-control" placeholder="0311-*******" required>
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label class="form-label" for="address">Enter Address</label>
-                                                    <input type="text" class="form-control" id="address" name="address">
+                                                    <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="address" name="address" placeholder="Chakwal,Pakistan" required>
                                                 </div>
 
                                                 <div class="text-end">
