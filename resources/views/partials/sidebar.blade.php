@@ -207,6 +207,27 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="menu-item">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                    <div class="text-truncate" data-i18n="Quiz Bank">Quiz Bank</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ setRoute('questions.index') }}">
+                        <a href="{{ route('questions.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Questions">Questions</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ setRoute('quizs.index') }}">
+                        <a href="{{ route('quizs.index') }}" class="menu-link">
+                            <div class="text-truncate" data-i18n="Quizes">Quizes</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         @endif
 
         {{-- Reports / Notification Tab --}}

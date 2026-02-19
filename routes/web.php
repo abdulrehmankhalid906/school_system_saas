@@ -22,6 +22,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubscriptionController;
 
 /*
@@ -140,6 +141,7 @@ Route::middleware(['auth'])->group(function(){
         'notifications' => NotificationController::class,
         'expenses' => ExpenseController::class,
         'subscriptions' => SubscriptionController::class,
+        'questions' => QuestionController::class,
     ]);
     // });
 });
